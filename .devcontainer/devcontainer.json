@@ -16,7 +16,13 @@
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"dbaeumer.vscode-eslint"
+				"dbaeumer.vscode-eslint",
+				"rangav.vscode-thunder-client",
+				"donjayamanne.githistory",
+				"christian-kohler.npm-intellisense",
+				"ms-vscode.js-debug",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"standard.vscode-standard"
 			]
 		}
 	},
