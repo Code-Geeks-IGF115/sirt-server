@@ -1,6 +1,6 @@
-### **Universidad Nacional de El Salvador**<br>Colaboración Programación III e Ingeniería de Software<br>Ciclo II-2022<br>Grupo 03<br>
+### Universidad Nacional de El Salvador<br>Colaboración Programación III e Ingeniería de Software<br>Ciclo II-2022<br>Grupo 03<br>
 
-## *Sistema de Registro Terapéutico para la Ciudad de La Niñez y la Adolescencia*
+### *Sistema de Registro Terapéutico para la Ciudad de La Niñez y la Adolescencia*
 <br>
 
 ### Integrantes
