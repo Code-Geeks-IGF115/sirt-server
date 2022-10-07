@@ -1,0 +1,31 @@
+{
+  "name": "sirt-api",
+  "version": "1.0.0",
+  "description": "Sistema de Registro Terapéutico para la Cuidad de La Niñez y la Adolescencia",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code-Geeks-IGF115/sirt-api.git"
+  },
+  "author": "CODE-GEEKS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Code-Geeks-IGF115/sirt-api/issues"
+  },
+  "homepage": "https://github.com/Code-Geeks-IGF115/sirt-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "sequelize": "^6.21.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  }
+}
