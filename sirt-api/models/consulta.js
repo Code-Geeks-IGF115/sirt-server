@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Beneficiario,{as:'Beneficiario'});
-      this.belongsTo(models.Ficha,{as:'Ficha'});
-      this.belongsTo(models.Usuario,{as:'Usuario'});
-      this.hasMany(models.SeguimientoConsulta,{as:'SeguimientosConsulta'});
+      this.belongsTo(models.Beneficiario,{as:'beneficiario'});
+      this.belongsTo(models.Ficha,{as:'ficha'});
+      this.belongsTo(models.Usuario,{as:'doctor'});
+      this.hasMany(models.SeguimientoConsulta,{as:'seguimientosConsulta'});
     }
   }
   Consulta.init({
