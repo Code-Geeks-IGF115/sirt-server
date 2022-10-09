@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.ExamenLaboratorio,{as:'ExamenesLaboratorio'});
+      this.belongsTo(models.Consulta,{as:'Consulta'});
+      this.belongsTo(models.Usuario,{as:'Usuario'});
     }
   }
   SeguimientoConsulta.init({
