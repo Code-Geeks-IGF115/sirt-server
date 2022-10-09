@@ -15,6 +15,9 @@ module.exports = {
       descripcion: {
         type: Sequelize.STRING
       },
+      selfGranted: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

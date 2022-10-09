@@ -11,11 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsToMany(models.Usuario,{through:'PermisosUsuario'});
     }
   }
   Permiso.init({
     codigo: DataTypes.STRING,
-    descripcion: DataTypes.STRING
+    descripcion: DataTypes.STRING,
+    selfGranted: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Permiso',
