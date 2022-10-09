@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsToMany(models.Calendario,{through:models.CitaMedica});
     }
   }
   Horario.init({
