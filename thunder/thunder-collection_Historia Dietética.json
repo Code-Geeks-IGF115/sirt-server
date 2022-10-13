@@ -1,0 +1,65 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Historia Dietética",
+    "dateExported": "2022-10-13T22:10:26.753Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "aae44227-3038-4223-8b22-8ff9285d9c70",
+            "colId": "8cde5463-2ace-41a5-9598-138a99de1d4b",
+            "containerId": "",
+            "name": "localhost:3000/ficha/nutricion/consulta/historia-dietetica/",
+            "url": "localhost:3000/ficha/nutricion/consulta/historia-dietetica/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-10-13T22:10:10.250Z",
+            "modified": "2022-10-13T22:10:10.250Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "actividadFisica",
+                        "value": "test actividadFisica"
+                    },
+                    {
+                        "name": "consumoAlcohol",
+                        "value": "test consumoAlcohol"
+                    },
+                    {
+                        "name": "consumoTabaco",
+                        "value": "test consumoTabaco"
+                    },
+                    {
+                        "name": "preferenciaAlimenticia",
+                        "value": "test preferenciaAlimenticia 2"
+                    },
+                    {
+                        "name": "alimentosNoPreferidos",
+                        "value": "test alimentosNoPreferidos 2"
+                    },
+                    {
+                        "name": "alergias",
+                        "value": "test alergias 2"
+                    },
+                    {
+                        "name": "lugarDeComida",
+                        "value": "test lugarDeComida 2"
+                    },
+                    {
+                        "name": "quienPreparaAlimentos",
+                        "value": "test quienPreparaAlimentos 2"
+                    },
+                    {
+                        "name": "horasDeSueno",
+                        "value": "2"
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ]
+}
