@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Historia Dietética",
-    "dateExported": "2022-10-13T22:10:26.753Z",
+    "dateExported": "2022-10-13T23:08:42.404Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -9,7 +9,7 @@
             "_id": "aae44227-3038-4223-8b22-8ff9285d9c70",
             "colId": "8cde5463-2ace-41a5-9598-138a99de1d4b",
             "containerId": "",
-            "name": "localhost:3000/ficha/nutricion/consulta/historia-dietetica/",
+            "name": "Creacion de historia dietetica",
             "url": "localhost:3000/ficha/nutricion/consulta/historia-dietetica/",
             "method": "POST",
             "sortNum": 10000,
@@ -59,6 +59,54 @@
                     }
                 ]
             },
+            "tests": []
+        },
+        {
+            "_id": "cb4d7332-2099-4e2e-8c2b-4d06de34bb62",
+            "colId": "8cde5463-2ace-41a5-9598-138a99de1d4b",
+            "containerId": "",
+            "name": "Consulta por parametros de consulta",
+            "url": "localhost:3000/ficha/nutricion/consulta/historia-dietetica2/?id=2",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2022-10-13T22:25:07.343Z",
+            "modified": "2022-10-13T23:06:34.610Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "2",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "d04df5ff-44f4-42c3-9e52-5ca1aa873d3b",
+            "colId": "8cde5463-2ace-41a5-9598-138a99de1d4b",
+            "containerId": "",
+            "name": "consulta todos las historias dieteticas",
+            "url": "localhost:3000/ficha/nutricion/consulta/historia-dietetica/",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2022-10-13T23:07:35.804Z",
+            "modified": "2022-10-13T23:07:42.891Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "63fc5ae2-5e13-4d7b-a109-1a90ca9cfd4d",
+            "colId": "8cde5463-2ace-41a5-9598-138a99de1d4b",
+            "containerId": "",
+            "name": "Consulta por parametros de ruta",
+            "url": "localhost:3000/ficha/nutricion/consulta/historia-dietetica3/2",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2022-10-13T23:06:21.980Z",
+            "modified": "2022-10-13T23:06:21.980Z",
+            "headers": [],
+            "params": [],
             "tests": []
         }
     ]
