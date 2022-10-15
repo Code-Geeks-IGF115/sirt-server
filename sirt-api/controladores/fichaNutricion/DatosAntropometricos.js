@@ -4,7 +4,8 @@ const { Op } = require("sequelize");
 //CONTROLADORES
 
 async function crearDatosAntropometricos(request,response){
-    response.json({data:"Datos Antropometricos Guardados."})
+    response.status(200);
+    response.json({data:"Datos Antropometricos Guardados."});
 }
 
 //EXPORTANDO CONTROLADORES
