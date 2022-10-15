@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Plan_Alimenticio",
+    "dateExported": "2022-10-15T19:05:32.830Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b99ea25a-a049-4251-9a16-92c0a19ca7b4",
+            "colId": "fd3328b2-aeb9-4bf8-b19a-09f6dd22be2f",
+            "containerId": "",
+            "name": "Plan_Alimenticio",
+            "url": "localhost:3000/ficha/nutricion/consulta/plan-alimenticio/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-10-15T19:05:02.404Z",
+            "modified": "2022-10-15T19:05:02.404Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "\n{ \"consultaId\":2,\n \"filas\": [{\n \"idAlimento\": 1,\n\"tiempo\": \"desayuno\",\n\"dia\":\"lunes\",\n \"cantidadSubtotal\":10.5,\n\"proteinasSubtotal\":10.5,\n\" grasasSubtotal\":10.5,\n\"carbohidratosSubtotal\":10.5,\n\"caloriasSubtotal\":42.0\n}]\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

@@ -5,10 +5,10 @@ const {HistoriaDietetica}=require(`../../models`);
 // CONTROLADORES 
 
 /**
- * nombre:
- * carnet:
- * estado: APROBADO || EN REVISIÓN || DESARROLLO
- * fecha de creación: CUANDO LA CREARON USTEDES
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  DESARROLLO
+ * fecha de creación: Jueves 13 de octubre del 2022
  * fecha de última edición: USTEDES
  * fecha de última revisión: ANDREA
  * fecha de aprobación: ANDREA
@@ -23,7 +23,7 @@ async function crearHistoriaDietetica(request,response){
             await historiaDietetica.save();//guardando en la base de datos
         }
     }catch(e){
-        data={'message':"Datos no válidos."}
+        data={'message':"Internal Server Error."}
     }
     response.json(data);
 }
