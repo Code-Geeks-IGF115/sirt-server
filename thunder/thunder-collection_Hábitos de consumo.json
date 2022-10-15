@@ -1,0 +1,77 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Hábitos de consumo",
+    "dateExported": "2022-10-15T03:46:33.212Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "e76a780b-ef23-4325-9854-f89d436ff32c",
+            "colId": "a2300558-463a-4ab4-87f0-bc9b6beae698",
+            "containerId": "",
+            "name": "localhost:3000/ficha/nutricion/consulta/habitos-consumo/",
+            "url": "localhost:3000/ficha/nutricion/consulta/habitos-consumo/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-10-15T03:45:35.915Z",
+            "modified": "2022-10-15T03:45:35.915Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "leche",
+                        "value": "test leche 2"
+                    },
+                    {
+                        "name": "vegetales",
+                        "value": "test vegetales 2"
+                    },
+                    {
+                        "name": "panFrances",
+                        "value": "test panFrances 2"
+                    },
+                    {
+                        "name": "cafe",
+                        "value": "test cafe 2"
+                    },
+                    {
+                        "name": "carne",
+                        "value": "test carne 2"
+                    },
+                    {
+                        "name": "yogurt",
+                        "value": "test yogurt 2"
+                    },
+                    {
+                        "name": "fruta",
+                        "value": "test fruta 2"
+                    },
+                    {
+                        "name": "tortilla",
+                        "value": "test tortilla 2 "
+                    },
+                    {
+                        "name": "dulces",
+                        "value": "test dulces 2"
+                    },
+                    {
+                        "name": "pollo",
+                        "value": "test pollo 2"
+                    },
+                    {
+                        "name": "pescado",
+                        "value": "test pescado 2"
+                    },
+                    {
+                        "name": "otro",
+                        "value": "test otro"
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ]
+}

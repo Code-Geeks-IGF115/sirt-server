@@ -14,6 +14,8 @@ const {crearHistoriaDietetica,
   verHistoriasDieteticas,
   verHistoriasDieteticas2,
   verHistoriasDieteticas3}=require(__dirname + '/controladores/fichaNutricion/HistoriaDieteticaControl.js');
+//HabitosDeConsumo
+const {crearHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
 
 //RUTAS
@@ -27,6 +29,11 @@ app.route('/ficha/nutricion/consulta/historia-dietetica2/')
     .get(verHistoriasDieteticas2);
 app.route('/ficha/nutricion/consulta/historia-dietetica3/:id')
     .get(verHistoriasDieteticas3);
+
+//HabitosDeConsumo
+app.route('/ficha/nutricion/consulta/habitos-consumo/')
+    .post(crearHabitosConsumo)
+    
                                                           
 
 
