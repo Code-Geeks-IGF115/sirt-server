@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 require('dotenv').config();
 const bodyParser = require("body-parser");
-const { crearDatosMedicos, verDatosMedicos, manipularDatosM } = require("./controladores/fichaNutricion/DatosMedicos");
 app.use(bodyParser.urlencoded({ extended: false }));
 const { sequelize } = require(__dirname + "/models/index.js");
 const PORT = process.env.PORT || 3000;
@@ -18,7 +17,7 @@ const { crearHistoriaDietetica,
 
 const { crearDatosMedicos,
   verDatosMedicos,
-  manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicos.js');
+  manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
 
 
 //RUTAS
@@ -37,9 +36,11 @@ app.route('/ficha/nutricion/consulta/historia-dietetica3/:id')
 app.route('/ficha/nutricion/consulta/datos/')
   .post(crearDatosMedicos)
   .get(verDatosMedicos);
-app.route('/ficha/nutricion/consulta/datos/')
-  .get(manipularDatosM);
+//app.route('/ficha/nutricion/consulta/datos/')
+  //.get(manipularDatosM);
 
+//Examenes de laboratorio
+app.route('/ficha/nutricion/consulta/examenes-laboratorio/')
 
 app.listen(PORT, async function () {
   try {

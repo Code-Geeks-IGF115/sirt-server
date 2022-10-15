@@ -6,13 +6,14 @@ const { DatosMedicos } = require('../../models');
 *Carnet: BC21009
 *Estado:
 *Fecha de creacion: 14/10/22
+*Fecha de ultima edicion: 14/10/22
 *Fecha de ultima revision:
 *Fecha de aprobacion:
 */
 
 //Funcion para crear los datos medicos
 async function crearDatosMedicos(request, response) {
-    data2 = { 'message': 'Datos medicos guardados' }
+     let data = { 'message': 'Datos medicos guardados' }
     parametros = request.body;
     try {
         const datosMedicos = DatosMedicos.build(parametros);
@@ -20,9 +21,10 @@ async function crearDatosMedicos(request, response) {
             await DatosMedicos.save();
         }
     } catch (excp) {
-        data2 = { 'message:': 'Datos no validos' }
+        data = { 'message:': 'Datos no validos' }
     }
-    return true;
+
+    return response.json(data);
 }
 
 //Funcion para recuperar todos los datos
