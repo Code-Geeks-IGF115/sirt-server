@@ -14,7 +14,7 @@ const {FilaPlan}=require(`../../models`);
  * fecha de aprobación: ANDREA
  */
  async function crearPlanAlimenticio(request,response){
-
+    
     data={'message':"Plan Alimenticio Guardado."}
     consultaId=request.body.consultaId;
     filas=request.body.filas;
@@ -39,7 +39,7 @@ const {FilaPlan}=require(`../../models`);
     }catch(ex){
         data={'message':ex.message}
     }
-    response.json(data);
+    response.status(204).json(data);
  }
 
 
