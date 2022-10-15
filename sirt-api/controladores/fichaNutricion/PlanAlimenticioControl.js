@@ -1,9 +1,8 @@
 //jshint esversion:6
 const { Op } = require("sequelize");
-const {PlanAlimenticio}=require(`../../models`);
-const {FilaPlan}=require(`../../models`);
-// CONTROLADORES 
+const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
 
+// CONTROLADORES 
 /**
  * nombre:Damaris Julissa Hernández Guardado
  * carnet:HG20040
@@ -15,32 +14,71 @@ const {FilaPlan}=require(`../../models`);
  */
  async function crearPlanAlimenticio(request,response){
     
-    data={'message':"Plan Alimenticio Guardado."}
-    consultaId=request.body.consultaId;
-    filas=request.body.filas;
+    let data={'message':"Plan Alimenticio Guardado."}
+    //recuperando el id de la consulta
+    let consultaId=request.body.consultaId;
+    let filas=request.body.filas;
     let hoy = new Date();
-    console.log(filas);
     try{
+        //recuperando consulta
+        const consulta = await Consulta.findOne({ where: { id: parseInt(consultaId)} });
         
-        const planAlimenticio = PlanAlimenticio.build({"fecha":hoy});
-        
+        //creando el plan alimenticio y asignando la consulta
+        const planAlimenticio = PlanAlimenticio.create(
+            {
+                "fecha": hoy,
+                "consulta": consulta
+            },
+            {
+                include: [{
+                    association: Consulta,
+                    as: 'consulta'
+                  }]
+            });
+
         if(planAlimenticio instanceof PlanAlimenticio){
-            planAlimenticio.consultaId=consultaId;
-            await planAlimenticio.save();//guardando en la base de datos
+            //guardando en la base de datos
+            await planAlimenticio.save();
+        }else{
+            throw 'Datos del plan alimenticio no válidos.';
         }
-        filas.forEach(async (fila) => {
-            const filaPlan = FilaPlan.build(fila);
-            filaPlan.PlanAlimenticioId=planAlimenticio.id;
-       
-            await filaPlan.save();//guardando en la base de datos
-        
-          },this);
-       
-    }catch(ex){
-        data={'message':ex.message}
-    }
-    response.status(204).json(data);
- }
+        // //recuperando todos los alimentos de la base de datos
+        // const alimentos=  await Alimento.findAll();
+        // console.log(alimentos[0]);
+        // filas.forEach(async (fila) => {
+        //     //asignando el objeto creado plan alimenticio a la fila plan
+        //     fila.planAlimenticio=planAlimenticio;
+            
+        //     //recuperando alimento
+        //     let alimento=alimentos.filter(alimento => alimento.id == fila.AlimentoId);
+            
+        //     //asignando alimento a la fila plan
+        //     fila.alimento=alimento;
+            
+        //     //creando la fila plan a partir de los datos proporcionados
+        //     const filaPlan = FilaPlan.build(
+        //         fila,
+        //         {
+        //             include: [ PlanAlimenticio ],
+        //             as: 'planAlimenticio'
+        //         },
+        //         {
+        //             include: [ Alimento ],
+        //             as: 'alimento'
+        //         }
+        //         );
+                
+        //         await filaPlan.save();//guardando en la base de datos
+                
+        //     },this);
+            
+        }catch(e){
+            data={'message':e.message}
+            return response.status(500).json(data);
+        }
+            
+            response.json(data);
+        }
 
 
 
