@@ -3,10 +3,9 @@ const express = require("express");
 const app = express();
 require('dotenv').config();
 const bodyParser = require("body-parser");
-const { crearDatosMedicos, verDatosMedicos, manipularDatosM } = require("./controladores/fichaNutricion/DatosMedicos");
 app.use(bodyParser.urlencoded({ extended: false }));
 const { sequelize } = require(__dirname + "/models/index.js");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 //IMPORTACIONES DE CONTROLADORES
 const { index } = require(__dirname + '/controladores/indexControl.js');
@@ -19,6 +18,8 @@ const { crearHistoriaDietetica,
 const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicos.js');
+
+const { crearDatosAntropometricos} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
 
 
 //RUTAS
@@ -35,10 +36,14 @@ app.route('/ficha/nutricion/consulta/historia-dietetica3/:id')
 
 //Datos médicos
 app.route('/ficha/nutricion/consulta/datos/')
-  .post(crearDatosMedicos)
+  .post(crearDatosMedicos) 
   .get(verDatosMedicos);
-app.route('/ficha/nutricion/consulta/datos/')
-  .get(manipularDatosM);
+//app.route('/ficha/nutricion/consulta/datos/')
+//  .get(manipularDatosM);
+
+app.route('/ficha/nutricion/consulta/datos-antropometricos/')
+  .post(crearDatosAntropometricos); 
+
 
 
 app.listen(PORT, async function () {
