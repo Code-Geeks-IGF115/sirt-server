@@ -13,9 +13,8 @@ Fecha de aprobacion:
 */
 
 async function crearHabitosConsumo(request, response) {
-    let diaActual = new Date();
     dato1 = {'message':"Examen de laboratorio guardado"}
-    
+    let fechaAsignacion = {}
 }
 
 async function recuperarExamenes() {
