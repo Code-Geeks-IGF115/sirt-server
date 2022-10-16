@@ -45,7 +45,7 @@ async function verDatosMedicos(request, response) {
     } catch (error) {
         data3 = {'message':'Datos no validos'}
     }
-    return true;
+    return response.json(data3);
 }
 
 //Funcion para manipular los datos en la database
@@ -66,7 +66,7 @@ async function manipularDatosM(request, response){
     } catch (error) {
         data4 = {'message':'Datos no validos'}
     }
-    return true;
+    return response.json(data4);
 }
 
 //Exportancion de controladores
