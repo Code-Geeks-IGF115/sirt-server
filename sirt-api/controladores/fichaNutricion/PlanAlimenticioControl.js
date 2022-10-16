@@ -39,9 +39,10 @@ const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
         
              
     }catch(e){
+        response.status(304);
             data={'message':e.message}
     }
-            
+    response.status(201);
     return response.json(data);
 }
 
