@@ -13,7 +13,9 @@ const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
  * fecha de aprobación: ANDREA
  */
  async function crearPlanAlimenticio(request,response){
-    
+    /**
+     * Nota: El método create guarda los datos en la base de datos.
+     */
     let data={'message':"Plan Alimenticio Guardado."}
     let hoy = new Date();
     //recuperando los parametros
@@ -40,7 +42,7 @@ const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
              
     }catch(e){
         response.status(304);
-            data={'message':e.message}
+        data={'message':e.message}
     }
     response.status(201);
     return response.json(data);
