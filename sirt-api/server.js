@@ -19,6 +19,10 @@ const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
 
+const { crearHabitosConsumo,
+  recuperarExamenes,
+  modificarDatos } = require(__dirname + '/controladores/fichaNutricion/ExamenesLaboratorioControl.js');
+
 
 //RUTAS
 app.route('/').get(index);
@@ -37,10 +41,12 @@ app.route('/ficha/nutricion/consulta/datos/')
   .post(crearDatosMedicos)
   .get(verDatosMedicos);
 //app.route('/ficha/nutricion/consulta/datos/')
-  //.get(manipularDatosM);
+//.get(manipularDatosM);
 
 //Examenes de laboratorio
 app.route('/ficha/nutricion/consulta/examenes-laboratorio/')
+  .post(crearHabitosConsumo)
+  .get(recuperarExamenes);
 
 app.listen(PORT, async function () {
   try {

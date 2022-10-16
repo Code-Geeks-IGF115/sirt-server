@@ -6,7 +6,7 @@ const { DatosMedicos } = require('../../models');
 *Carnet: BC21009
 *Estado:
 *Fecha de creacion: 14/10/22
-*Fecha de ultima edicion: 14/10/22
+*Fecha de ultima edicion: 15/10/22
 *Fecha de ultima revision:
 *Fecha de aprobacion:
 */
