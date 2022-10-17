@@ -20,7 +20,7 @@ const { crearDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicos.js');
 
 const { crearDatosAntropometricos} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
-
+  const {crearPlanAlimenticio} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 //RUTAS
 app.route('/').get(index);
@@ -45,6 +45,9 @@ app.route('/ficha/nutricion/consulta/datos/')
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
   .post(crearDatosAntropometricos); 
 
+//plan alimenticio
+app.route('/ficha/nutricion/consulta/plan-alimenticio/')
+  .post(bodyParser.json(),crearPlanAlimenticio);
 
 
 app.listen(PORT, async function () {
