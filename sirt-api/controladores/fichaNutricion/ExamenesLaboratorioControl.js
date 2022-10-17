@@ -14,7 +14,7 @@ Fecha de aprobacion:
 
 //Funcion de construccion del objeto
 async function crearHabitosConsumo(request, response) {
-    dato1 = { 'message': "Examen de laboratorio guardado" }
+    let dato = { 'message': "Examen de laboratorio guardado" }
     parametros = request.body;
     let fechaPrescripcion = new Date();
     parametros.fechaPrescripcion=fechaPrescripcion;
@@ -26,9 +26,10 @@ async function crearHabitosConsumo(request, response) {
             await examenLaboratorio.save();// se ejecuta sobre una variable (instancia)
         }
     } catch (error) {
-        dato1 = { 'message': error.message }
+        dato = { 'message': `Datos no válidos.` }
+        response.status(500);
     }
-    return response.json(dato1);
+    return response.json(dato);
 }
 
 //Funcion que recupera todos los datos de la base de datos
