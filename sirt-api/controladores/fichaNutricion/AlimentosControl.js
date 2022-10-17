@@ -20,9 +20,9 @@ async function verListaAlimentos(request,response){
         });
         data=registro;
     }catch(e){
-        data={'message':"Datos no válidos."}
+        data={'message':e.message}
     }
-    response.json(data);
+    return response.json(data);
 }
 
 module.exports =  {

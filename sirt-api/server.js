@@ -20,7 +20,7 @@ const {crearHistoriaDietetica,
 const {crearHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
 //ListaAlimentos
-const{verListaAlimentos}=require(__dirname  +'/controladores/fichaNutricion/ListaAlimentosControl.js' );
+const{verListaAlimentos}=require(__dirname  +'/controladores/fichaNutricion/AlimentosControl.js' );
 
 
 //RUTAS
@@ -39,8 +39,8 @@ app.route('/ficha/nutricion/consulta/historia-dietetica3/:id')
 app.route('/ficha/nutricion/consulta/habitos-consumo/')
     .post(crearHabitosConsumo);
     
- //ListaAlimentos                                                 
- app.route('ficha/nutricion/alimentos/:id').get(verListaAlimentos);
+//ListaAlimentos                                                 
+app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
 
 app.listen(PORT, async function () {
     try {
