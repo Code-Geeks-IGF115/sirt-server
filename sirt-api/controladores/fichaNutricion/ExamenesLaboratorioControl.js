@@ -1,5 +1,4 @@
 const { Op, DataTypes } = require("sequelize");
-const { RelationshipType } = require("sequelize/types/errors/database/foreign-key-constraint-error");
 const { ExamenesLaboratorio } = require(`../../models`);
 
 //Controladores
