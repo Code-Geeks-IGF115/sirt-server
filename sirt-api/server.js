@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3001;
 
 //IMPORTACIONES DE CONTROLADORES
 const { index } = require(__dirname + '/controladores/indexControl.js');
+
 //MODULO FICHA NUTRICIÓN
 const { crearHistoriaDietetica,
   verHistoriasDieteticas,
@@ -21,6 +22,13 @@ const { crearDatosMedicos,
 
 const { crearDatosAntropometricos} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
   const {crearPlanAlimenticio} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+
+//HabitosDeConsumo
+const {crearHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
+
+//ListaAlimentos
+const{verListaAlimentos}=require(__dirname  +'/controladores/fichaNutricion/AlimentosControl.js' );
+
 
 //RUTAS
 app.route('/').get(index);
@@ -49,6 +57,12 @@ app.route('/ficha/nutricion/consulta/datos-antropometricos/')
 app.route('/ficha/nutricion/consulta/plan-alimenticio/')
   .post(bodyParser.json(),crearPlanAlimenticio);
 
+//HabitosDeConsumo
+app.route('/ficha/nutricion/consulta/habitos-consumo/')
+    .post(crearHabitosConsumo);
+    
+//ListaAlimentos                                                 
+app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
 
 app.listen(PORT, async function () {
   try {
