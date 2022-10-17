@@ -17,28 +17,25 @@ const { DatosAntropometricos } = require('../../models');
 
 async function crearDatosAntropometricos(request,response){
 
-    data={'message':"Datos antropometricos guardados."}
+    data={'message':"Datos antropométricos guardados."}
     parametros=request.body;
     try{
         
-        parametros.pesoActual=parseFloat(parametros.pesoActual);
-        parametros.pesoMeta=parseFloat(parametros.pesoMeta);
-        parametros.pesoIdeal=parseFloat(parametros.pesoIdeal);
-        parametros.grasaViseral=parseFloat(parametros.grasaViseral);
-        parametros.grasaMuscular=parseFloat(parametros.grasaMuscular);
-        parametros.cCintura=parseFloat(parametros.cCintura);
-        parametros.cCadera=parseFloat(parametros.cCadera);
-        parametros.cMuneca=parseFloat(parametros.cMuneca);
-        parametros.cBrazoRelajado=parseFloat(parametros.cBrazoRelajado);
-        parametros.cBrazoContraido=parseFloat(parametros.cBrazoContraido);
-        parametros.altura=parseFloat(parametros.altura);
-        parametros.indiceMasaCorporal=parseFloat(parametros.indiceMasaCorporal);
+        parametros.pesoActual=parseFloat(parametros.pesoActual).toFixed(2);
+        parametros.pesoMeta=parseFloat(parametros.pesoMeta).toFixed(2);
+        parametros.pesoIdeal=parseFloat(parametros.pesoIdeal).toFixed(2);
+        parametros.grasaViceral=parseFloat(parametros.grasaViceral).toFixed(2);
+        parametros.grasaMuscular=parseFloat(parametros.grasaMuscular).toFixed(2);
+        parametros.cCintura=parseFloat(parametros.cCintura).toFixed(2);
+        parametros.cCadera=parseFloat(parametros.cCadera).toFixed(2);
+        parametros.cMuneca=parseFloat(parametros.cMuneca).toFixed(2);
+        parametros.cBrazoRelajado=parseFloat(parametros.cBrazoRelajado).toFixed(2);
+        parametros.cBrazoContraido=parseFloat(parametros.cBrazoContraido).toFixed(2);
+        parametros.altura=parseFloat(parametros.altura).toFixed(2);
+        parametros.indiceMasaCorporal=parseFloat(parametros.indiceMasaCorporal).toFixed(2);
         parametros.consultaId=parseInt(parametros.consultaId);
         console.log(parametros);
-        const datosAntropometricos = await DatosAntropometricos.create(parametros);
- //       if(datosAntropometricos instanceof DatosAntropometricos){
- //           await datosAntropometricos.save();
- //       }
+        await DatosAntropometricos.create(parametros);
     }catch(e){
         data={'message': e.message}
     }
