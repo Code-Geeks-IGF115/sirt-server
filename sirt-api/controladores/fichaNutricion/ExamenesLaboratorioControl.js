@@ -1,5 +1,5 @@
-const { Op, DataTypes } = require("sequelize");
-const { ExamenesLaboratorio } = require(`../../models`);
+const { Op } = require("sequelize");
+const { ExamenLaboratorio } = require(`../../models`);
 
 //Controladores
 /*
@@ -15,15 +15,18 @@ Fecha de aprobacion:
 //Funcion de construccion del objeto
 async function crearHabitosConsumo(request, response) {
     dato1 = { 'message': "Examen de laboratorio guardado" }
-    let fechaAsignacion = new Date(2019, 04, 25)
     parametros = request.body;
+    let fechaPrescripcion = new Date();
+    parametros.fechaPrescripcion=fechaPrescripcion;
+    parametros.SeguimientoConsultumId=parseInt(parametros.seguimientoConsultaId);
+    parametros.seguimientoConsultaId=parseInt(parametros.seguimientoConsultaId);
     try {
-        const habitosConsumo = ExamenesLaboratorio.build(parametros);
-        if (habitosConsumo instanceof ExamenesLaboratorio) {
-            await ExamenesLaboratorio.save();
+        const examenLaboratorio = ExamenLaboratorio.build(parametros);// se ejecuta a partir de la clase ExamenLaboratorio
+        if (examenLaboratorio instanceof ExamenLaboratorio) {
+            await examenLaboratorio.save();// se ejecuta sobre una variable (instancia)
         }
     } catch (error) {
-        dato1 = { 'message': 'Datos no válidos.' }
+        dato1 = { 'message': error.message }
     }
     return response.json(dato1);
 }
