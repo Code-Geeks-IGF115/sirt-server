@@ -41,6 +41,7 @@ app.route('/ficha/nutricion/consulta/datos/')
 //app.route('/ficha/nutricion/consulta/datos/')
 //  .get(manipularDatosM);
 
+//Datos antropometricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
   .post(crearDatosAntropometricos); 
 
@@ -52,7 +53,7 @@ app.listen(PORT, async function () {
     console.log('Connection has been established successfully.');
     // await sequelize.drop();
     // console.log("All tables dropped!");
-    // await sequelize.sync();
+    await sequelize.sync();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
