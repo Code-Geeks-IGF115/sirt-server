@@ -18,7 +18,11 @@ const { crearHistoriaDietetica,
 
 const { crearDatosMedicos,
   verDatosMedicos,
-  manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicos.js');
+  manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
+
+const { crearHabitosConsumo,
+  recuperarExamenes,
+  modificarDatos } = require(__dirname + '/controladores/fichaNutricion/ExamenesLaboratorioControl.js');
 
 const { crearDatosAntropometricos} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
   const {crearPlanAlimenticio} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
@@ -46,10 +50,8 @@ app.route('/ficha/nutricion/consulta/historia-dietetica3/:id')
 app.route('/ficha/nutricion/consulta/datos/')
   .post(crearDatosMedicos) 
   .get(verDatosMedicos);
-//app.route('/ficha/nutricion/consulta/datos/')
-//  .get(manipularDatosM);
 
-//Datos antropometricos
+//Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
   .post(crearDatosAntropometricos); 
 
@@ -63,6 +65,13 @@ app.route('/ficha/nutricion/consulta/habitos-consumo/')
     
 //ListaAlimentos                                                 
 app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
+
+
+//Examenes de laboratorio
+app.route('/ficha/nutricion/consulta/examenes-laboratorio/')
+  .post(crearHabitosConsumo)
+  .get(recuperarExamenes);
+
 
 app.listen(PORT, async function () {
   try {
