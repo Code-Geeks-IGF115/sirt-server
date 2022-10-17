@@ -2,8 +2,6 @@ const { Op } = require("sequelize");
 const {Alimento}=require(`../../models`);
 
 //CONTROLADORES
-
-
 async function verListaAlimentos(request,response){
     let data={}
     const id=request.params.id;
@@ -16,7 +14,8 @@ async function verListaAlimentos(request,response){
                     [Op.eq]: id
                 }
                 
-            }
+            },
+            include: ['unidad']
         });
         data=registro;
     }catch(e){
