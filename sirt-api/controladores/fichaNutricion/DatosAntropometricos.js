@@ -20,6 +20,7 @@ async function crearDatosAntropometricos(request,response){
     data={'message':"Datos antropometricos guardados."}
     parametros=request.body;
     try{
+        
         parametros.pesoActual=parseFloat(parametros.pesoActual);
         parametros.pesoMeta=parseFloat(parametros.pesoMeta);
         parametros.pesoIdeal=parseFloat(parametros.pesoIdeal);
@@ -31,14 +32,15 @@ async function crearDatosAntropometricos(request,response){
         parametros.cBrazoRelajado=parseFloat(parametros.cBrazoRelajado);
         parametros.cBrazoContraido=parseFloat(parametros.cBrazoContraido);
         parametros.altura=parseFloat(parametros.altura);
-        parametros.indiceMasaCorporar=parseFloat(parametros.indiceMasaCorporar);
-        
-        const datosAntropometricos = DatosAntropometricos.build(parametros);
-        if(datosAntropometricos instanceof DatosAntropometricos){
-            await DatosAntropometricos.save();
-        }
+        parametros.indiceMasaCorporal=parseFloat(parametros.indiceMasaCorporal);
+        parametros.consultaId=parseInt(parametros.consultaId);
+        console.log(parametros);
+        const datosAntropometricos = await DatosAntropometricos.create(parametros);
+ //       if(datosAntropometricos instanceof DatosAntropometricos){
+ //           await datosAntropometricos.save();
+ //       }
     }catch(e){
-        data={'message':"Datos no válidos."}
+        data={'message': e.message}
     }
     return response.json(data) //= { 'message': 'Datos medicos guardados' }
 }
