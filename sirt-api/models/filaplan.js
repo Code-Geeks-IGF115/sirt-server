@@ -25,5 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'FilaPlan',
   });
+  FilaPlan.removeAttribute('id');
   return FilaPlan;
 };

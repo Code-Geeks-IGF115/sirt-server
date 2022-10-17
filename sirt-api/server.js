@@ -14,7 +14,7 @@ const {crearHistoriaDietetica,
   verHistoriasDieteticas,
   verHistoriasDieteticas2,
   verHistoriasDieteticas3}=require(__dirname + '/controladores/fichaNutricion/HistoriaDieteticaControl.js');
-
+  const {crearPlanAlimenticio} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 //RUTAS
 app.route('/').get(index);
@@ -27,7 +27,8 @@ app.route('/ficha/nutricion/consulta/historia-dietetica2/')
     .get(verHistoriasDieteticas2);
 app.route('/ficha/nutricion/consulta/historia-dietetica3/:id')
     .get(verHistoriasDieteticas3);
-                                                          
+app.route('/ficha/nutricion/consulta/plan-alimenticio/')
+  .post(bodyParser.json(),crearPlanAlimenticio);                                                         
 
 
 app.listen(PORT, async function () {
