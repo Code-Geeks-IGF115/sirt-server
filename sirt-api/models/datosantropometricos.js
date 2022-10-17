@@ -15,17 +15,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   DatosAntropometricos.init({
-    pesoActual: DataTypes.DECIMAL,
-    pesoMeta: DataTypes.DECIMAL,
-    pesoIdeal: DataTypes.DECIMAL,
-    grasaViceral: DataTypes.DECIMAL,
-    grasaMuscular: DataTypes.DECIMAL,
-    cCintura: DataTypes.DECIMAL,
-    cMuneca: DataTypes.DECIMAL,
-    cBrazoRelajado: DataTypes.DECIMAL,
-    cBrazoContraido: DataTypes.DECIMAL,
-    altura: DataTypes.DECIMAL,
-    indiceMasaCorporal: DataTypes.DECIMAL,
+    pesoActual: DataTypes.FLOAT,
+    pesoMeta: DataTypes.FLOAT,
+    pesoIdeal: DataTypes.FLOAT,
+    grasaViceral: DataTypes.FLOAT,
+    grasaMuscular: DataTypes.FLOAT,
+    cCintura: DataTypes.FLOAT,
+    cMuneca: DataTypes.FLOAT,
+    cBrazoRelajado: DataTypes.FLOAT,
+    cBrazoContraido: DataTypes.FLOAT,
+    altura: DataTypes.FLOAT,
+    indiceMasaCorporal: DataTypes.FLOAT,
     diagnostico: DataTypes.TEXT
   }, {
     sequelize,
