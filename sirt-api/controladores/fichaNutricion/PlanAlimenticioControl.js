@@ -8,7 +8,7 @@ const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
  * carnet:HG20040
  * estado:  DESARROLLO
  * fecha de creación: Sabado 15 de octubre del 2022
- * fecha de última edición: USTEDES
+ * fecha de última edición: Martes 18 de octubre del 2022
  * fecha de última revisión: ANDREA
  * fecha de aprobación: ANDREA
  */
@@ -47,7 +47,40 @@ const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
     response.status(201);
     return response.json(data);
 }
+async function editarPlanAlimenticio(request,response){
+let data={}
+const id=request.params.id;
+try{
+    //recuperar todos los planes alimenticios
+    const planes = await PlanAlimenticio.findAll({
+        attributes: { exclude: ['createdAt','updatedAt'] },
+        where: {
+            id:{
+                [Op.eq]: id
+            }
+            
+        }
 
+
+    });
+    data=planes;
+}
+
+catch(e)
+{
+    response.status(304);
+    data={'message':e.message}
+}
+response.status(201);
+return response.json(data);
+}
+
+async function eliminarPlanAlimenticio(request,response){
+
+}
+async function verPlanAlimenticio(request,response){
+
+}
 
 
 
@@ -55,6 +88,8 @@ const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
 
 // EXPORTANDO CONTROLADORES
 module.exports =  {
-    crearPlanAlimenticio
-    
+    crearPlanAlimenticio,
+    editarPlanAlimenticio,
+    eliminarPlanAlimenticio,
+    verPlanAlimenticio
 };

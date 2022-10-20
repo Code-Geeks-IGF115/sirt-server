@@ -14,22 +14,31 @@ const {crearHistoriaDietetica,
   verHistoriasDieteticas,
   verHistoriasDieteticas2,
   verHistoriasDieteticas3}=require(__dirname + '/controladores/fichaNutricion/HistoriaDieteticaControl.js');
-  const {crearPlanAlimenticio} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+  const {crearPlanAlimenticio,
+    editarPlanAlimenticio,
+    eliminarPlanAlimenticio,
+    verPlanAlimenticio} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
 //Historia Dietética
 app.route('/ficha/nutricion/consulta/historia-dietetica/')
-    .post(crearHistoriaDietetica)
+    .post(bodyParser.json(),crearHistoriaDietetica)
     .get(verHistoriasDieteticas);
 app.route('/ficha/nutricion/consulta/historia-dietetica2/')
     .get(verHistoriasDieteticas2);
 app.route('/ficha/nutricion/consulta/historia-dietetica3/:id')
     .get(verHistoriasDieteticas3);
+    //Plan Alimenticio
 app.route('/ficha/nutricion/consulta/plan-alimenticio/')
-  .post(bodyParser.json(),crearPlanAlimenticio);                                                         
-
+  .post(bodyParser.json(),crearPlanAlimenticio); 
+app.route('/ficha/nutricion/consulta/plan-alimenticio/:id/edit')
+  .post(bodyParser.json(),editarPlanAlimenticio);                                                         
+app.route('/ficha/nutricion/consulta/plan-alimenticio/:id')
+  .post(bodyParser.json(),eliminarPlanAlimenticio); 
+  app.route('/ficha/nutricion/consulta/plan-alimenticio/:id')
+  .get(bodyParser.json(),verPlanAlimenticio); 
 
 app.listen(PORT, async function () {
     try {
