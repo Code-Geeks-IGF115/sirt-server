@@ -16,16 +16,12 @@ const { HistoriaDietetica, Consulta } = require(`../../models`);
 async function crearHistoriaDietetica(request, response) {
 
     let data = { 'message': "Historia Dietética Guardada." }
-    let { consultaId, parametros } = request.body;
+    let { consultaId, ...parametros } = request.body;
     try {
         const consulta = await Consulta.findOne({ where: { id: parseInt(consultaId) } });
         parametros.horasDeSueno = parseInt(parametros.horasDeSueno);
-        const historiaDietetica = await HistoriaDietetica.create(
-            {
-
-                "parametros": parametros,
-                "consultaId": consulta.id
-            });
+        parametros.consultaId = consulta.id;
+        const historiaDietetica = await HistoriaDietetica.create(parametros);
         if (historiaDietetica instanceof HistoriaDietetica) {
             await historiaDietetica.save();//guardando en la base de datos
         }
