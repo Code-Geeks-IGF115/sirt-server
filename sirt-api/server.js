@@ -20,7 +20,7 @@ const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
 
-const { crearHabitosConsumo,
+const {
   recuperarExamenes,
   modificarDatos } = require(__dirname + '/controladores/fichaNutricion/ExamenesLaboratorioControl.js');
 
@@ -71,6 +71,17 @@ app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
 app.route('/ficha/nutricion/consulta/examenes-laboratorio/')
   .post(crearHabitosConsumo)
   .get(recuperarExamenes);
+
+
+  //MODULO DE RECONTROLADOR
+const{crearRecordatorio24H, verRecordatorio24H} = require(__dirname + '/controladores/fichaNutricion/Recordatorio24HControl.js');
+//Ruta
+app.route('/').get(index);
+//FICHA NUTRICIÓN
+//RECORDATORIO
+app.route('/ficha/nutricion/consulta/recordatorio-24h/')
+    .post(crearRecordatorio24H)
+    .get(verRecordatorio24H);
 
 
 app.listen(PORT, async function () {
