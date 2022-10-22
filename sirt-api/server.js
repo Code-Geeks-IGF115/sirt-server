@@ -24,7 +24,9 @@ const { crearDatosAntropometricos} = require(__dirname + '/controladores/fichaNu
   const {crearPlanAlimenticio} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 //HabitosDeConsumo
-const {crearHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
+const {crearHabitosConsumo,
+      verHabitosConsumo,
+    editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
 //ListaAlimentos
 const{verListaAlimentos}=require(__dirname  +'/controladores/fichaNutricion/AlimentosControl.js' );
@@ -60,6 +62,10 @@ app.route('/ficha/nutricion/consulta/plan-alimenticio/')
 //HabitosDeConsumo
 app.route('/ficha/nutricion/consulta/habitos-consumo/')
     .post(crearHabitosConsumo);
+    app.route('/ficha/nutricion/consulta/habitos-consumo/:id')
+    .get(verHabitosConsumo);
+    app.route('/ficha/nutricion/consulta/habitos-consumo/:id/edit')
+    .post(editHabitosConsumo)
     
 //ListaAlimentos                                                 
 app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
