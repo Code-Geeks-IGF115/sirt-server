@@ -20,7 +20,7 @@ const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
 
-const { crearHabitosConsumo,
+const { crearHabitosConsumos,
   recuperarExamenes,
   modificarDatos } = require(__dirname + '/controladores/fichaNutricion/ExamenesLaboratorioControl.js');
 
