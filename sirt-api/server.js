@@ -20,14 +20,18 @@ const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicos.js');
 
-const { crearDatosAntropometricos} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
-  const {crearPlanAlimenticio} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+const { crearDatosAntropometricos,
+  verDatosAntropometricos,
+  manipularDatosAntropometricos
+} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
+
+const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 //HabitosDeConsumo
-const {crearHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
+const { crearHabitosConsumo } = require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
 //ListaAlimentos
-const{verListaAlimentos}=require(__dirname  +'/controladores/fichaNutricion/AlimentosControl.js' );
+const { verListaAlimentos } = require(__dirname + '/controladores/fichaNutricion/AlimentosControl.js');
 
 
 //RUTAS
@@ -44,23 +48,29 @@ app.route('/ficha/nutricion/consulta/historia-dietetica3/:id')
 
 //Datos médicos
 app.route('/ficha/nutricion/consulta/datos/')
-  .post(crearDatosMedicos) 
+  .post(crearDatosMedicos)
   .get(verDatosMedicos);
 //app.route('/ficha/nutricion/consulta/datos/')
 //  .get(manipularDatosM);
 
 //Datos antropometricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
-  .post(crearDatosAntropometricos); 
+  .post(crearDatosAntropometricos);
+
+app.route('/ficha/nutricion/consulta/datos-antropometricos/:id')
+
+  .get(verDatosAntropometricos);
+app.route('/ficha/nutricion/consulta/datos-antropometricos/:id/edit')
+  .post(manipularDatosAntropometricos);
 
 //plan alimenticio
 app.route('/ficha/nutricion/consulta/plan-alimenticio/')
-  .post(bodyParser.json(),crearPlanAlimenticio);
+  .post(bodyParser.json(), crearPlanAlimenticio);
 
 //HabitosDeConsumo
 app.route('/ficha/nutricion/consulta/habitos-consumo/')
-    .post(crearHabitosConsumo);
-    
+  .post(crearHabitosConsumo);
+
 //ListaAlimentos                                                 
 app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
 
