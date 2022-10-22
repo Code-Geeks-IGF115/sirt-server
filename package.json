@@ -1,6 +1,10 @@
 {
   "name": "sirt-api",
   "version": "1.0.0",
+  "engines": { 
+    "node": "16.17.1", 
+    "npm": "8.15.0" 
+  },
   "description": "Sistema de Registro Terapéutico para la Cuidad de La Niñez y la Adolescencia",
   "main": "server.js",
   "scripts": {
