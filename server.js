@@ -5,7 +5,7 @@ require('dotenv').config();
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 const { sequelize } = require(__dirname + "/models/index.js");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 //IMPORTACIONES DE CONTROLADORES
 const { index } = require(__dirname + '/controladores/indexControl.js');
@@ -20,7 +20,7 @@ const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
 
-const { crearHabitosConsumo,
+const { 
   recuperarExamenes,
   modificarDatos } = require(__dirname + '/controladores/fichaNutricion/ExamenesLaboratorioControl.js');
 
