@@ -1,0 +1,23 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "historia dietetica ver",
+    "dateExported": "2022-10-22T02:43:17.257Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "5f445973-b52b-4067-881a-f6c2940e7046",
+            "colId": "4eea1e07-c193-448d-9960-a59724a011ae",
+            "containerId": "",
+            "name": "localhost:3000/ficha/nutricion/consulta/historia-dietetica/4",
+            "url": "localhost:3000/ficha/nutricion/consulta/historia-dietetica/4",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2022-10-22T01:22:42.769Z",
+            "modified": "2022-10-22T01:22:42.769Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
