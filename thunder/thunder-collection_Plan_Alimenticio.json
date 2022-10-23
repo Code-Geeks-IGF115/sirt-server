@@ -1,20 +1,20 @@
 {
     "client": "Thunder Client",
     "collectionName": "Plan_Alimenticio",
-    "dateExported": "2022-10-16T19:33:45.364Z",
+    "dateExported": "2022-10-19T00:44:29.635Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "5377f9c5-9371-45e4-9ce7-2afdc848b882",
-            "colId": "98b7e123-af2d-4765-b3f5-95029e128604",
+            "_id": "22fda95e-fa8a-485a-9b46-003a82233493",
+            "colId": "bfff25da-b579-4eae-95f5-ae6f8def2c8c",
             "containerId": "",
             "name": "Plan_Alimenticio",
-            "url": "localhost:3000/ficha/nutricion/consulta/plan-alimenticio/",
+            "url": "localhost:3001/ficha/nutricion/consulta/plan-alimenticio/",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2022-10-15T22:55:49.679Z",
-            "modified": "2022-10-16T19:04:55.427Z",
+            "created": "2022-10-19T00:33:22.535Z",
+            "modified": "2022-10-19T00:41:56.061Z",
             "headers": [],
             "params": [],
             "body": {
