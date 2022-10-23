@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 require('dotenv').config();
 const bodyParser = require("body-parser");
-const { editarRecordatorio24H } = require("./controladores/fichaNutricion/Recordatorio24HControl");
 app.use(bodyParser.json());
 const { sequelize } = require(__dirname + "/models/index.js");
 const PORT = process.env.PORT || 3000;
@@ -20,33 +19,41 @@ const {
 const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
-
+  
 const { crearDatosAntropometricos,
   verDatosAntropometricos,
   manipularDatosAntropometricos
 } = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
 
+//Recordatorio 24H
 const { 
-  recuperarExamenes,
-  modificarDatos } = require(__dirname + '/controladores/fichaNutricion/ExamenesLaboratorioControl.js');
+  crearRecordatorio24H,
+  editarRecordatorio24H, 
+  verRecordatorio24H 
+} = require(__dirname + '/controladores/fichaNutricion/Recordatorio24HControl.js');
 
+const { 
+  crearExamenLaboratorio,
+  editarExamenLaboratorio,
+  verExamenenLaboratorio
+} = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
+  
 const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 //HabitosDeConsumo
 const {crearHabitosConsumo,
-      verHabitosConsumo,
-    editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
+  verHabitosConsumo,
+  editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
 //ListaAlimentos
 const { verListaAlimentos } = require(__dirname + '/controladores/fichaNutricion/AlimentosControl.js');
-
 
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
 //Historia Dietética
 app.route('/ficha/nutricion/consulta/historia-dietetica/')
-  .post(crearHistoriaDietetica);
+.post(crearHistoriaDietetica);
 app.route('/ficha/nutricion/consulta/historia-dietetica/:id/edit')
   .post(editarHistoriaDietetica);
 app.route('/ficha/nutricion/consulta/historia-dietetica/:id')
@@ -84,15 +91,9 @@ app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
 
 //Examenes de laboratorio
 app.route('/ficha/nutricion/consulta/examenes-laboratorio/')
-  .post(crearHabitosConsumo)
-  .get(recuperarExamenes);
+  .post(crearExamenLaboratorio)
+  .get(verExamenenLaboratorio);
 
-
-//MODULO DE RECONTROLADOR
-const { crearRecordatorio24H, verRecordatorio24H } = require(__dirname + '/controladores/fichaNutricion/Recordatorio24HControl.js');
-//Ruta
-app.route('/').get(index);
-//FICHA NUTRICIÓN
 //RECORDATORIO
 app.route('/ficha/nutricion/consulta/recordatorio-24h/')
   .post(crearRecordatorio24H);
