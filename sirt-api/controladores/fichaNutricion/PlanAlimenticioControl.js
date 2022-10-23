@@ -1,6 +1,6 @@
 //jshint esversion:6
 const { Op } = require("sequelize");
-const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
+const {PlanAlimenticio,Consulta,FilaPlan}=require(`../../models`);
 
 // CONTROLADORES 
 /**
@@ -8,7 +8,7 @@ const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
  * carnet:HG20040
  * estado:  DESARROLLO
  * fecha de creación: Sabado 15 de octubre del 2022
- * fecha de última edición: USTEDES
+ * fecha de última edición: Martes 18 de octubre del 2022
  * fecha de última revisión: ANDREA
  * fecha de aprobación: ANDREA
  */
@@ -55,6 +55,6 @@ const {PlanAlimenticio,Consulta,FilaPlan,Alimento}=require(`../../models`);
 
 // EXPORTANDO CONTROLADORES
 module.exports =  {
-    crearPlanAlimenticio
+    crearPlanAlimenticio,
     
 };
