@@ -3,10 +3,13 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
+const cors = require('cors');
+app.use(bodyParser.json());
+app.use(cors({
+    origin: [process.env.LOCAL_ORIGIN,process.env.REMOTE_ORIGIN]
+}));
 const { sequelize } = require(__dirname + "/models/index.js");
 const PORT = process.env.PORT || 3000;
-
 //IMPORTACIONES DE CONTROLADORES
 const { index } = require(__dirname + '/controladores/indexControl.js');
 
@@ -57,7 +60,7 @@ app.route('/ficha/nutricion/consulta/datos-antropometricos/')
 
 //plan alimenticio
 app.route('/ficha/nutricion/consulta/plan-alimenticio/')
-  .post(bodyParser.json(),crearPlanAlimenticio);
+  .post(crearPlanAlimenticio);
 
 //HabitosDeConsumo
 app.route('/ficha/nutricion/consulta/habitos-consumo/')
