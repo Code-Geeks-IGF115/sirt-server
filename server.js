@@ -58,6 +58,20 @@ const {
   editarHistoriaDietetica
 } = require(__dirname + '/controladores/fichaNutricion/HistoriaDieteticaControl.js');
 
+/**
+ * nombre:Vinicio Alonso Sibrian Vargas
+ * carnet:SV16028
+ * estado: APROBADO || EN REVISIÓN || DESARROLLO
+ * fecha de creación: 14/10/2022
+ * fecha de última edición: 21/10/2022
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+
+//HabitosDeConsumo
+const {crearHabitosConsumo,
+  verHabitosConsumo,
+  editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
 //Recordatorio 24H
 const { 
@@ -74,10 +88,6 @@ const {
   
 const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
-//HabitosDeConsumo
-const {crearHabitosConsumo,
-  verHabitosConsumo,
-  editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
 //ListaAlimentos
 const { verListaAlimentos } = require(__dirname + '/controladores/fichaNutricion/AlimentosControl.js');
