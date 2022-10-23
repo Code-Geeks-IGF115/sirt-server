@@ -11,6 +11,7 @@ async function crearDatosMedicos(request, response) {
             await datosMedicos.save();
         }
     } catch (error) {
+        response.status(500);
         data = { 'message:': error.message }
     }
 
@@ -19,29 +20,29 @@ async function crearDatosMedicos(request, response) {
 
 //Funcion para recuperar todos los datos
 async function verDatosMedicos(request, response) {
-    let data3 = {}
-    const id1 = request.query.id1;
+    let data = {}
+    const id = request.params.id;
     try {
-        const datosM = await DatosMedicos.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
+        data = await DatosMedicos.findOne({
+            attributes: { exclude: ['createdAt', 'updatedAt','datosMedicoId'] },
             where: {
-                id1: {
-                    [Op.eq]: id1
+                id: {
+                    [Op.eq]: id
                 }
             }
         });
-        data3 = datosM;
+        // data = datosM;
 
     } catch (error) {
-        response.status(204);
-        data3 = {'message':'Datos no validos'}
+        response.status(500);
+        data = {'message':error.message}
     }
-    return response.json(data3);
+    return response.json(data);
 }
 
 //Funcion para editar datos médicos en la base de datos
 async function editarDatosMedicos(request, response){
-    let data = {"message":'Datos Médicos Guardados.'};
+    let data = {"message":'Datos Médicos Modificados.'};
     const id = request.params.id;
     const parametros=request.body;
     try {
@@ -56,6 +57,7 @@ async function editarDatosMedicos(request, response){
             });
 
     } catch (error) {
+        response.status(500);
         data = {'message':error.message}
     }
     return response.json(data);
