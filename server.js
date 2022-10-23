@@ -41,7 +41,7 @@ const {
 const { crearDatosAntropometricos,
   verDatosAntropometricos,
   editarDatosAntropometricos
-} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
+} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricosControl.js');
 
 /**
  * nombre:Damaris Julissa Hernández Guardado

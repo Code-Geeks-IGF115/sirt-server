@@ -11,7 +11,6 @@ async function crearDatosMedicos(request, response) {
             await datosMedicos.save();
         }
     } catch (error) {
-        response.status(500);
         data = { 'message:': error.message }
     }
 
@@ -34,7 +33,6 @@ async function verDatosMedicos(request, response) {
         // data = datosM;
 
     } catch (error) {
-        response.status(500);
         data = {'message':error.message}
     }
     return response.json(data);
@@ -57,7 +55,6 @@ async function editarDatosMedicos(request, response){
             });
 
     } catch (error) {
-        response.status(500);
         data = {'message':error.message}
     }
     return response.json(data);
