@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 require('dotenv').config();
 const bodyParser = require("body-parser");
-const { editarRecordatorio24H } = require("./controladores/fichaNutricion/Recordatorio24HControl");
 app.use(bodyParser.json());
 const { sequelize } = require(__dirname + "/models/index.js");
 const PORT = process.env.PORT || 3000;
@@ -11,51 +10,75 @@ const PORT = process.env.PORT || 3000;
 //IMPORTACIONES DE CONTROLADORES
 const { index } = require(__dirname + '/controladores/indexControl.js');
 //MODULO FICHA NUTRICIÓN
+
+/*
+* Nombre: Pamela Nicole Barrientos Cruz
+* Carnet: BC21009
+* Estado:
+* Fecha de creacion: 14/10/22
+* Fecha de ultima edicion: 15/10/22
+* Fecha de ultima revision: 23/10/2022
+* Fecha de aprobacion:
+*/
+const { 
+  crearDatosMedicos,
+  verDatosMedicos,
+  editarDatosMedicos 
+} = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
+  
 const { 
   crearHistoriaDietetica,
   verHistoriaDietetica, 
   editarHistoriaDietetica
 } = require(__dirname + '/controladores/fichaNutricion/HistoriaDieteticaControl.js');
 
-const { crearDatosMedicos,
-  verDatosMedicos,
-  manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
-
 const { crearDatosAntropometricos,
   verDatosAntropometricos,
   manipularDatosAntropometricos
 } = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
 
+//Recordatorio 24H
 const { 
-  recuperarExamenes,
-  modificarDatos } = require(__dirname + '/controladores/fichaNutricion/ExamenesLaboratorioControl.js');
+  crearRecordatorio24H,
+  editarRecordatorio24H, 
+  verRecordatorio24H 
+} = require(__dirname + '/controladores/fichaNutricion/Recordatorio24HControl.js');
 
+const { 
+  crearExamenLaboratorio,
+  editarExamenLaboratorio,
+  verExamenenLaboratorio
+} = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
+  
 const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 //HabitosDeConsumo
 const {crearHabitosConsumo,
-      verHabitosConsumo,
-    editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
+  verHabitosConsumo,
+  editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
 //ListaAlimentos
 const { verListaAlimentos } = require(__dirname + '/controladores/fichaNutricion/AlimentosControl.js');
 
-
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
+
+//Datos médicos
+app.route('/ficha/nutricion/consulta/datos/medicos/')
+.post(crearDatosMedicos);
+app.route('/ficha/nutricion/consulta/datos/medicos/:id')
+  .get(verDatosMedicos)
+  .post(editarDatosMedicos);
+
 //Historia Dietética
 app.route('/ficha/nutricion/consulta/historia-dietetica/')
-  .post(crearHistoriaDietetica);
+.post(crearHistoriaDietetica);
 app.route('/ficha/nutricion/consulta/historia-dietetica/:id/edit')
   .post(editarHistoriaDietetica);
 app.route('/ficha/nutricion/consulta/historia-dietetica/:id')
     .get(verHistoriaDietetica);
 
-//Datos médicos
-app.route('/ficha/nutricion/consulta/datos/')
-  .post(crearDatosMedicos)
-  .get(verDatosMedicos);
 
 //Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
@@ -84,15 +107,9 @@ app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
 
 //Examenes de laboratorio
 app.route('/ficha/nutricion/consulta/examenes-laboratorio/')
-  .post(crearHabitosConsumo)
-  .get(recuperarExamenes);
+  .post(crearExamenLaboratorio)
+  .get(verExamenenLaboratorio);
 
-
-//MODULO DE RECONTROLADOR
-const { crearRecordatorio24H, verRecordatorio24H } = require(__dirname + '/controladores/fichaNutricion/Recordatorio24HControl.js');
-//Ruta
-app.route('/').get(index);
-//FICHA NUTRICIÓN
 //RECORDATORIO
 app.route('/ficha/nutricion/consulta/recordatorio-24h/')
   .post(crearRecordatorio24H);

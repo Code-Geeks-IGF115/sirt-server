@@ -1,27 +1,18 @@
 const { Op } = require("sequelize");
 const { DatosMedicos } = require('../../models');
 
-/*
-*Nombre: Pamela Nicole Barrientos Cruz
-*Carnet: BC21009
-*Estado:
-*Fecha de creacion: 14/10/22
-*Fecha de ultima edicion: 15/10/22
-*Fecha de ultima revision:
-*Fecha de aprobacion:
-*/
-
 //Funcion para crear los datos medicos
 async function crearDatosMedicos(request, response) {
-     let data = { 'message': 'Datos medicos guardados' }
+    let data = { 'message': 'Datos medicos guardados' };
     parametros = request.body;
     try {
         const datosMedicos = DatosMedicos.build(parametros);
         if (datosMedicos instanceof DatosMedicos) {
-            await DatosMedicos.save();
+            await datosMedicos.save();
         }
-    } catch (excp) {
-        data = { 'message:': 'Datos no validos' }
+    } catch (error) {
+        response.status(500);
+        data = { 'message:': error.message }
     }
 
     return response.json(data);
@@ -29,50 +20,52 @@ async function crearDatosMedicos(request, response) {
 
 //Funcion para recuperar todos los datos
 async function verDatosMedicos(request, response) {
-    let data3 = {}
-    const id1 = request.query.id1;
+    let data = {}
+    const id = request.params.id;
     try {
-        const datosM = await DatosMedicos.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
+        data = await DatosMedicos.findOne({
+            attributes: { exclude: ['createdAt', 'updatedAt','datosMedicoId'] },
             where: {
-                id1: {
-                    [Op.eq]: id1
+                id: {
+                    [Op.eq]: id
                 }
             }
         });
-        data3 = datosM;
+        // data = datosM;
 
     } catch (error) {
-        response.status(204);
-        data3 = {'message':'Datos no validos'}
+        response.status(500);
+        data = {'message':error.message}
     }
-    return response.json(data3);
+    return response.json(data);
 }
 
-//Funcion para manipular los datos en la database
-async function manipularDatosM(request, response){
-    let data4 = {}
-    const id2 = request.params.id2;
+//Funcion para editar datos médicos en la base de datos
+async function editarDatosMedicos(request, response){
+    let data = {"message":'Datos Médicos Modificados.'};
+    const id = request.params.id;
+    const parametros=request.body;
     try {
-        const datosMd = await DatosMedicos.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
-            where: {
-                id2: {
-                    [Op.eq]: id2
+        await DatosMedicos.update(
+            parametros,
+            {
+                where: {
+                    id: {
+                        [Op.eq]: id
+                    }
                 }
-            }
-        });
-        data3 = datosMd;
+            });
 
     } catch (error) {
-        data4 = {'message':'Datos no validos'}
+        response.status(500);
+        data = {'message':error.message}
     }
-    return response.json(data4);
+    return response.json(data);
 }
 
 //Exportacion de controladores
 module.exports = {
     crearDatosMedicos,
     verDatosMedicos,
-    manipularDatosM,
+    editarDatosMedicos
 };

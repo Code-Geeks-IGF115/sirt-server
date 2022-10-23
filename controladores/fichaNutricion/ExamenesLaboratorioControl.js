@@ -13,7 +13,7 @@ Fecha de aprobacion:
 */
 
 //Funcion de construccion del objeto
-async function crearHabitosConsumos(request, response) {
+async function crearExamenLaboratorio(request, response) {
     let dato = { 'message': "Examen de laboratorio guardado" }
     parametros = request.body;
     let fechaPrescripcion = new Date();
@@ -33,7 +33,7 @@ async function crearHabitosConsumos(request, response) {
 }
 
 //Funcion que recupera todos los datos de la base de datos
-async function recuperarExamenes(request, response) {
+async function verExamenenLaboratorio(request, response) {
     let dato = {}
     const ident = request.query.ident;
     try {
@@ -53,11 +53,11 @@ async function recuperarExamenes(request, response) {
 }
 
 //Funcion para modificar los datos en la base
-async function modificarDatos(request, response) {
+async function editarExamenLaboratorio(request, response) {
     let dato = { 'message': 'Datos modificados con exito' }
     const id = request.params.id;
     try {
-        const consulta = await ExamenesLaboratorio.findAll({
+        const consulta = await ExamenenLaboratorio.findAll({
             attributes: { exclude: ['createdAt', 'updatedAt'] },
             where: {
                 id: {
@@ -73,9 +73,9 @@ async function modificarDatos(request, response) {
 
 //Importacion de controladores a la clase
 module.exports = {
-    crearHabitosConsumo,
-    recuperarExamenes,
-    modificarDatos,
+    crearExamenLaboratorio,
+    verExamenenLaboratorio,
+    editarExamenLaboratorio
 };
 
 /**
