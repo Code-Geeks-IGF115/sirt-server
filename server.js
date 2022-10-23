@@ -2,7 +2,11 @@
 const express = require("express");
 const app = express();
 require('dotenv').config();
+const cors = require('cors');
 const bodyParser = require("body-parser");
+app.use(cors({
+    origin: [process.env.LOCAL_ORIGIN,process.env.REMOTE_ORIGIN]
+}));
 app.use(bodyParser.json());
 const { sequelize } = require(__dirname + "/models/index.js");
 const PORT = process.env.PORT || 3000;
