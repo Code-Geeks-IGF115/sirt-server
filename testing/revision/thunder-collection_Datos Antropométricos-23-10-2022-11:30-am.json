@@ -1,0 +1,61 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Datos Antropométricos",
+    "dateExported": "2022-10-23T17:47:39.143Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "886476b5-512e-43a4-a36d-421840173147",
+            "colId": "d03f124e-e8ea-4895-a83e-8f528d7812b1",
+            "containerId": "",
+            "name": "crear Datos Antropometricos",
+            "url": "localhost:3000/ficha/nutricion/consulta/datos-antropometricos",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2022-10-23T17:21:01.146Z",
+            "modified": "2022-10-23T17:35:46.813Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"pesoActual\":40,\n  \"pesoMeta\":30,\n  \"pesoIdeal\":20,\n  \"grasaViceral\":40,\n  \"grasaMuscular\":50,\n  \"cCintura\":60,\n  \"cCadera\":70,\n  \"cMuneca\":80,\n  \"cBrazoRelajado\":90,\n  \"cBrazoContraido\":100,\n  \"altura\":110,\n  \"indiceMasaCorporal\":120,\n  \"diagnostico\":\"Sobrepeso\",\n  \"consultaId\":2\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "243ba2c1-81c1-4134-8cbe-365a491d07e8",
+            "colId": "d03f124e-e8ea-4895-a83e-8f528d7812b1",
+            "containerId": "",
+            "name": "Ver datos antropométricos",
+            "url": "localhost:3000/ficha/nutricion/consulta/datos-antropometricos/11",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2022-10-23T17:20:52.586Z",
+            "modified": "2022-10-23T17:46:40.838Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "23136191-f51f-4a06-8bd7-df38b0f4a14e",
+            "colId": "d03f124e-e8ea-4895-a83e-8f528d7812b1",
+            "containerId": "",
+            "name": "Editar datos antropométricos",
+            "url": "localhost:3000/ficha/nutricion/consulta/datos-antropometricos/11/edit",
+            "method": "POST",
+            "sortNum": 15000,
+            "created": "2022-10-23T17:21:36.521Z",
+            "modified": "2022-10-23T17:45:29.908Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"pesoActual\":250,\n  \"pesoMeta\":30,\n  \"pesoIdeal\":20,\n  \"grasaViceral\":40,\n  \"grasaMuscular\":80,\n  \"cCintura\":60,\n  \"cCadera\":70,\n  \"cMuneca\":80,\n  \"cBrazoRelajado\":90,\n  \"cBrazoContraido\":100,\n  \"altura\":110,\n  \"indiceMasaCorporal\":120,\n  \"diagnostico\":\"Obesidad Morbida\",\n  \"consultaId\":2\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
