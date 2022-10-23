@@ -13,7 +13,7 @@ Fecha de aprobacion:
 */
 
 //Funcion de construccion del objeto
-async function crearHabitosConsumo(request, response) {
+async function crearHabitosConsumos(request, response) {
     let dato = { 'message': "Examen de laboratorio guardado" }
     parametros = request.body;
     let fechaPrescripcion = new Date();

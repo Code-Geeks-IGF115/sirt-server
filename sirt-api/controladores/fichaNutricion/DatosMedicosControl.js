@@ -43,6 +43,7 @@ async function verDatosMedicos(request, response) {
         data3 = datosM;
 
     } catch (error) {
+        response.status(204);
         data3 = {'message':'Datos no validos'}
     }
     return response.json(data3);
@@ -69,7 +70,7 @@ async function manipularDatosM(request, response){
     return response.json(data4);
 }
 
-//Exportancion de controladores
+//Exportacion de controladores
 module.exports = {
     crearDatosMedicos,
     verDatosMedicos,
