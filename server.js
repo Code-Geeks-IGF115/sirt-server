@@ -14,28 +14,37 @@ const { index } = require(__dirname + '/controladores/indexControl.js');
 /*
 * Nombre: Pamela Nicole Barrientos Cruz
 * Carnet: BC21009
-* Estado:
+* Estado: Aprobado, Editado.
 * Fecha de creacion: 14/10/22
 * Fecha de ultima edicion: 15/10/22
 * Fecha de ultima revision: 23/10/2022
-* Fecha de aprobacion:
+* Fecha de aprobacion: 23/10/2022
 */
 const { 
   crearDatosMedicos,
   verDatosMedicos,
   editarDatosMedicos 
 } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
-  
+
+/*
+*Nombre: Remberto Leonardo Escobar Ardón
+*Carnet: EA12006
+*Estado: 
+*Fecha de creacion: 15/10/22
+*Fecha de ultima revision: 23/10/2022
+*Fecha de aprobacion:
+*/
+const { crearDatosAntropometricos,
+  verDatosAntropometricos,
+  editarDatosAntropometricos
+} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
+
 const { 
   crearHistoriaDietetica,
   verHistoriaDietetica, 
   editarHistoriaDietetica
 } = require(__dirname + '/controladores/fichaNutricion/HistoriaDieteticaControl.js');
 
-const { crearDatosAntropometricos,
-  verDatosAntropometricos,
-  manipularDatosAntropometricos
-} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
 
 //Recordatorio 24H
 const { 
@@ -71,7 +80,15 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .get(verDatosMedicos)
   .post(editarDatosMedicos);
 
-//Historia Dietética
+//Datos antropométricos
+app.route('/ficha/nutricion/consulta/datos-antropometricos/')
+  .post(crearDatosAntropometricos);
+app.route('/ficha/nutricion/consulta/datos-antropometricos/:id/edit')
+  .post(editarDatosAntropometricos);
+app.route('/ficha/nutricion/consulta/datos-antropometricos/:id')
+  .get(verDatosAntropometricos);
+
+  //Historia Dietética
 app.route('/ficha/nutricion/consulta/historia-dietetica/')
 .post(crearHistoriaDietetica);
 app.route('/ficha/nutricion/consulta/historia-dietetica/:id/edit')
@@ -80,13 +97,6 @@ app.route('/ficha/nutricion/consulta/historia-dietetica/:id')
     .get(verHistoriaDietetica);
 
 
-//Datos antropométricos
-app.route('/ficha/nutricion/consulta/datos-antropometricos/')
-  .post(crearDatosAntropometricos);
-app.route('/ficha/nutricion/consulta/datos-antropometricos/:id')
-  .get(verDatosAntropometricos);
-app.route('/ficha/nutricion/consulta/datos-antropometricos/:id/edit')
-  .post(manipularDatosAntropometricos);
 
 
 //plan alimenticio

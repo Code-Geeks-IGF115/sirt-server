@@ -1,24 +1,12 @@
 //jshint esversion:6
 const { Op } = require("sequelize");
 const { DatosAntropometricos } = require('../../models');
-
-/*
-*Nombre: Remberto Leonardo Escobar Ardón
-*Carnet: EA12006
-*Estado:
-*Fecha de creacion: 15/10/22
-*Fecha de ultima revision:
-*Fecha de aprobacion:
-*/
-
-
-
 //CONTROLADORES
 
 async function crearDatosAntropometricos(request, response) {
 
-    data = { 'message': "Datos antropométricos guardados." }
-    parametros = request.body;
+    let data = { 'message': "Datos antropométricos guardados." }
+    let parametros = request.body;
     try {
 
         parametros.pesoActual = parseFloat(parametros.pesoActual).toFixed(2);
@@ -37,6 +25,7 @@ async function crearDatosAntropometricos(request, response) {
         console.log(parametros);
         await DatosAntropometricos.create(parametros);
     } catch (e) {
+        response.status(500);
         data = { 'message': e.message }
     }
     return response.json(data) //= { 'message': 'Datos medicos guardados' }
@@ -62,28 +51,29 @@ async function verDatosAntropometricos(request, response) {
         response.status(304);
         data = { 'message': e.message }
     }
-    response.status(201);
     return response.json(data);
 
 }
 
 
-async function manipularDatosAntropometricos(request, response) {
-    let data = {}
+async function editarDatosAntropometricos(request, response) {
+    let data = {};
     const id = request.params.id;
-    parametros = request.body;
+    let parametros = request.body;
     try {
-        const datosA = await DatosAntropometricos.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
-            where: {
+        const datosAntropometricos = await DatosAntropometricos.update(
+            parametros,
+            {
+                where: {
                 id: {
                     [Op.eq]: id
                 }
             }
         });
-        data = { datosA, message: "Datos Antropometricos guardados" };
+        data = { message: "Datos Antropometricos modificados." };
 
     } catch (e) {
+        response.status(500);
         data = { 'message': e.message }
     }
     response.json(data);
@@ -95,5 +85,5 @@ async function manipularDatosAntropometricos(request, response) {
 module.exports = {
     crearDatosAntropometricos,
     verDatosAntropometricos,
-    manipularDatosAntropometricos
+    editarDatosAntropometricos
 };
