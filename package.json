@@ -1,6 +1,10 @@
 {
   "name": "sirt-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.17.1",
+    "npm": "8.15.0"
+  },
   "description": "Sistema de Registro Terapéutico para la Cuidad de La Niñez y la Adolescencia",
   "main": "server.js",
   "scripts": {
@@ -19,6 +23,7 @@
   "homepage": "https://github.com/Code-Geeks-IGF115/sirt-api#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.20",
