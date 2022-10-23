@@ -1,61 +1,82 @@
 //jshint esversion:6
-const {Op} = require("sequelize");
+const { Op, where } = require("sequelize");
 //MODELO
-const {Recordatorio24H} = require('../../models');
-
+const { Recordatorio24H, sequelize } = require('../../models');
 /**
  * nombre: Jorge Daniel Cruz Vásquez
  * carnet: CV19008
  * estado: DESARROLLO
  * fecha de creación: 14/10/22
- * fecha de última edición: 
- * fecha de última revisión: --
+ * fecha de última edición: 22/10/2022
+ * fecha de última revisión: 21 octubre 2022
  * fecha de aprobación: 
  */
 
 //CONTROLADORES
-async function crearRecordatorio24H (request,response){
-    let data = {"message": "Recordatorio de 24 horas guardado."};
+async function crearRecordatorio24H(request, response) {
+    let data = { "message": "Recordatorio de 24 horas guardado." }
     let parametros = request.body;
-    //var horaDesayuno, horaAlmuerzo, horaCena;
-    //try-cath no, porque no puede enviar otro tipo de paramatros
-    
-    /*let hms = new Date();
-    let horas = parseInt(parametros.horaDesayuno.substring(0, 2));
-    let minutos = parseInt(parametros.horaDesayuno.substring(3, 5));
-    let convert = (minutos + (horas * 60)) * 60 * 1000;
-    hms.setTime(convert);
-    parametros.horaDesayuno = hms;*/
     //CREANDO INSTANCIA
     try {
-            const recordatorio24H = Recordatorio24H.build(parametros);
-        if(recordatorio24H instanceof Recordatorio24H){//devolvió true, es una instancia de Recordatorio24H
+        const recordatorio24H = Recordatorio24H.build(parametros);
+        if (recordatorio24H instanceof Recordatorio24H) {//devolvió true, es una instancia de Recordatorio24H
             await recordatorio24H.save();//guardando en base de datos
-            console.log(parametros);//imprimiendo parametros
         }
-    } catch (error) {
-        console.log(error.message);
-        return response.json(data);
+    } catch (e) {
+        data = { "message": "Error A guardar el Recordatorio" }
     }
-    
-    
+
     return response.json(data);
 }
 
-async function verRecordatorio24H(request,response){
-    data = {}
-    parametros = request.query.id;
-    console.log(parametros);
+async function verRecordatorio24H(request, response) {
+    let data1 = {};
+    const id = request.params.id;
     try {
-        
-    } catch (error) {
-        
+        //recuperar el recordatorio
+        const recordatorios = await Recordatorio24H.findAll({
+            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            where: {
+                id: {
+                    [Op.eq]: id
+                }
+            }
+        });
+
+        data1 = recordatorios;
+
+    } catch (e) {
+        data1 = { "message": e.message };
     }
-    response.json(data);
+    return response.json(data1);
+}
+
+async function editarRecordatorio24H(request, response) {
+    let data2 = { "message": "Recordatorio de 24 horas guardado." }
+    const id = request.params.id;
+    
+    try {
+        //recuperar el recordatorio
+        const ediRecordatorio = await Recordatorio24H.findAll({
+            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            where: {
+                id: {
+                    [Op.eq]: id
+                }
+            }
+        });
+
+        data2 = { id, message: "Recordatorio Actualizado" };
+
+    } catch (e) {
+        data2 = { "message": e.message };
+    }
+    return response.json(data2);
 }
 
 //EXPORTANDO CONTROLADORES
-module.exports =  {
+module.exports = {
     crearRecordatorio24H,
-    verRecordatorio24H
+    verRecordatorio24H,
+    editarRecordatorio24H
 };
