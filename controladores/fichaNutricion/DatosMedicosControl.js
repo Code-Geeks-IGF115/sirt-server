@@ -3,15 +3,19 @@ const { DatosMedicos } = require('../../models');
 
 //Funcion para crear los datos medicos
 async function crearDatosMedicos(request, response) {
-    let data = { 'message': 'Datos medicos guardados' };
+    let data = { 'message': 'Datos medicos guardados' }
     parametros = request.body;
     try {
         const datosMedicos = DatosMedicos.build(parametros);
         if (datosMedicos instanceof DatosMedicos) {
             await datosMedicos.save();
         }
+        data.id=datosMedicos.id;
     } catch (error) {
-        data = { 'message:': error.message }
+        data = { 
+            'message': "Datos no válidos.",
+            "error": error.message
+             }
     }
 
     return response.json(data);
@@ -22,7 +26,7 @@ async function verDatosMedicos(request, response) {
     let data = {}
     const id = request.params.id;
     try {
-        data = await DatosMedicos.findOne({
+        const datosMedicos = await DatosMedicos.findOne({
             attributes: { exclude: ['createdAt', 'updatedAt','datosMedicoId'] },
             where: {
                 id: {
@@ -30,10 +34,13 @@ async function verDatosMedicos(request, response) {
                 }
             }
         });
-        // data = datosM;
+        data = datosMedicos;
 
     } catch (error) {
-        data = {'message':error.message}
+        data = { 
+            'message': "Datos no válidos.",
+            "error": error.message
+             }
     }
     return response.json(data);
 }
@@ -55,7 +62,10 @@ async function editarDatosMedicos(request, response){
             });
 
     } catch (error) {
-        data = {'message':error.message}
+        data = { 
+            'message': "Datos no válidos.",
+            "error": error.message
+             }
     }
     return response.json(data);
 }
