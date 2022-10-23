@@ -10,16 +10,28 @@ const PORT = process.env.PORT || 3000;
 //IMPORTACIONES DE CONTROLADORES
 const { index } = require(__dirname + '/controladores/indexControl.js');
 //MODULO FICHA NUTRICIÓN
+
+/*
+* Nombre: Pamela Nicole Barrientos Cruz
+* Carnet: BC21009
+* Estado:
+* Fecha de creacion: 14/10/22
+* Fecha de ultima edicion: 15/10/22
+* Fecha de ultima revision: 23/10/2022
+* Fecha de aprobacion:
+*/
+const { 
+  crearDatosMedicos,
+  verDatosMedicos,
+  editarDatosMedicos 
+} = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
+  
 const { 
   crearHistoriaDietetica,
   verHistoriaDietetica, 
   editarHistoriaDietetica
 } = require(__dirname + '/controladores/fichaNutricion/HistoriaDieteticaControl.js');
 
-const { crearDatosMedicos,
-  verDatosMedicos,
-  manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
-  
 const { crearDatosAntropometricos,
   verDatosAntropometricos,
   manipularDatosAntropometricos
@@ -51,6 +63,14 @@ const { verListaAlimentos } = require(__dirname + '/controladores/fichaNutricion
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
+
+//Datos médicos
+app.route('/ficha/nutricion/consulta/datos/medicos/')
+.post(crearDatosMedicos);
+app.route('/ficha/nutricion/consulta/datos/medicos/:id')
+  .get(verDatosMedicos)
+  .post(editarDatosMedicos);
+
 //Historia Dietética
 app.route('/ficha/nutricion/consulta/historia-dietetica/')
 .post(crearHistoriaDietetica);
@@ -59,10 +79,6 @@ app.route('/ficha/nutricion/consulta/historia-dietetica/:id/edit')
 app.route('/ficha/nutricion/consulta/historia-dietetica/:id')
     .get(verHistoriaDietetica);
 
-//Datos médicos
-app.route('/ficha/nutricion/consulta/datos/')
-  .post(crearDatosMedicos)
-  .get(verDatosMedicos);
 
 //Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
