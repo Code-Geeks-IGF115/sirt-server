@@ -22,10 +22,13 @@ async function crearDatosAntropometricos(request, response) {
         parametros.altura = parseFloat(parametros.altura).toFixed(2);
         parametros.indiceMasaCorporal = parseFloat(parametros.indiceMasaCorporal).toFixed(2);
         parametros.consultaId = parseInt(parametros.consultaId);
-        console.log(parametros);
-        await DatosAntropometricos.create(parametros);
+        const datosAntropometricos=await DatosAntropometricos.create(parametros);
+        data.id=datosAntropometricos.id;
     } catch (e) {
-        data = { 'message': e.message }
+        data = { 
+            'message': "Datos no válidos.",
+            "error": e.message
+             }
     }
     return response.json(data) //= { 'message': 'Datos medicos guardados' }
 }
@@ -47,7 +50,10 @@ async function verDatosAntropometricos(request, response) {
         data = datosA;
 
     } catch (e) {
-        data = { 'message': e.message }
+        data = { 
+            'message': "Datos no válidos.",
+            "error": e.message
+             }
     }
     return response.json(data);
 
@@ -71,9 +77,12 @@ async function editarDatosAntropometricos(request, response) {
         data = { message: "Datos Antropometricos modificados." };
 
     } catch (e) {
-        data = { 'message': e.message }
+        data = { 
+            'message': "Datos no válidos.",
+            "error": e.message
+             }
     }
-    response.json(data);
+    return response.json(data);
 }
 
 
