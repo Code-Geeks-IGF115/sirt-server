@@ -33,16 +33,25 @@ const {
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
 *Carnet: EA12006
-*Estado: 
+*Estado: Aprobado, Editado.
 *Fecha de creacion: 15/10/22
 *Fecha de ultima revision: 23/10/2022
-*Fecha de aprobacion:
+*Fecha de aprobacion: 23/10/2022
 */
 const { crearDatosAntropometricos,
   verDatosAntropometricos,
   editarDatosAntropometricos
 } = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
 
+/**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  Aprobado,editado.
+ * fecha de creación: Jueves 13 de octubre del 2022
+ * fecha de última edición: Viernes 21 de octubre del 2022
+ * fecha de última revisión: 23/10/2022
+ * fecha de aprobación: 23/10/2022
+ */
 const { 
   crearHistoriaDietetica,
   verHistoriaDietetica, 

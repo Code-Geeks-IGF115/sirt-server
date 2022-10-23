@@ -25,7 +25,6 @@ async function crearDatosAntropometricos(request, response) {
         console.log(parametros);
         await DatosAntropometricos.create(parametros);
     } catch (e) {
-        response.status(500);
         data = { 'message': e.message }
     }
     return response.json(data) //= { 'message': 'Datos medicos guardados' }
@@ -48,7 +47,6 @@ async function verDatosAntropometricos(request, response) {
         data = datosA;
 
     } catch (e) {
-        response.status(304);
         data = { 'message': e.message }
     }
     return response.json(data);
@@ -73,7 +71,6 @@ async function editarDatosAntropometricos(request, response) {
         data = { message: "Datos Antropometricos modificados." };
 
     } catch (e) {
-        response.status(500);
         data = { 'message': e.message }
     }
     response.json(data);
