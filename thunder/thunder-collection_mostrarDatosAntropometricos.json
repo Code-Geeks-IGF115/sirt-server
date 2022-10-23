@@ -1,0 +1,23 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "mostrarDatosAntropometricos",
+    "dateExported": "2022-10-22T06:12:15.834Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b6539a9d-1f76-486e-9972-3361597de42b",
+            "colId": "6677db4f-ba7e-4ff9-8296-4b35528350e4",
+            "containerId": "",
+            "name": "localhost:3001/ficha/nutricion/consulta/datos-antropometricos/9",
+            "url": "localhost:3001/ficha/nutricion/consulta/datos-antropometricos/8",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2022-10-22T06:09:53.765Z",
+            "modified": "2022-10-22T06:09:53.765Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "editarDatosAntropometricos",
+    "dateExported": "2022-10-22T06:12:01.966Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "0e0d1fca-1b04-41d9-97de-63b6fac8494a",
+            "colId": "4fad1402-ff24-4bfd-a222-323b2cbc2722",
+            "containerId": "",
+            "name": "localhost:3001/ficha/nutricion/consulta/datos-antropometricos/8/edit",
+            "url": "localhost:3001/ficha/nutricion/consulta/datos-antropometricos/8/edit",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-10-22T06:09:18.594Z",
+            "modified": "2022-10-22T06:09:18.594Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

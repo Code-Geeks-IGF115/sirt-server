@@ -21,11 +21,16 @@ const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
 
+
+const { crearDatosAntropometricos,
+  verDatosAntropometricos,
+  manipularDatosAntropometricos
+} = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
+
 const { 
   recuperarExamenes,
   modificarDatos } = require(__dirname + '/controladores/fichaNutricion/ExamenesLaboratorioControl.js');
 
-const { crearDatosAntropometricos } = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricos.js');
 const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 //HabitosDeConsumo
@@ -55,6 +60,11 @@ app.route('/ficha/nutricion/consulta/datos/')
 //Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
   .post(crearDatosAntropometricos);
+app.route('/ficha/nutricion/consulta/datos-antropometricos/:id')
+  .get(verDatosAntropometricos);
+app.route('/ficha/nutricion/consulta/datos-antropometricos/:id/edit')
+  .post(manipularDatosAntropometricos);
+
 
 //plan alimenticio
 app.route('/ficha/nutricion/consulta/plan-alimenticio/')
