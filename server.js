@@ -21,7 +21,6 @@ const { crearDatosMedicos,
   verDatosMedicos,
   manipularDatosM } = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
 
-
 const { crearDatosAntropometricos,
   verDatosAntropometricos,
   manipularDatosAntropometricos
