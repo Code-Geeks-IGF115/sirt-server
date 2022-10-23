@@ -39,23 +39,24 @@ async function verDatosMedicos(request, response) {
     return response.json(data3);
 }
 
-//Funcion para manipular los datos en la database
+//Funcion para editar datos médicos en la base de datos
 async function editarDatosMedicos(request, response){
-    let data = {}
+    let data = {"message":'Datos Médicos Guardados.'};
     const id = request.params.id;
+    const parametros=request.body;
     try {
-        const datosMd = await DatosMedicos.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
-            where: {
-                id: {
-                    [Op.eq]: id
+        await DatosMedicos.update(
+            parametros,
+            {
+                where: {
+                    id: {
+                        [Op.eq]: id
+                    }
                 }
-            }
-        });
-        data = datosMd;
+            });
 
     } catch (error) {
-        data = {'message':'Datos no validos'}
+        data = {'message':error.message}
     }
     return response.json(data);
 }
