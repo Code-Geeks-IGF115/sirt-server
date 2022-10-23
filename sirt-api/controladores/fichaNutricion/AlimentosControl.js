@@ -1,6 +1,19 @@
 const { Op } = require("sequelize");
 const {Alimento}=require(`../../models`);
 
+/**
+ * nombre:Vinicio Alonso Sibrian Vargas
+ * carnet:SV16028
+ * estado: APROBADO || EN REVISIÓN || DESARROLLO
+ * fecha de creación: 17/10/2022
+ * fecha de última edición: 21/10/2022
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+
+
+
+
 //CONTROLADORES
 async function verListaAlimentos(request,response){
     let data={}
