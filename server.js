@@ -61,11 +61,11 @@ const {
 /**
  * nombre:Vinicio Alonso Sibrian Vargas
  * carnet:SV16028
- * estado: APROBADO || EN REVISIÓN || DESARROLLO
+ * estado: APROBADO, editado.
  * fecha de creación: 14/10/2022
  * fecha de última edición: 21/10/2022
- * fecha de última revisión: 
- * fecha de aprobación: 
+ * fecha de última revisión: 23/10/2022
+ * fecha de aprobación: 23/10/2022
  */
 
 //HabitosDeConsumo
@@ -73,6 +73,15 @@ const {crearHabitosConsumo,
   verHabitosConsumo,
   editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
+  /**
+ * nombre: Jorge Daniel Cruz Vásquez
+ * carnet: CV19008
+ * estado: Aprobado. editado.
+ * fecha de creación: 14/10/22
+ * fecha de última edición: 22/10/2022
+ * fecha de última revisión: 23 octubre 2022
+ * fecha de aprobación: 23/10/2022
+ */
 //Recordatorio 24H
 const { 
   crearRecordatorio24H,
@@ -157,7 +166,7 @@ app.listen(PORT, async function () {
     console.log('Connection has been established successfully.');
     // await sequelize.drop();
     // console.log("All tables dropped!");
-    //await sequelize.sync();
+    // await sequelize.sync();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
