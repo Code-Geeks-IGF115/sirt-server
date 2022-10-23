@@ -1,0 +1,85 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "crear Datos Antropometricos",
+    "dateExported": "2022-10-22T06:11:12.701Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "610765c4-f79e-4879-848b-eca363640204",
+            "colId": "160ab4dc-108e-4c1c-b693-d03e5490d664",
+            "containerId": "",
+            "name": "localhost:3001/ficha/nutricion/consulta/datos-antropometricos",
+            "url": "localhost:3001/ficha/nutricion/consulta/datos-antropometricos",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-10-22T06:10:45.817Z",
+            "modified": "2022-10-22T06:10:45.817Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "pesoActual",
+                        "value": "10"
+                    },
+                    {
+                        "name": "pesoMeta",
+                        "value": "20"
+                    },
+                    {
+                        "name": "pesoIdeal",
+                        "value": "30"
+                    },
+                    {
+                        "name": "grasaViseral",
+                        "value": "40"
+                    },
+                    {
+                        "name": "grasaMuscular",
+                        "value": "50"
+                    },
+                    {
+                        "name": "cCintura",
+                        "value": "60"
+                    },
+                    {
+                        "name": "cCadera",
+                        "value": "70"
+                    },
+                    {
+                        "name": "cMuneca",
+                        "value": "80"
+                    },
+                    {
+                        "name": "cBrazoRelajado",
+                        "value": "90"
+                    },
+                    {
+                        "name": "cBrazoContraido",
+                        "value": "100"
+                    },
+                    {
+                        "name": "altura",
+                        "value": "110"
+                    },
+                    {
+                        "name": "indiceMasaCorporal",
+                        "value": "120"
+                    },
+                    {
+                        "name": "diagnostico",
+                        "value": "prueba"
+                    },
+                    {
+                        "name": "consultaId",
+                        "value": "2"
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ]
+}
