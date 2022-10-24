@@ -104,7 +104,6 @@ const {
   verExamenesLaboratorio
 } = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
   
-const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 /**
  * nombre:Vinicio Alonso Sibrian Vargas
@@ -118,6 +117,20 @@ const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutric
 //ListaAlimentos
 const { verListaAlimentos } = require(__dirname + '/controladores/fichaNutricion/AlimentosControl.js');
 
+/**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  Aprobado
+ * fecha de creación: Sabado 15 de octubre del 2022
+ * fecha de última edición: Martes 18 de octubre del 2022
+ * fecha de última revisión: 23/10/2022
+ * fecha de aprobación: 23/10/2022
+ */
+const { 
+  crearPlanAlimenticio,
+  editarPlanAlimenticio,
+  verPlanAlimenticio
+ } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
@@ -151,6 +164,9 @@ app.route('/ficha/nutricion/consulta/historia-dietetica/:id')
 //plan alimenticio
 app.route('/ficha/nutricion/consulta/plan-alimenticio/')
   .post(crearPlanAlimenticio);
+app.route('/ficha/nutricion/consulta/plan-alimenticio/:id')
+  .get(verPlanAlimenticio)
+  .post(editarPlanAlimenticio);
 
 //HabitosDeConsumo
 app.route('/ficha/nutricion/consulta/habitos-consumo/')
