@@ -106,7 +106,15 @@ const {
   
 const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
-
+/**
+ * nombre:Vinicio Alonso Sibrian Vargas
+ * carnet:SV16028
+ * estado: APROBADO
+ * fecha de creación: 17/10/2022
+ * fecha de última edición: 21/10/2022
+ * fecha de última revisión: 23/10/2022
+ * fecha de aprobación: 23/10/2022
+ */
 //ListaAlimentos
 const { verListaAlimentos } = require(__dirname + '/controladores/fichaNutricion/AlimentosControl.js');
 
@@ -153,7 +161,7 @@ app.route('/ficha/nutricion/consulta/habitos-consumo/:id/edit')
     .post(editHabitosConsumo)
     
 //ListaAlimentos                                                 
-app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
+app.route('/ficha/nutricion/alimentos/').get(verListaAlimentos);
 
 
 //Examenes de laboratorio
