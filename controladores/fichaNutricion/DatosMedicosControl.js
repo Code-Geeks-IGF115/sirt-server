@@ -1,16 +1,20 @@
 const { Op } = require("sequelize");
-const { DatosMedicos } = require('../../models');
+const { DatosMedicos,Consulta } = require('../../models');
 
 //Funcion para crear los datos medicos
 async function crearDatosMedicos(request, response) {
     let data = { 'message': 'Datos medicos guardados' }
     parametros = request.body;
+    //recuperando consulta
+    const consulta = await Consulta.findOne({ where: { id: parseInt(parametros.consultaId)} });
+    parametros.beneficiarioId=consulta.beneficiarioId;
     try {
         const datosMedicos = DatosMedicos.build(parametros);
         if (datosMedicos instanceof DatosMedicos) {
             await datosMedicos.save();
         }
         data.id=datosMedicos.id;
+        data.beneficiarioId=consulta.beneficiarioId;
     } catch (error) {
         data = { 
             'message': "Datos no válidos.",

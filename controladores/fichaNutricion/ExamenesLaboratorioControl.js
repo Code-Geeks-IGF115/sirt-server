@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { ExamenLaboratorio } = require(`../../models`);
+const { ExamenLaboratorio,Consulta } = require(`../../models`);
 
 //Controladores
 /*
@@ -16,15 +16,18 @@ Fecha de aprobacion:
 async function crearExamenLaboratorio(request, response) {
     let data = { 'message': "Examen de laboratorio guardado." }
     parametros = request.body;
+    //recuperando consulta
+    const consulta = await Consulta.findOne({ where: { id: parseInt(parametros.consultaId)} });
     let fechaPrescripcion = new Date();
     parametros.fechaPrescripcion=fechaPrescripcion;
-    parametros.BeneficiarioId=parseInt(parametros.beneficiarioId);
-    parametros.beneficiarioId=parseInt(parametros.beneficiarioId);
+    parametros.BeneficiarioId=parseInt(consulta.beneficiarioId);
+    parametros.beneficiarioId=parseInt(consulta.beneficiarioId);
     try {
         const examenLaboratorio = ExamenLaboratorio.build(parametros);// se ejecuta a partir de la clase ExamenLaboratorio
         if (examenLaboratorio instanceof ExamenLaboratorio) {
             await examenLaboratorio.save();// se ejecuta sobre una variable (instancia)
             data.id=examenLaboratorio.id;
+            data.beneficiarioId=consulta.beneficiarioId;
         }
     } catch (error) {
         data = { 
