@@ -2,6 +2,15 @@
 const { Op, where } = require("sequelize");
 //MODELO
 const { Recordatorio24H, sequelize } = require('../../models');
+/**
+ * nombre: Jorge Daniel Cruz Vásquez
+ * carnet: CV19008
+ * estado: DESARROLLO
+ * fecha de creación: 14/10/22
+ * fecha de última edición: 22/10/2022
+ * fecha de última revisión: 21 octubre 2022
+ * fecha de aprobación: 
+ */
 
 //CONTROLADORES
 async function crearRecordatorio24H(request, response) {
@@ -13,12 +22,8 @@ async function crearRecordatorio24H(request, response) {
         if (recordatorio24H instanceof Recordatorio24H) {//devolvió true, es una instancia de Recordatorio24H
             await recordatorio24H.save();//guardando en base de datos
         }
-        data.id=recordatorio24H.id
     } catch (e) {
-        data = { 
-            'message': "Error A guardar el Recordatorio",
-            "error": e.message
-             }
+        data = { "message": "Error A guardar el Recordatorio" }
     }
 
     return response.json(data);
@@ -29,7 +34,7 @@ async function verRecordatorio24H(request, response) {
     const id = request.params.id;
     try {
         //recuperar el recordatorio
-        const recordatorios = await Recordatorio24H.findOne({
+        const recordatorios = await Recordatorio24H.findAll({
             attributes: { exclude: ['createdAt', 'updatedAt'] },
             where: {
                 id: {
@@ -41,10 +46,7 @@ async function verRecordatorio24H(request, response) {
         data1 = recordatorios;
 
     } catch (e) {
-        data1 = { 
-            'message': "Datos no válidos.",
-            "error": e.message
-             }
+        data1 = { "message": e.message };
     }
     return response.json(data1);
 }
@@ -52,27 +54,22 @@ async function verRecordatorio24H(request, response) {
 async function editarRecordatorio24H(request, response) {
     let data2 = { "message": "Recordatorio de 24 horas guardado." }
     const id = request.params.id;
-    const parametros=request.body;
     
     try {
         //recuperar el recordatorio
-        await Recordatorio24H.update(
-            parametros,
-            {
-                where: {
-                    id: {
-                        [Op.eq]: id
-                    }
+        const ediRecordatorio = await Recordatorio24H.findAll({
+            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            where: {
+                id: {
+                    [Op.eq]: id
                 }
-            });
+            }
+        });
 
-        data2 = { "message": "Recordatorio Modificado." };
+        data2 = { id, message: "Recordatorio Actualizado" };
 
     } catch (e) {
-        data2 = { 
-            'message': "Datos no válidos.",
-            "error": e.message
-             }
+        data2 = { "message": e.message };
     }
     return response.json(data2);
 }

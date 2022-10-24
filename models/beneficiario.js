@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Consulta,{as: 'consultas'});
       this.hasOne(models.DatosMedicos,{as:'datosMedicos'});
       this.hasMany(models.CitaMedica,{as:'citasMedicas'});
-      this.hasMany(models.ExamenLaboratorio,{as:'examenesLaboratorio'});
     }
   }
   Beneficiario.init({
