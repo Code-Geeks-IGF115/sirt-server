@@ -14,67 +14,80 @@ Fecha de aprobacion:
 
 //Funcion de construccion del objeto
 async function crearExamenLaboratorio(request, response) {
-    let dato = { 'message': "Examen de laboratorio guardado" }
+    let data = { 'message': "Examen de laboratorio guardado." }
     parametros = request.body;
     let fechaPrescripcion = new Date();
     parametros.fechaPrescripcion=fechaPrescripcion;
-    parametros.SeguimientoConsultumId=parseInt(parametros.seguimientoConsultaId);
-    parametros.seguimientoConsultaId=parseInt(parametros.seguimientoConsultaId);
+    parametros.BeneficiarioId=parseInt(parametros.beneficiarioId);
+    parametros.beneficiarioId=parseInt(parametros.beneficiarioId);
     try {
         const examenLaboratorio = ExamenLaboratorio.build(parametros);// se ejecuta a partir de la clase ExamenLaboratorio
         if (examenLaboratorio instanceof ExamenLaboratorio) {
             await examenLaboratorio.save();// se ejecuta sobre una variable (instancia)
+            data.id=examenLaboratorio.id;
         }
     } catch (error) {
-        dato = { 'message': `Datos no válidos.` }
-        response.status(500);
+        data = { 
+            'message': "Datos no válidos.",
+            "error": error.message
+             }
+        // response.status(500);
     }
-    return response.json(dato);
+    return response.json(data);
 }
 
 //Funcion que recupera todos los datos de la base de datos
-async function verExamenenLaboratorio(request, response) {
-    let dato = {}
-    const ident = request.query.ident;
+async function verExamenesLaboratorio(request, response) {
+    let data = {}
+    const id = request.params.id;
+    //Filtra por beneficiario
     try {
-        const datosExamenes = await ExamenesLaboratorio.findAll({
+        const datosExamenes = await ExamenLaboratorio.findAll({
             attributes: { exclude: ['createdAt', 'updatedAt'] },
             where: {
-                ident: {
-                    [Op.eq]: ident
+                beneficiarioId: {
+                    [Op.eq]: id
                 }
             }
         });
-        dato = datosExamenes;
+        data = datosExamenes;
     } catch (error) {
-        dato = { 'message': 'Datos no validos' }
+        data = { 
+            'message': "Datos no válidos.",
+            "error": error.message
+             }
     }
-    return response.json(dato);
+    return response.json(data);
 }
 
 //Funcion para modificar los datos en la base
 async function editarExamenLaboratorio(request, response) {
-    let dato = { 'message': 'Datos modificados con exito' }
+    let data = { 'message': 'Datos modificados con exito' }
     const id = request.params.id;
     try {
-        const consulta = await ExamenenLaboratorio.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
-            where: {
-                id: {
-                    [Op.eq]: id
+        await ExamenLaboratorio.update(
+            request.body,
+            {
+                where: {
+                    id: {
+                        [Op.eq]: id
+                    }
                 }
             }
-        })
+            );
     } catch (error) {
-        dato = { 'message': 'La modificacion no pudo realizarse' }
+        data = { 
+            'message': "Datos no válidos.",
+            "error": error.message
+             }
     }
-    return response.json(dato);
+    return response.json(data);
 }
 
 //Importacion de controladores a la clase
 module.exports = {
     crearExamenLaboratorio,
-    verExamenenLaboratorio,
+    verExamenesLaboratorio,
     editarExamenLaboratorio
 };
 

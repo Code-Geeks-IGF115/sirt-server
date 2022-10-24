@@ -89,10 +89,19 @@ const {
   verRecordatorio24H 
 } = require(__dirname + '/controladores/fichaNutricion/Recordatorio24HControl.js');
 
+/*
+Nombre: Pamela Nicole Barrientos Cruz
+Carnet: BC21009
+Estado: Aprobado.
+Fecha de creacion: 14/10/2022
+Fecha de ultima edicion: 16/10/2022
+Fecha de ultima revision: 23/10/2022
+Fecha de aprobacion: 23/10/2022
+*/
 const { 
   crearExamenLaboratorio,
   editarExamenLaboratorio,
-  verExamenenLaboratorio
+  verExamenesLaboratorio
 } = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
   
 const { crearPlanAlimenticio } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
@@ -149,8 +158,10 @@ app.route('/ficha/nutricion/alimentos/:id').get(verListaAlimentos);
 
 //Examenes de laboratorio
 app.route('/ficha/nutricion/consulta/examenes-laboratorio/')
-  .post(crearExamenLaboratorio)
-  .get(verExamenenLaboratorio);
+.post(crearExamenLaboratorio);
+app.route('/ficha/nutricion/consulta/examenes-laboratorio/:id')
+  .post(editarExamenLaboratorio)
+  .get(verExamenesLaboratorio);
 
 //RECORDATORIO
 app.route('/ficha/nutricion/consulta/recordatorio-24h/')
