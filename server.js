@@ -131,6 +131,22 @@ const {
   editarPlanAlimenticio,
   verPlanAlimenticio
  } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+
+/**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  En proceso 
+ * fecha de creación: Miercoles 02 de noviembre del 2022
+ * fecha de última edición:
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+ const { 
+  registrarResponsable,
+  verResponsable
+ } = require(__dirname + '/controladores/fichaNutricion/ResponsableControl.js');
+
+
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
@@ -194,6 +210,11 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
   .get(verRecordatorio24H)
   .post(editarRecordatorio24H);
 
+//RESPONSABLE 
+app.route('/ficha/nutricion/consulta/responsable/')
+ .post(registrarResponsable);
+ app.route('/ficha/nutricion/consulta/responsable/:dui')
+  .get(verResponsable);
 
 app.listen(PORT, async function () {
   try {

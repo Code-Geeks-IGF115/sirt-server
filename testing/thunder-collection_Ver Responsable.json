@@ -1,0 +1,23 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Ver Responsable",
+    "dateExported": "2022-11-03T00:02:22.004Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "7df58c42-371f-419a-87cf-1c87088fd27f",
+            "colId": "456e2483-c11b-4687-ab84-64c44c624da2",
+            "containerId": "",
+            "name": "localhost:3000/ficha/nutricion/consulta/responsable/:dui",
+            "url": "localhost:3000/ficha/nutricion/consulta/responsable/1522611222",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2022-11-03T00:00:21.666Z",
+            "modified": "2022-11-03T00:00:21.666Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
