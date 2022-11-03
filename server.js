@@ -131,6 +131,11 @@ const {
   editarPlanAlimenticio,
   verPlanAlimenticio
  } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+ 
+//Beneficiarios
+const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
+
+
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
@@ -141,6 +146,12 @@ app.route('/ficha/nutricion/consulta/datos/medicos/')
 app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .get(verDatosMedicos)
   .post(editarDatosMedicos);
+
+  //Beneficiarios
+  app.route('/ficha/nutricion/consulta//beneficiario/:id')
+  .post(verBeneficario);
+
+
 
 //Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
