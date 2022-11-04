@@ -15,7 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Responsable.init({
-    dui: DataTypes.STRING,
+    dui: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+      autoIncrement: false // Automatically gets converted to SERIAL for postgres
+    },
     nombre: DataTypes.STRING,
     apellidos: DataTypes.STRING,
     direccion: DataTypes.STRING,
