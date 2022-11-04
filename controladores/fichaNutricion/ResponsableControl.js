@@ -28,7 +28,7 @@ async function registrarResponsable(request,response){
             "error":e.message
         }
     }
-    response.json(data);
+    return response.json(data);
 }
 
 async function verResponsable(request,response){
