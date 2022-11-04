@@ -5,7 +5,7 @@ require('dotenv').config();
 const cors = require('cors');
 const bodyParser = require("body-parser");
 app.use(cors({
-    origin: [process.env.LOCAL_ORIGIN,process.env.REMOTE_ORIGIN]
+  origin: [process.env.LOCAL_ORIGIN, process.env.REMOTE_ORIGIN]
 }));
 app.use(bodyParser.json());
 const { sequelize } = require(__dirname + "/models/index.js");
@@ -24,11 +24,25 @@ const { index } = require(__dirname + '/controladores/indexControl.js');
 * Fecha de ultima revision: 23/10/2022
 * Fecha de aprobacion: 23/10/2022
 */
-const { 
+const {
   crearDatosMedicos,
   verDatosMedicos,
   editarDatosMedicos 
-} = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
+} = require(__dirname + '/controladores/DatosMedicosControl.js');
+
+
+/**
+ * Nombre: Pamela Nicole Barrientos Cruz
+ * Carnet: BC21009
+ * Estado:
+ * Fecha de creación: 2/11/2022
+ * Fecha de última edición: 3/11/2022
+ * Fecha de última revisión:
+ * Fecha de aprobación:
+ */
+const {
+  registrarBeneficiario
+} = require(__dirname + '/controladores/fichaNutricion/BeneficiarioControl.js');
 
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
@@ -42,6 +56,18 @@ const { crearDatosAntropometricos,
   verDatosAntropometricos,
   editarDatosAntropometricos
 } = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricosControl.js');
+/*
+*Nombre: Remberto Leonardo Escobar Ardón
+*Carnet: EA12006
+*Estado: en proceso
+*Fecha de creacion: 03/11/22
+*Fecha de ultima revision:
+*Fecha de aprobacion:
+*/
+const{ editarBeneficiario,
+       listaBeneficiarios
+
+} = require(__dirname + '/controladores/BeneficiarioControl.js');
 
 /**
  * nombre:Damaris Julissa Hernández Guardado
@@ -52,9 +78,9 @@ const { crearDatosAntropometricos,
  * fecha de última revisión: 23/10/2022
  * fecha de aprobación: 23/10/2022
  */
-const { 
+const {
   crearHistoriaDietetica,
-  verHistoriaDietetica, 
+  verHistoriaDietetica,
   editarHistoriaDietetica
 } = require(__dirname + '/controladores/fichaNutricion/HistoriaDieteticaControl.js');
 
@@ -69,24 +95,24 @@ const {
  */
 
 //HabitosDeConsumo
-const {crearHabitosConsumo,
+const { crearHabitosConsumo,
   verHabitosConsumo,
-  editHabitosConsumo}=require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
+  editHabitosConsumo } = require(__dirname + '/controladores/fichaNutricion/HabitosConsumoControl.js');
 
-  /**
- * nombre: Jorge Daniel Cruz Vásquez
- * carnet: CV19008
- * estado: Aprobado. editado.
- * fecha de creación: 14/10/22
- * fecha de última edición: 22/10/2022
- * fecha de última revisión: 23 octubre 2022
- * fecha de aprobación: 23/10/2022
- */
+/**
+* nombre: Jorge Daniel Cruz Vásquez
+* carnet: CV19008
+* estado: Aprobado. editado.
+* fecha de creación: 14/10/22
+* fecha de última edición: 22/10/2022
+* fecha de última revisión: 23 octubre 2022
+* fecha de aprobación: 23/10/2022
+*/
 //Recordatorio 24H
-const { 
+const {
   crearRecordatorio24H,
-  editarRecordatorio24H, 
-  verRecordatorio24H 
+  editarRecordatorio24H,
+  verRecordatorio24H
 } = require(__dirname + '/controladores/fichaNutricion/Recordatorio24HControl.js');
 
 /*
@@ -98,12 +124,13 @@ Fecha de ultima edicion: 16/10/2022
 Fecha de ultima revision: 23/10/2022
 Fecha de aprobacion: 23/10/2022
 */
-const { 
+const {
   crearExamenLaboratorio,
   editarExamenLaboratorio,
   verExamenesLaboratorio
 } = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
-  
+const { registrarBeneficiario } = require("./controladores/fichaNutricion/BeneficiarioControl");
+
 
 /**
  * nombre:Vinicio Alonso Sibrian Vargas
@@ -126,11 +153,27 @@ const { verListaAlimentos } = require(__dirname + '/controladores/fichaNutricion
  * fecha de última revisión: 23/10/2022
  * fecha de aprobación: 23/10/2022
  */
-const { 
+const {
   crearPlanAlimenticio,
   editarPlanAlimenticio,
   verPlanAlimenticio
  } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+
+
+/**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  En proceso 
+ * fecha de creación: Miercoles 02 de noviembre del 2022
+ * fecha de última edición:
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+ const { 
+  registrarResponsable,
+  verResponsable
+ } = require(__dirname + '/controladores/ResponsableControl.js');
+
  
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
@@ -138,13 +181,14 @@ const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Be
 //listaConsultasFichaNutricion
 const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
+
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
 
 //Datos médicos
 app.route('/ficha/nutricion/consulta/datos/medicos/')
-.post(crearDatosMedicos);
+  .post(crearDatosMedicos);
 app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .get(verDatosMedicos)
   .post(editarDatosMedicos);
@@ -170,13 +214,13 @@ app.route('/ficha/nutricion/consulta/datos-antropometricos/:id/edit')
 app.route('/ficha/nutricion/consulta/datos-antropometricos/:id')
   .get(verDatosAntropometricos);
 
-  //Historia Dietética
+//Historia Dietética
 app.route('/ficha/nutricion/consulta/historia-dietetica/')
-.post(crearHistoriaDietetica);
+  .post(crearHistoriaDietetica);
 app.route('/ficha/nutricion/consulta/historia-dietetica/:id/edit')
   .post(editarHistoriaDietetica);
 app.route('/ficha/nutricion/consulta/historia-dietetica/:id')
-    .get(verHistoriaDietetica);
+  .get(verHistoriaDietetica);
 
 
 
@@ -190,19 +234,19 @@ app.route('/ficha/nutricion/consulta/plan-alimenticio/:id')
 
 //HabitosDeConsumo
 app.route('/ficha/nutricion/consulta/habitos-consumo/')
-    .post(crearHabitosConsumo);
+  .post(crearHabitosConsumo);
 app.route('/ficha/nutricion/consulta/habitos-consumo/:id')
-    .get(verHabitosConsumo);
+  .get(verHabitosConsumo);
 app.route('/ficha/nutricion/consulta/habitos-consumo/:id/edit')
-    .post(editHabitosConsumo)
-    
+  .post(editHabitosConsumo)
+
 //ListaAlimentos                                                 
 app.route('/ficha/nutricion/alimentos/').get(verListaAlimentos);
 
 
 //Examenes de laboratorio
 app.route('/ficha/nutricion/consulta/examenes-laboratorio/')
-.post(crearExamenLaboratorio);
+  .post(crearExamenLaboratorio);
 app.route('/ficha/nutricion/consulta/examenes-laboratorio/:id')
   .post(editarExamenLaboratorio)
   .get(verExamenesLaboratorio);
@@ -213,6 +257,21 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/')
 app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
   .get(verRecordatorio24H)
   .post(editarRecordatorio24H);
+
+
+//RESPONSABLE 
+app.route('/responsable/')
+ .post(registrarResponsable);
+ app.route('/responsable/:dui')
+  .get(verResponsable);
+
+//Beneficiario
+app.route('/beneficiario/:id/edit')
+ .post(editarBeneficiario);
+ app.route('/responsable/:dui/beneficiario')
+.get(listaBeneficiarios)
+.post(registrarBeneficiario);
+  
 
 
 app.listen(PORT, async function () {

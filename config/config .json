@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "ODu4ZaRYLKDBCW29zfYP",
+    "database": "database_development",
+    "host": "sirt.cdzlzlscnqvm.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "ODu4ZaRYLKDBCW29zfYP",
+    "database": "database_test",
+    "host": "sirt.cdzlzlscnqvm.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "ODu4ZaRYLKDBCW29zfYP",
+    "database": "database_production",
+    "host": "sirt.cdzlzlscnqvm.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres"
+  }
+}
