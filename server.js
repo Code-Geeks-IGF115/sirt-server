@@ -194,12 +194,12 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
 
 //Beneficiarios
 app.route('/beneficiario/:id')
-  .post(verBeneficario);
+  .get(verBeneficario);
 
 
-  //listaConsultasFichaNutricion
-app.route('/beneficiario/:id/ficha/psicologica/')
- .get(verconsultasNutricion);
+//   //listaConsultasFichaNutricion
+// app.route('/beneficiario/:id/ficha/psicologica/')
+//  .get(verconsultasNutricion);
 
 
 

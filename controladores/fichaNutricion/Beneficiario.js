@@ -5,15 +5,26 @@ const {Beneficiario,DatosMedicos}=require(`../../models`);
 //CONTROLADORES
 async function verBeneficario(request,response){
     let data={}
-    //const id = request.params.id;
-    let { beneficiarioId, ...parametros } = request.body;
+    const id = request.params.id;
     try{
-        // recuperar la lista de beneficiario
-        const datos = await DatosMedicos.findAll({ where: { id: parseInt(beneficiarioId) } }); 
-        parametros.beneficiarioId = datos.id;
-        const beneficiario = await Beneficiario.create(parametros);
-        data.id=beneficiario.id;
 
+        // recuperar la lista de beneficiario
+        // const datosMedicos = await DatosMedicos.findOne({ 
+        //     where: { beneficiarioId:id},
+            
+        // }); 
+        // parametros.beneficiarioId = datos.id;
+        const beneficiario = await Beneficiario.findOne({ 
+            where: { 
+                        id:{
+                            [Op.eq]: id
+                        }
+                } ,
+                include: ['datosMedicos']
+            });
+        // data.id=beneficiario.id;
+        // [data]=[beneficiario,datosMedicos]
+        data=beneficiario;
 
     } catch (e) {
         data = { 
