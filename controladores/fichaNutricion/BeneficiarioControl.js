@@ -45,16 +45,19 @@ async function listaBeneficiarios(request, response) {
     const dui = request.params.dui;
 
     try {
-        const datosA = await Responsable.findAll({
+        const datosA = await Responsable.findOne({
             attributes: { 
-                exclude: ['createdAt', 'updatedAt'],
-                include: ['beneficiarios']
+                exclude: ['createdAt', 'updatedAt','telefono','direccion','fechaNacimiento'],
             },
             where: {
                 dui: {
                     [Op.eq]: dui
                 }
             },
+            include: {
+                model:Beneficiario,
+                as: 'beneficiarios'
+            }
         });
         data = datosA;
 
