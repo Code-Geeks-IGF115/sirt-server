@@ -25,5 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Responsable',
   });
+  Responsable.removeAttribute('id');
   return Responsable;
 };

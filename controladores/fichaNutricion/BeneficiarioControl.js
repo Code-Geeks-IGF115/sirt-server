@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const { Beneficiario,Responsable,DatosMedicos } = require('../../models');
+const beneficiario = require("../../models/beneficiario");
 
 
 //controladores
@@ -41,16 +42,19 @@ async function editarBeneficiario(request, response) {
 
 async function listaBeneficiarios(request, response) {
     let data = {}
-    const id = request.params.id;
+    const dui = request.params.dui;
 
     try {
-        const datosA = await beneficiarios.findOne({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
+        const datosA = await Responsable.findAll({
+            attributes: { 
+                exclude: ['createdAt', 'updatedAt'],
+                include: ['beneficiarios']
+            },
             where: {
                 dui: {
                     [Op.eq]: dui
                 }
-            }
+            },
         });
         data = datosA;
 

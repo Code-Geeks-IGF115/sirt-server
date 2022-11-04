@@ -208,9 +208,9 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
 
 
 //Beneficiario
-app.route('/ficha/nutricion/consulta/beneficiario/:id/edit')
+app.route('/beneficiario/:id/edit')
  .post(editarBeneficiario);
- app.route('/ficha/nutricion/consulta/responsable/:dui/beneficiario')
+ app.route('/responsable/:dui/beneficiario')
 .get(listaBeneficiarios);
 
 app.listen(PORT, async function () {
@@ -219,7 +219,7 @@ app.listen(PORT, async function () {
     console.log('Connection has been established successfully.');
     // await sequelize.drop();
     // console.log("All tables dropped!");
-    // await sequelize.sync();
+    await sequelize.sync();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
