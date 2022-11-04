@@ -131,6 +131,32 @@ const {
   editarPlanAlimenticio,
   verPlanAlimenticio
  } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+
+/**
+ * nombre: Jorge Daniel Cruz Vásquez
+ * carnet: CV19008
+ * estado: Proceso
+ * fecha de creación: 02/11/22
+ * fecha de última edición: 03/11/2022
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+const{
+  listaConsultasFichaMedica
+} = require(__dirname + '/controladores/fichaNutricion/verConsultasFichaMedica.js');
+
+/**
+ * nombre: Jorge Daniel Cruz Vásquez
+ * carnet: CV19008
+ * estado: Proceso
+ * fecha de creación: 02/11/22
+ * fecha de última edición: 02/11/2022
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+const{
+  editarResponsable
+} = require(__dirname +'/controladores/fichaNutricion/editarResponsable.js');
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
@@ -194,6 +220,14 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
   .get(verRecordatorio24H)
   .post(editarRecordatorio24H);
 
+
+//Ver fichas medicas
+app.route('/beneficiario/:id/ficha/medica/')
+  .get(listaConsultasFichaMedica);
+
+//editar responsable
+app.route('/responsable/:dui')
+  .post(editarResponsable);
 
 app.listen(PORT, async function () {
   try {
