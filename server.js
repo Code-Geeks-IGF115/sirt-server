@@ -135,6 +135,8 @@ const {
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
+//listaConsultasFichaNutricion
+const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
 //RUTAS
 app.route('/').get(index);
@@ -150,6 +152,13 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   //Beneficiarios
   app.route('/ficha/nutricion/consulta//beneficiario/:id')
   .post(verBeneficario);
+
+
+  //listaConsultasFichaNutricion
+app.route('/beneficiario/:id/ficha/psicologica/')
+ .get(verconsultasNutricion);
+
+
 
 
 
