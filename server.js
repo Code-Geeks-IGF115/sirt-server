@@ -129,7 +129,6 @@ const {
   editarExamenLaboratorio,
   verExamenesLaboratorio
 } = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
-const { registrarBeneficiario } = require("./controladores/fichaNutricion/BeneficiarioControl");
 
 
 /**
@@ -193,8 +192,8 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .get(verDatosMedicos)
   .post(editarDatosMedicos);
 
-  //Beneficiarios
-  app.route('/ficha/nutricion/consulta//beneficiario/:id')
+//Beneficiarios
+app.route('/beneficiario/:id')
   .post(verBeneficario);
 
 
