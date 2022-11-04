@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Beneficiario } = require(`../../models`);
+const { Beneficiario, DatosMedicos } = require(`../../models`);
 
 /**
  * Nombre: Pamela Nicole Barrientos Cruz
@@ -15,16 +15,24 @@ const { Beneficiario } = require(`../../models`);
 async function registrarBeneficiario(request, response) {
     let mensaje = { 'message': 'Beneficiario guardado con éxito' }
     let parametros = request.body;
+    const dui = request.params.dui;
     //Programando la consulta y la excepción
     try {
+        parametros.responsableDui=dui;
+        parametros.ResponsableDui=dui;
         const benef = Beneficiario.build(parametros);
         if (benef instanceof Beneficiario) {
             await benef.save();
         }
+        
+        parametros.beneficiarioId=benef.id;
+        const datosMedicos= await DatosMedicos.create(parametros);
+
     } catch (error) {
-        mensaje = {'message':
-        'Error; los datos son incorrectos',
-        "error:":error.message }
+        mensaje = {
+            'message':'Error; los datos son incorrectos',
+            "error:":error.message 
+        }
     }
     response.json(mensaje);//Devolviendo en JSON
 }

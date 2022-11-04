@@ -42,7 +42,7 @@ const {
  */
 const {
   registrarBeneficiario
-} = require(__dirname + '/controladores/fichaNutricion/BeneficiarioControl.js');
+} = require(__dirname + '/controladores/BeneficiarioControl.js');
 
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
@@ -129,7 +129,6 @@ const {
   editarExamenLaboratorio,
   verExamenesLaboratorio
 } = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
-const { registrarBeneficiario } = require("./controladores/fichaNutricion/BeneficiarioControl");
 
 
 /**
