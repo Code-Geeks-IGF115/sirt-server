@@ -1,6 +1,5 @@
 const { Op } = require("sequelize");
-const { Beneficiario,Responsable,DatosMedicos } = require('../../models');
-const beneficiario = require("../../models/beneficiario");
+const { Beneficiario,Responsable,DatosMedicos } = require('../models');
 
 
 //controladores

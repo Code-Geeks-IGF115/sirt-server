@@ -1,6 +1,6 @@
 //jshint esversion:6
 const { Op } = require("sequelize");
-const {Responsable}=require(`../../models`);
+const {Responsable}=require(`../models`);
 
 /**
  * nombre:Damaris Julissa Hernández Guardado
@@ -19,6 +19,7 @@ async function registrarResponsable(request,response){
     let parametros=request.body;
     try{
         const responsable = Responsable.build(parametros);
+        console.log(responsable);
         if(responsable instanceof Responsable){
             await responsable.save();//guardando en la base de datos
         }

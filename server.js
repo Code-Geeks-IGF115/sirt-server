@@ -28,7 +28,7 @@ const {
   crearDatosMedicos,
   verDatosMedicos,
   editarDatosMedicos 
-} = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
+} = require(__dirname + '/controladores/DatosMedicosControl.js');
 
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
@@ -53,7 +53,7 @@ const { crearDatosAntropometricos,
 const{ editarBeneficiario,
        listaBeneficiarios
 
-} = require(__dirname + '/controladores/fichaNutricion/BeneficiarioControl.js');
+} = require(__dirname + '/controladores/BeneficiarioControl.js');
 
 /**
  * nombre:Damaris Julissa Hernández Guardado
@@ -156,7 +156,7 @@ const {
  const { 
   registrarResponsable,
   verResponsable
- } = require(__dirname + '/controladores/fichaNutricion/ResponsableControl.js');
+ } = require(__dirname + '/controladores/ResponsableControl.js');
 
 
 //RUTAS
@@ -223,9 +223,9 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
   .post(editarRecordatorio24H);
 
 //RESPONSABLE 
-app.route('/ficha/nutricion/consulta/responsable/')
+app.route('/responsable/')
  .post(registrarResponsable);
- app.route('/ficha/nutricion/consulta/responsable/:dui')
+ app.route('/responsable/:dui')
   .get(verResponsable);
 
 //Beneficiario
