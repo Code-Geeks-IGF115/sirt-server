@@ -20,11 +20,20 @@ async function editarBeneficiario(request, response) {
     const id = request.params.id;
     let parametros = request.body;
     try {
-        const beneficiario = await Beneficiario.update(
+        await Beneficiario.update(
             parametros,
             {
                 where: {
                 id: {
+                    [Op.eq]: id
+                }
+            }
+        });
+        await DatosMedicos.update(
+            parametros,
+            {
+                where: {
+                beneficiarioId: {
                     [Op.eq]: id
                 }
             }
