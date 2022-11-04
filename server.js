@@ -42,10 +42,18 @@ const { crearDatosAntropometricos,
   verDatosAntropometricos,
   editarDatosAntropometricos
 } = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricosControl.js');
+/*
+*Nombre: Remberto Leonardo Escobar Ardón
+*Carnet: EA12006
+*Estado: en proceso
+*Fecha de creacion: 03/11/22
+*Fecha de ultima revision:
+*Fecha de aprobacion:
+*/
+const{ editarBeneficiario,
+       listaBeneficiarios
 
-const{ editarBeneficiario
-
-} = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
+} = require(__dirname + '/controladores/fichaNutricion/BeneficiarioControl.js');
 
 /**
  * nombre:Damaris Julissa Hernández Guardado
@@ -202,7 +210,8 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
 //Beneficiario
 app.route('/ficha/nutricion/consulta/beneficiario/:id/edit')
  .post(editarBeneficiario);
-
+ app.route('/ficha/nutricion/consulta/responsable/:dui/beneficiario')
+.get(listaBeneficiarios);
 
 app.listen(PORT, async function () {
   try {

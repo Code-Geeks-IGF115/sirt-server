@@ -1,12 +1,12 @@
 const { Op } = require("sequelize");
-const { Beneficiario } = require('../../models');
+const { Beneficiario,Responsable,DatosMedicos } = require('../../models');
 
 
 //controladores
 /*
 Nombre: Remberto Leonardo Escobar Ardón
 Carnet: EA12006
-Estado:
+Estado: en proceso
 Fecha de creacion: 03/11/2022
 Fecha de ultima edicion: 
 Fecha de ultima revision:
@@ -39,8 +39,34 @@ async function editarBeneficiario(request, response) {
     return response.json(data);
 }
 
+async function listaBeneficiarios(request, response) {
+    let data = {}
+    const id = request.params.id;
+
+    try {
+        const datosA = await beneficiarios.findOne({
+            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            where: {
+                dui: {
+                    [Op.eq]: dui
+                }
+            }
+        });
+        data = datosA;
+
+    } catch (e) {
+        data = { 
+            'message': "Datos no válidos.",
+            "error": e.message
+             }
+    }
+    return response.json(data);
+
+}
+
 //EXPORTANDO CONTROLADORES
 module.exports = {
-    editarBeneficiario    
+    editarBeneficiario,
+    listaBeneficiarios    
 };
 
