@@ -43,6 +43,10 @@ const { crearDatosAntropometricos,
   editarDatosAntropometricos
 } = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricosControl.js');
 
+const{ editarBeneficiario
+
+} = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
+
 /**
  * nombre:Damaris Julissa Hernández Guardado
  * carnet:HG20040
@@ -193,6 +197,11 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/')
 app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
   .get(verRecordatorio24H)
   .post(editarRecordatorio24H);
+
+
+//Beneficiario
+app.route('/ficha/nutricion/consulta/beneficiario/:id/edit')
+ .post(editarBeneficiario);
 
 
 app.listen(PORT, async function () {
