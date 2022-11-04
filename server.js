@@ -27,8 +27,9 @@ const { index } = require(__dirname + '/controladores/indexControl.js');
 const {
   crearDatosMedicos,
   verDatosMedicos,
-  editarDatosMedicos
-} = require(__dirname + '/controladores/fichaNutricion/DatosMedicosControl.js');
+  editarDatosMedicos 
+} = require(__dirname + '/controladores/DatosMedicosControl.js');
+
 
 /**
  * Nombre: Pamela Nicole Barrientos Cruz
@@ -55,6 +56,18 @@ const { crearDatosAntropometricos,
   verDatosAntropometricos,
   editarDatosAntropometricos
 } = require(__dirname + '/controladores/fichaNutricion/DatosAntropometricosControl.js');
+/*
+*Nombre: Remberto Leonardo Escobar Ardón
+*Carnet: EA12006
+*Estado: en proceso
+*Fecha de creacion: 03/11/22
+*Fecha de ultima revision:
+*Fecha de aprobacion:
+*/
+const{ editarBeneficiario,
+       listaBeneficiarios
+
+} = require(__dirname + '/controladores/BeneficiarioControl.js');
 
 /**
  * nombre:Damaris Julissa Hernández Guardado
@@ -144,7 +157,24 @@ const {
   crearPlanAlimenticio,
   editarPlanAlimenticio,
   verPlanAlimenticio
-} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+ } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+
+/**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  En proceso 
+ * fecha de creación: Miercoles 02 de noviembre del 2022
+ * fecha de última edición:
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+ const { 
+  registrarResponsable,
+  verResponsable
+ } = require(__dirname + '/controladores/ResponsableControl.js');
+
+
+
 //RUTAS
 app.route('/').get(index);
 // FICHA NUTRICIÓN
@@ -208,9 +238,21 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
   .get(verRecordatorio24H)
   .post(editarRecordatorio24H);
 
-//BENEFICIARIO
-app.route('/responsable/:dui/beneficiario/')
-  .post(registrarBeneficiario);
+
+//RESPONSABLE 
+app.route('/responsable/')
+ .post(registrarResponsable);
+ app.route('/responsable/:dui')
+  .get(verResponsable);
+
+//Beneficiario
+app.route('/beneficiario/:id/edit')
+ .post(editarBeneficiario);
+ app.route('/responsable/:dui/beneficiario')
+.get(listaBeneficiarios)
+.post(registrarBeneficiario);
+  
+
 
 app.listen(PORT, async function () {
   try {
