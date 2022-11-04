@@ -12,13 +12,31 @@ const { Consulta } = require(`../models`);
  */
 
 //Funcion para ver las consultas
-async function listaConsultasFichaNutricion(request, response){
+async function listaConsultasFichaNutricion(request, response) {
     let dato = {}
     const dui = request.params.dui;
     //Probando consulta
     try {
-        
+        //Se recuperarán todos los beneficiarios
+        const beneficiarios = await Consulta.findOne({
+            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            where: {
+                dui: {
+                    [Op.eq]: dui
+                },
+                include: {
+                    model: Consulta,
+                    as: consultas
+                }
+
+            }
+        })
+        dato = beneficiarios;
     } catch (error) {
-        
+        dato = {
+            'message': "Datos incorrectos",
+            "error": error.message
+        }
     }
+    return response.json(dato);
 }

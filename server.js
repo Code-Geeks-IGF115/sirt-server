@@ -27,7 +27,7 @@ const { index } = require(__dirname + '/controladores/indexControl.js');
 const {
   crearDatosMedicos,
   verDatosMedicos,
-  editarDatosMedicos 
+  editarDatosMedicos
 } = require(__dirname + '/controladores/DatosMedicosControl.js');
 
 
@@ -36,13 +36,16 @@ const {
  * Carnet: BC21009
  * Estado:
  * Fecha de creación: 2/11/2022
- * Fecha de última edición: 3/11/2022
+ * Fecha de última edición: 4/11/2022
  * Fecha de última revisión:
  * Fecha de aprobación:
  */
 const {
   registrarBeneficiario
 } = require(__dirname + '/controladores/BeneficiarioControl.js');
+const {
+  listaConsultaFichaNutricion
+} = require(__dirname + '/controladores/ConsultaControl.js');
 
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
@@ -64,8 +67,8 @@ const { crearDatosAntropometricos,
 *Fecha de ultima revision:
 *Fecha de aprobacion:
 */
-const{ editarBeneficiario,
-       listaBeneficiarios
+const { editarBeneficiario,
+  listaBeneficiarios
 
 } = require(__dirname + '/controladores/BeneficiarioControl.js');
 
@@ -156,7 +159,7 @@ const {
   crearPlanAlimenticio,
   editarPlanAlimenticio,
   verPlanAlimenticio
- } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 /**
  * nombre:Damaris Julissa Hernández Guardado
@@ -167,10 +170,10 @@ const {
  * fecha de última revisión: 
  * fecha de aprobación: 
  */
- const { 
+const {
   registrarResponsable,
   verResponsable
- } = require(__dirname + '/controladores/ResponsableControl.js');
+} = require(__dirname + '/controladores/ResponsableControl.js');
 
 
 
@@ -240,18 +243,20 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
 
 //RESPONSABLE 
 app.route('/responsable/')
- .post(registrarResponsable);
- app.route('/responsable/:dui')
+  .post(registrarResponsable);
+app.route('/responsable/:dui')
   .get(verResponsable);
 
 //Beneficiario
 app.route('/beneficiario/:id/edit')
- .post(editarBeneficiario);
- app.route('/responsable/:dui/beneficiario')
-.get(listaBeneficiarios)
-.post(registrarBeneficiario);
-  
+  .post(editarBeneficiario);
+app.route('/responsable/:dui/beneficiario')
+  .get(listaBeneficiarios)
+  .post(registrarBeneficiario);
 
+//Consultas
+app.route('/beneficiario/:id/ficha/nutricion/')
+.get(listaConsultaFichaNutricion);
 
 app.listen(PORT, async function () {
   try {
