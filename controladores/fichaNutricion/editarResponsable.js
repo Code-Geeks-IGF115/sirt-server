@@ -1,7 +1,7 @@
 //jshint esversion: 6
 const{ Op } = require("sequelize");
 //Modelo
-const{ Responsables, sequelize } = require('../../models');
+const{ Responsable } = require('../../models');
 
 //Funcion
 async function editarResponsable(request, response){
@@ -10,7 +10,7 @@ async function editarResponsable(request, response){
     const parametros = request.body;
 
     try {
-        await Responsables.Update(
+        await Responsable.update(
             parametros,
             {
             where:{

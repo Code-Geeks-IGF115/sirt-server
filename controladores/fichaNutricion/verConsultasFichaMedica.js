@@ -2,25 +2,30 @@
 const{ Op } = require("sequelize");
 
 //Modelo
-const{ Beneficiario, sequelize } = require('../../models');
+const{ Beneficiario, Consulta } = require('../../models');
 
 
 //Funcion
 async function listaConsultasFichaMedica(request, response){
     let data = {"message": "succes"};
     const id = request.params.id;
-
     try {
-        const benificiario = await Beneficiario.findOne({
+        const datoA = await Beneficiario.findOne({
             attributes: { exclude : ['createdAt', 'updatedAt'] },
             where: {
                 id:{
                     [Op.eq]: id
                 }
+            },
+            include: {
+                model: Consulta, as: 'consultas',
+                where: {
+                    fichaId: 2
+                },
             }
         });
 
-        data = beneficiario;
+        data = datoA;
 
     } catch (error) {
         data = {
