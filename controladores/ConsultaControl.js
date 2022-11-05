@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Consulta } = require(`../models`);
+const { Consulta, Beneficiario } = require(`../models`);
 
 /**
  * Nombre: Pamela Nicole Barrientos Cruz
@@ -14,21 +14,21 @@ const { Consulta } = require(`../models`);
 //Funcion para ver las consultas
 async function listaConsultasFichaNutricion(request, response) {
     let dato = {}
-    const dui = request.params.dui;
+    const id = request.params.id;
     //Probando consulta
     try {
         //Se recuperarán todos los beneficiarios
-        const beneficiarios = await Consulta.findOne({
+        const beneficiarios = await Beneficiario.findOne({
             attributes: { exclude: ['createdAt', 'updatedAt'] },
             where: {
-                dui: {
-                    [Op.eq]: dui
-                },
-                include: {
-                    model: Consulta,
-                    as: consultas
+                id: {
+                    [Op.eq]: id
                 }
 
+            },
+            include: {
+                model: Consulta,
+                as: 'consultas'
             }
         })
         dato = beneficiarios;
@@ -40,3 +40,7 @@ async function listaConsultasFichaNutricion(request, response) {
     }
     return response.json(dato);
 }
+
+module.exports = {
+    listaConsultasFichaNutricion
+};

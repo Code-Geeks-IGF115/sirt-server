@@ -44,7 +44,7 @@ const {
   registrarBeneficiario
 } = require(__dirname + '/controladores/BeneficiarioControl.js');
 const {
-  listaConsultaFichaNutricion
+  listaConsultasFichaNutricion
 } = require(__dirname + '/controladores/ConsultaControl.js');
 
 /*
@@ -256,7 +256,7 @@ app.route('/responsable/:dui/beneficiario')
 
 //Consultas
 app.route('/beneficiario/:id/ficha/nutricion/')
-.get(listaConsultaFichaNutricion);
+.get(listaConsultasFichaNutricion);
 
 app.listen(PORT, async function () {
   try {
