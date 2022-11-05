@@ -27,6 +27,9 @@ async function listaConsultasFichaNutricion(request, response) {
 
             },
             include: {
+                where:{
+                    'fichaId': 2
+                },
                 model: Consulta,
                 as: 'consultas'
             }
