@@ -27,13 +27,14 @@ async function listaConsultasFichaNutricion(request, response) {
 
             },
             include: {
+                
                 where:{
-                    'fichaId': 2
+                    'fichaId': 1
                 },
                 model: Consulta,
                 as: 'consultas'
             }
-        })
+        })//.then(function(success){if(success){response.json(dato);}else{response.send(dato);}})
         dato = beneficiarios;
     } catch (error) {
         dato = {
