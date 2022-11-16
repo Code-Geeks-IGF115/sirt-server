@@ -40,9 +40,7 @@ const {
  * Fecha de última revisión:
  * Fecha de aprobación:
  */
-const {
-  registrarBeneficiario
-} = require(__dirname + '/controladores/fichaNutricion/BeneficiarioControl.js');
+
 
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
@@ -179,7 +177,7 @@ const {
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
 //listaConsultasFichaNutricion
-const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
+//const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
 
 //RUTAS
@@ -199,8 +197,8 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
 
 
   //listaConsultasFichaNutricion
-app.route('/beneficiario/:id/ficha/psicologica/')
- .get(verconsultasNutricion);
+/*app.route('/beneficiario/:id/ficha/psicologica/')
+ .get(verconsultasNutricion);*/
 
 
 
@@ -278,9 +276,9 @@ app.listen(PORT, async function () {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
-    // await sequelize.drop();
+     //await sequelize.drop();
     // console.log("All tables dropped!");
-    // await sequelize.sync();
+     //await sequelize.sync();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
