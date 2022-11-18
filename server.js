@@ -173,6 +173,18 @@ const {
  } = require(__dirname + '/controladores/ResponsableControl.js');
 
  
+ /**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  En proceso 
+ * fecha de creación: Viernes 18 de noviembre del 2022
+ * fecha de última edición:
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+  const { 
+   editarDatosAcademicos
+   } = require(__dirname + '/controladores/DatosAcademicosControl.js');
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
@@ -270,13 +282,15 @@ app.route('/beneficiario/:id/edit')
 .get(listaBeneficiarios)
 .post(registrarBeneficiario);
   
-
+//DatosAcademicos
+app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
+.post(editarDatosAcademicos);
 
 app.listen(PORT, async function () {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
-     //await sequelize.drop();
+    //await sequelize.drop();
     // console.log("All tables dropped!");
      //await sequelize.sync();
   } catch (error) {
