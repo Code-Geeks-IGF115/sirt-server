@@ -40,12 +40,14 @@ const {
  * Fecha de última revisión:
  * Fecha de aprobación:
  */
+
 const {
   registrarBeneficiario
 } = require(__dirname + '/controladores/BeneficiarioControl.js');
 const {
   listaConsultasFichaNutricion
 } = require(__dirname + '/controladores/ConsultaControl.js');
+
 
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
@@ -161,6 +163,7 @@ const {
   verPlanAlimenticio
 } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
+
 /**
  * nombre:Damaris Julissa Hernández Guardado
  * carnet:HG20040
@@ -175,6 +178,24 @@ const {
   verResponsable
 } = require(__dirname + '/controladores/ResponsableControl.js');
 
+ 
+ /**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  En proceso 
+ * fecha de creación: Viernes 18 de noviembre del 2022
+ * fecha de última edición:
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+  const { 
+   editarDatosAcademicos
+   } = require(__dirname + '/controladores/DatosAcademicosControl.js');
+//Beneficiarios
+const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
+
+//listaConsultasFichaNutricion
+//const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
 
 //RUTAS
@@ -187,6 +208,19 @@ app.route('/ficha/nutricion/consulta/datos/medicos/')
 app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .get(verDatosMedicos)
   .post(editarDatosMedicos);
+
+  //Beneficiarios
+  app.route('/ficha/nutricion/consulta//beneficiario/:id')
+  .post(verBeneficario);
+
+
+  //listaConsultasFichaNutricion
+/*app.route('/beneficiario/:id/ficha/psicologica/')
+ .get(verconsultasNutricion);*/
+
+
+
+
 
 //Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
@@ -249,22 +283,28 @@ app.route('/responsable/:dui')
 
 //Beneficiario
 app.route('/beneficiario/:id/edit')
-  .post(editarBeneficiario);
-app.route('/responsable/:dui/beneficiario')
-  .get(listaBeneficiarios)
-  .post(registrarBeneficiario);
+ .post(editarBeneficiario);
+ app.route('/responsable/:dui/beneficiario')
+.get(listaBeneficiarios)
+.post(registrarBeneficiario);
+
+//DatosAcademicos
+app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
+.post(editarDatosAcademicos);
+
 
 //Consultas
 app.route('/beneficiario/:id/ficha/nutricion/')
 .get(listaConsultasFichaNutricion);
 
+
 app.listen(PORT, async function () {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
-    // await sequelize.drop();
+    //await sequelize.drop();
     // console.log("All tables dropped!");
-    // await sequelize.sync();
+     //await sequelize.sync();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
