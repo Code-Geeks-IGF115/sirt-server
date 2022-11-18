@@ -1,6 +1,6 @@
 //jshint esversion:6
 const { Op } = require("sequelize");
-const { DatosAcademicos, RecorAcademico } = require(`../models`);
+const { DatosAcademicos, RecordAcademico } = require(`../models`);
 
 //CONTROLADORES 
 /**
@@ -15,39 +15,41 @@ const { DatosAcademicos, RecorAcademico } = require(`../models`);
 async function editarDatosAcademicos(request, response) {
     let data = {}
     //recuperando los parametros
-    const id = request.params.id;
+    const idBeneficiario = request.params.idBeneficiario;
+    const idConsulta = request.params.idConsulta;
     const parametros = request.body;
     try {
+        //actualizando datos académicos
         await DatosAcademicos.update(
             parametros,
             {
                 where: {
                     beneficiarioId: {
-                        [Op.eq]: id
+                        [Op.eq]: idBeneficiario
                     }
-
-                }
-            },
-            {
-                where: {
+                },
+                andWhere:{
                     consultaId: {
-                        [Op.eq]: id
+                        [Op.eq]: idConsulta
                     }
-
                 }
             }
         );
-        await RecorAcademico.update(
-            parametros,
-            {
-                where: {
-                    RecordAcademicoId: {
-                        [Op.eq]: id
+        //actualizando records académicos
+        parametros.recordAcademicos.forEach(recordAcademico => {
+            RecordAcademico.update(
+                recordAcademico,
+                {
+                    where: {
+                        id: {
+                            [Op.eq]: recordAcademico.id
+                        },
+                        
                     }
-                }
-
-            });
-        data = { "message": "Datos Academicos  Modificados." }
+    
+                });
+        });
+        data = { "message": `Datos Academicos  Modificados. Beneficiario ${idBeneficiario}, Consulta ${idConsulta}` }
     }
     catch (e) {
         data = {
