@@ -176,11 +176,36 @@ const {
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
+//Datos academicos
+const { 
+  crearDatosAcademicos
+  
+ } = require(__dirname + '/controladores/DatosAcademicosControl.js');
+
+ //RecordAcademico
+ const { 
+  crearRecordAcademico
+  
+ } = require(__dirname + '/controladores/RecordAcademico.js');
+
+
 //listaConsultasFichaNutricion
 //const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
 
 //RUTAS
+
+//Datos academicos
+app.route('/beneficiario/:id/ficha/terapeutica/:idConsulta')
+  .post(crearDatosAcademicos);
+
+//Record academico
+
+app.route('/beneficiario/:id/ficha/terapeutica/:idConsulta')
+  .post(crearRecordAcademico);
+
+
+
 app.route('/').get(index);
 // FICHA NUTRICIÓN
 
