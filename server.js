@@ -197,6 +197,18 @@ const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Be
 //listaConsultasFichaNutricion
 //const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
+/**
+ * Nombre: Pamela Nicole Barrientos Cruz
+ * Carnet: BC21009
+ * Estado: 
+ * Fecha de creación: 18/11/2022
+ * Fecha de revisión:
+ * Fecha de última edición: 18/11/2022
+ * Fecha de aprobación:
+ */
+const{
+  verPlanTerapeutico
+}= require(__dirname +'D:/models/planterapeutico.js');
 
 //RUTAS
 app.route('/').get(index);
@@ -296,7 +308,8 @@ app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
 //Consultas
 app.route('/beneficiario/:id/ficha/nutricion/')
 .get(listaConsultasFichaNutricion);
-
+app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
+.get(verPlanTerapeutico);
 
 app.listen(PORT, async function () {
   try {
