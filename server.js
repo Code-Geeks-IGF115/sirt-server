@@ -27,7 +27,7 @@ const { index } = require(__dirname + '/controladores/indexControl.js');
 const {
   crearDatosMedicos,
   verDatosMedicos,
-  editarDatosMedicos 
+  editarDatosMedicos
 } = require(__dirname + '/controladores/DatosMedicosControl.js');
 
 
@@ -36,10 +36,17 @@ const {
  * Carnet: BC21009
  * Estado:
  * Fecha de creación: 2/11/2022
- * Fecha de última edición: 3/11/2022
+ * Fecha de última edición: 4/11/2022
  * Fecha de última revisión:
  * Fecha de aprobación:
  */
+
+const {
+  registrarBeneficiario
+} = require(__dirname + '/controladores/BeneficiarioControl.js');
+const {
+  listaConsultasFichaNutricion
+} = require(__dirname + '/controladores/ConsultaControl.js');
 
 
 /*
@@ -62,8 +69,8 @@ const { crearDatosAntropometricos,
 *Fecha de ultima revision:
 *Fecha de aprobacion:
 */
-const{ editarBeneficiario,
-       listaBeneficiarios
+const { editarBeneficiario,
+  listaBeneficiarios
 
 } = require(__dirname + '/controladores/BeneficiarioControl.js');
 
@@ -127,7 +134,6 @@ const {
   editarExamenLaboratorio,
   verExamenesLaboratorio
 } = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
-const { registrarBeneficiario } = require("./controladores/fichaNutricion/BeneficiarioControl");
 
 
 /**
@@ -155,7 +161,7 @@ const {
   crearPlanAlimenticio,
   editarPlanAlimenticio,
   verPlanAlimenticio
- } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 
 /**
@@ -167,10 +173,10 @@ const {
  * fecha de última revisión: 
  * fecha de aprobación: 
  */
- const { 
+const {
   registrarResponsable,
   verResponsable
- } = require(__dirname + '/controladores/ResponsableControl.js');
+} = require(__dirname + '/controladores/ResponsableControl.js');
 
  
  /**
@@ -271,8 +277,8 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
 
 //RESPONSABLE 
 app.route('/responsable/')
- .post(registrarResponsable);
- app.route('/responsable/:dui')
+  .post(registrarResponsable);
+app.route('/responsable/:dui')
   .get(verResponsable);
 
 //Beneficiario
@@ -281,10 +287,16 @@ app.route('/beneficiario/:id/edit')
  app.route('/responsable/:dui/beneficiario')
 .get(listaBeneficiarios)
 .post(registrarBeneficiario);
-  
+
 //DatosAcademicos
 app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
 .post(editarDatosAcademicos);
+
+
+//Consultas
+app.route('/beneficiario/:id/ficha/nutricion/')
+.get(listaConsultasFichaNutricion);
+
 
 app.listen(PORT, async function () {
   try {
