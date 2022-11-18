@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Consulta, PlanTerapeutico } = require(`../models`);
+const { Consulta, PlanTerapeutico } = require(`../../models`);
 
 /**
  * Nombre: Pamela Nicole Barrientos Cruz
