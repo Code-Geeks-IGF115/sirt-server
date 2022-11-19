@@ -245,6 +245,31 @@ const { consultasPsicologicas } = require(__dirname + '/controladores/fichaNutri
 const { EditPlanTerapeutico } = require(__dirname + '/controladores/fichaNutricion/PlanTerapeutico.js');
 
 
+/**
+ * nombre: Jorge Daniel Cruz Vásquez
+ * carnet: CV19008
+ * estado: Proceso
+ * fecha de creación: 02/11/22
+ * fecha de última edición: 03/11/2022
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+const{
+  listaConsultasFichaMedica
+} = require(__dirname + '/controladores/fichaNutricion/verConsultasFichaMedica.js');
+
+/**
+ * nombre: Jorge Daniel Cruz Vásquez
+ * carnet: CV19008
+ * estado: Proceso
+ * fecha de creación: 02/11/22
+ * fecha de última edición: 02/11/2022
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+const{
+  editarResponsable
+} = require(__dirname +'/controladores/fichaNutricion/editarResponsable.js');
 
 //RUTAS
 
@@ -351,12 +376,16 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
   .post(editarRecordatorio24H);
 
 
+
 //RESPONSABLE 
 app.route('/responsable/')
   .post(registrarResponsable);
 app.route('/responsable/:dui')
   .get(verResponsable);
-
+//editar responsable
+app.route('/responsable/:dui')
+  .post(editarResponsable);
+  
 //Beneficiario
 app.route('/beneficiario/:id/edit')
   .post(editarBeneficiario);
@@ -378,6 +407,12 @@ app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
 //crear Plan terapéutico
 app.route('/beneficiario/:id/ficha/psicologica/')
 .post(crearConsultaYPlanTerapeutico);
+
+//Ver fichas medicas
+app.route('/beneficiario/:id/ficha/medica/')
+  .get(listaConsultasFichaMedica);
+
+
 
 app.listen(PORT, async function () {
   try {
