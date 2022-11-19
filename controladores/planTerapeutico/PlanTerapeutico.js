@@ -12,9 +12,8 @@ Fecha de aprobacion:
 */
 
 async function EditPlanTerapeutico(request, response){
-    let data = {"message":'plan terapeutico guardado .'};
-    const id = request.params.idConsulta;
-   
+    let data = {};
+    const idConsulta = request.params.idConsulta;
     const parametros=request.body;
     try {
         await PlanTerapeutico.update(
@@ -22,10 +21,11 @@ async function EditPlanTerapeutico(request, response){
             {
                 where: {
                     consultaId: {
-                        [Op.eq]: id
+                        [Op.eq]: idConsulta
                     }
                 }
             });
+            data = { message: "plan terapeutico modificado." };
           
 
     } catch (error) {
