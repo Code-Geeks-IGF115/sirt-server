@@ -1,6 +1,6 @@
 //jshint esversion:6
 const { Op } = require("sequelize");
-const {Responsable}=require(`../models`);
+const {Responsable}=require(`../../models`);
 
 /**
  * nombre:Damaris Julissa Hernández Guardado
@@ -56,9 +56,36 @@ try{
 }
 return response.json(data);
 }
+//Funcion
+async function editarResponsable(request, response){
+    let data = {"message" : "Responsable Guardado"}
+    const dui = request.params.dui;
+    const parametros = request.body;
+
+    try {
+        await Responsable.update(
+            parametros,
+            {
+            where:{
+                dui:{
+                    [Op.eq]: dui
+                }
+            }
+        });
+        data = {"message" : "Responsable Modificado"};
+
+    } catch (error) {
+        data = {
+            "message" : "Error al modificar el Responsable",
+             "error" : error.message
+            }
+    }
+    return response.json(data);
+}
 
 //EXPORTANDO CONTROLADORES
 module.exports={
 registrarResponsable,
-verResponsable
+verResponsable,
+editarResponsable
 };

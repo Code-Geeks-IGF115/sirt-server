@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { DatosMedicos,Consulta } = require('../models');
+const { DatosMedicos,Consulta } = require('../../models');
 
 //Funcion para crear los datos medicos
 async function crearDatosMedicos(request, response) {
