@@ -197,6 +197,10 @@ const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Be
 //listaConsultasFichaNutricion
 //const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
+//plan terapeutico
+const { EditPlanTerapeutico } = require(__dirname + '/controladores/planTerapeutico/PlanTerapeutico.js');
+
+
 
 //RUTAS
 app.route('/').get(index);
@@ -212,6 +216,14 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   //Beneficiarios
   app.route('/ficha/nutricion/consulta//beneficiario/:id')
   .post(verBeneficario);
+
+
+  //Plan Terapeutico
+app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
+.post(EditPlanTerapeutico)
+
+
+
 
 
   //listaConsultasFichaNutricion
