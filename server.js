@@ -178,19 +178,19 @@ const {
   verResponsable
 } = require(__dirname + '/controladores/ResponsableControl.js');
 
- 
- /**
- * nombre:Damaris Julissa Hernández Guardado
- * carnet:HG20040
- * estado:  En proceso 
- * fecha de creación: Viernes 18 de noviembre del 2022
- * fecha de última edición:
- * fecha de última revisión: 
- * fecha de aprobación: 
- */
-  const { 
-   editarDatosAcademicos
-   } = require(__dirname + '/controladores/DatosAcademicosControl.js');
+
+/**
+* nombre:Damaris Julissa Hernández Guardado
+* carnet:HG20040
+* estado:  En proceso 
+* fecha de creación: Viernes 18 de noviembre del 2022
+* fecha de última edición:
+* fecha de última revisión: 
+* fecha de aprobación: 
+*/
+const {
+  editarDatosAcademicos
+} = require(__dirname + '/controladores/DatosAcademicosControl.js');
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
@@ -206,9 +206,9 @@ const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Be
  * Fecha de última edición: 18/11/2022
  * Fecha de aprobación:
  */
-const{
+const {
   verPlanTerapeutico
-}= require(__dirname +'D:/models/planterapeutico.js');
+} = require(__dirname + '/controladores/fichaNutricion/VistaPlanTerapeutico.js');
 
 //RUTAS
 app.route('/').get(index);
@@ -221,12 +221,12 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .get(verDatosMedicos)
   .post(editarDatosMedicos);
 
-  //Beneficiarios
-  app.route('/ficha/nutricion/consulta//beneficiario/:id')
+//Beneficiarios
+app.route('/ficha/nutricion/consulta//beneficiario/:id')
   .post(verBeneficario);
 
 
-  //listaConsultasFichaNutricion
+//listaConsultasFichaNutricion
 /*app.route('/beneficiario/:id/ficha/psicologica/')
  .get(verconsultasNutricion);*/
 
@@ -295,21 +295,21 @@ app.route('/responsable/:dui')
 
 //Beneficiario
 app.route('/beneficiario/:id/edit')
- .post(editarBeneficiario);
- app.route('/responsable/:dui/beneficiario')
-.get(listaBeneficiarios)
-.post(registrarBeneficiario);
+  .post(editarBeneficiario);
+app.route('/responsable/:dui/beneficiario')
+  .get(listaBeneficiarios)
+  .post(registrarBeneficiario);
 
 //DatosAcademicos
 app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
-.post(editarDatosAcademicos);
+  .post(editarDatosAcademicos);
 
 
 //Consultas
 app.route('/beneficiario/:id/ficha/nutricion/')
-.get(listaConsultasFichaNutricion);
+  .get(listaConsultasFichaNutricion);
 app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
-.get(verPlanTerapeutico);
+  .get(verPlanTerapeutico);
 
 app.listen(PORT, async function () {
   try {
@@ -317,7 +317,7 @@ app.listen(PORT, async function () {
     console.log('Connection has been established successfully.');
     //await sequelize.drop();
     // console.log("All tables dropped!");
-     //await sequelize.sync();
+    //await sequelize.sync();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
