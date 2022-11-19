@@ -11,10 +11,10 @@ const {
     EditPlanTerapeutico,
     verPlanTerapeutico,
     crearPlanTerapeutico
-   } = require(__dirname + './PlanTerapeuticoControl.js');
+   } = require(__dirname + '/PlanTerapeuticoControl.js');
   
 //listaConsultasFichaPsicológica
-const { listaConsultasFichaPsicologica} = require(__dirname + './ConsultaFichaPsicologicaControl.js');
+const { listaConsultasFichaPsicologica} = require(__dirname + '/ConsultaPsicologicaControl.js');
 
 module.exports =(app)=>{
     //listaConsultasFichaPsicológica

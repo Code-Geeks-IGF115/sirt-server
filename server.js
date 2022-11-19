@@ -17,6 +17,10 @@ app.route('/').get(index);
 
 //Importaciones de controladores
 require(__dirname + '/controladores/fichaNutricion/routes')(app);
+require(__dirname + '/controladores/fichaPedagogica/routes')(app);
+require(__dirname + '/controladores/fichaPsicologica/routes')(app);
+require(__dirname + '/controladores/fichaMedica/routes')(app);
+require(__dirname + '/controladores/beneficiario/routes')(app);
 
 app.listen(PORT, async function () {
   try {

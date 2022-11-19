@@ -22,7 +22,7 @@ const {
     crearDatosAcademicos,
     verDatosAcademicos
     
-   } = require(__dirname + './DatosAcademicosControl.js');
+   } = require(__dirname + '/DatosAcademicosControl.js');
 
 module.exports=(app)=>{
     //DatosAcademicos

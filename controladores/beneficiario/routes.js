@@ -29,7 +29,7 @@ const {
    */
   registrarBeneficiario,
   listaBeneficiarios
-  } = require(__dirname + './BeneficiarioControl.js');
+  } = require(__dirname + '/BeneficiarioControl.js');
 
 /*
 * Nombre: Pamela Nicole Barrientos Cruz
@@ -44,7 +44,7 @@ const {
   crearDatosMedicos,
   verDatosMedicos,
   editarDatosMedicos
-} = require(__dirname + './DatosMedicosControl.js');
+} = require(__dirname + '/DatosMedicosControl.js');
 
 const{
    /**
@@ -68,7 +68,7 @@ const{
    */
   registrarResponsable,
   verResponsable
-} = require(__dirname + './ResponsableControl.js');
+} = require(__dirname + '/ResponsableControl.js');
 
 module.exports = (app)=>{
     //Beneficiario

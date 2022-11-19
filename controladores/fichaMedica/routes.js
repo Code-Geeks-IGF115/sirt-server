@@ -9,7 +9,7 @@
  */
 const{
   listaConsultasFichaMedica
-} = require(__dirname + './ConsultaFichaMedicaControl.js');
+} = require(__dirname + '/ConsultaMedicaControl.js');
 
 module.exports=(app)=>{
   //Ver fichas medicas
