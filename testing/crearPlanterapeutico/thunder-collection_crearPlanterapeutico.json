@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "crearPlanterapeutico",
+    "dateExported": "2022-11-19T07:05:47.677Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f2c5a60a-cb6c-49f6-9908-8f2c184cc434",
+            "colId": "fca4b421-2107-437d-a57c-fe41b62117a3",
+            "containerId": "",
+            "name": "localhost:3000/beneficiario/14/ficha/psicologica/",
+            "url": "localhost:3000/beneficiario/8/ficha/psicologica/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-11-19T07:05:35.492Z",
+            "modified": "2022-11-19T07:05:35.492Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n  \"motivoDeLaConsulta\": \"prueba9\",\n  \"examenMental\": \"prueba\",\n  \"diagnostico\": \"prueba\",\n  \"planDeTratamiento\": \"prueba\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

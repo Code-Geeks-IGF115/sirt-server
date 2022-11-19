@@ -197,9 +197,11 @@ const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Be
 //listaConsultasFichaNutricion
 //const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
+//Plan Terapéutico
+const {crearConsultaYPlanTerapeutico} = require(__dirname + '/controladores/guardarPlanTerapeutico.js')
+
 //plan terapeutico
 const { EditPlanTerapeutico } = require(__dirname + '/controladores/planTerapeutico/PlanTerapeutico.js');
-
 
 
 //RUTAS
@@ -309,6 +311,10 @@ app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
 app.route('/beneficiario/:id/ficha/nutricion/')
 .get(listaConsultasFichaNutricion);
 
+
+//crear Plan terapéutico
+app.route('/beneficiario/:id/ficha/psicologica/')
+.post(crearConsultaYPlanTerapeutico);
 
 app.listen(PORT, async function () {
   try {
