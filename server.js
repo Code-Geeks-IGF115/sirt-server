@@ -194,6 +194,25 @@ const {
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
+
+/**
+ * nombre:Remberto Leonardo Escobar Ardón
+ * carnet:EA12006
+ * estado: en revision 
+ * fecha de creación: Jueves 13 de octubre del 2022
+ * fecha de última edición: Viernes 18 de noviembre del 2022
+ * fecha de última revisión:
+ * fecha de aprobación: 
+ */
+
+//Datos academicos
+const { 
+  crearDatosAcademicos,
+  verDatosAcademicos
+  
+ } = require(__dirname + '/controladores/DatosAcademicosControl.js');
+
+ 
 //listaConsultasFichaNutricion
 //const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
@@ -205,6 +224,18 @@ const { EditPlanTerapeutico } = require(__dirname + '/controladores/planTerapeut
 
 
 //RUTAS
+
+//Datos academicos
+app.route('/beneficiario/:id/ficha/terapeutica/:idConsulta')
+  .post(crearDatosAcademicos);
+
+app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
+  .get(verDatosAcademicos);
+
+
+
+
+
 app.route('/').get(index);
 // FICHA NUTRICIÓN
 
