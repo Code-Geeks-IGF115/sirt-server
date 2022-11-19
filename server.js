@@ -27,7 +27,7 @@ const { index } = require(__dirname + '/controladores/indexControl.js');
 const {
   crearDatosMedicos,
   verDatosMedicos,
-  editarDatosMedicos 
+  editarDatosMedicos
 } = require(__dirname + '/controladores/DatosMedicosControl.js');
 
 
@@ -36,10 +36,17 @@ const {
  * Carnet: BC21009
  * Estado:
  * Fecha de creación: 2/11/2022
- * Fecha de última edición: 3/11/2022
+ * Fecha de última edición: 4/11/2022
  * Fecha de última revisión:
  * Fecha de aprobación:
  */
+
+const {
+  registrarBeneficiario
+} = require(__dirname + '/controladores/BeneficiarioControl.js');
+const {
+  listaConsultasFichaNutricion
+} = require(__dirname + '/controladores/ConsultaControl.js');
 
 
 /*
@@ -62,8 +69,8 @@ const { crearDatosAntropometricos,
 *Fecha de ultima revision:
 *Fecha de aprobacion:
 */
-const{ editarBeneficiario,
-       listaBeneficiarios
+const { editarBeneficiario,
+  listaBeneficiarios
 
 } = require(__dirname + '/controladores/BeneficiarioControl.js');
 
@@ -127,7 +134,6 @@ const {
   editarExamenLaboratorio,
   verExamenesLaboratorio
 } = require("./controladores/fichaNutricion/ExamenesLaboratorioControl");
-const { registrarBeneficiario } = require("./controladores/fichaNutricion/BeneficiarioControl");
 
 
 /**
@@ -155,7 +161,7 @@ const {
   crearPlanAlimenticio,
   editarPlanAlimenticio,
   verPlanAlimenticio
- } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 
 /**
@@ -167,12 +173,24 @@ const {
  * fecha de última revisión: 
  * fecha de aprobación: 
  */
- const { 
+const {
   registrarResponsable,
   verResponsable
- } = require(__dirname + '/controladores/ResponsableControl.js');
+} = require(__dirname + '/controladores/ResponsableControl.js');
 
  
+ /**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  En proceso 
+ * fecha de creación: Viernes 18 de noviembre del 2022
+ * fecha de última edición:
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+  const { 
+   editarDatosAcademicos
+   } = require(__dirname + '/controladores/DatosAcademicosControl.js');
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
@@ -197,6 +215,12 @@ const {
  
 //listaConsultasFichaNutricion
 //const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
+
+//Plan Terapéutico
+const {crearConsultaYPlanTerapeutico} = require(__dirname + '/controladores/guardarPlanTerapeutico.js')
+
+//plan terapeutico
+const { EditPlanTerapeutico } = require(__dirname + '/controladores/planTerapeutico/PlanTerapeutico.js');
 
 
 //RUTAS
@@ -225,6 +249,14 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   //Beneficiarios
   app.route('/ficha/nutricion/consulta//beneficiario/:id')
   .post(verBeneficario);
+
+
+  //Plan Terapeutico
+app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
+.post(EditPlanTerapeutico)
+
+
+
 
 
   //listaConsultasFichaNutricion
@@ -290,8 +322,8 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
 
 //RESPONSABLE 
 app.route('/responsable/')
- .post(registrarResponsable);
- app.route('/responsable/:dui')
+  .post(registrarResponsable);
+app.route('/responsable/:dui')
   .get(verResponsable);
 
 //Beneficiario
@@ -300,14 +332,26 @@ app.route('/beneficiario/:id/edit')
  app.route('/responsable/:dui/beneficiario')
 .get(listaBeneficiarios)
 .post(registrarBeneficiario);
-  
 
+//DatosAcademicos
+app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
+.post(editarDatosAcademicos);
+
+
+//Consultas
+app.route('/beneficiario/:id/ficha/nutricion/')
+.get(listaConsultasFichaNutricion);
+
+
+//crear Plan terapéutico
+app.route('/beneficiario/:id/ficha/psicologica/')
+.post(crearConsultaYPlanTerapeutico);
 
 app.listen(PORT, async function () {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
-     //await sequelize.drop();
+    //await sequelize.drop();
     // console.log("All tables dropped!");
      //await sequelize.sync();
   } catch (error) {

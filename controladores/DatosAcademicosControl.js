@@ -1,3 +1,4 @@
+
 const { Op } = require("sequelize");
 const { DatosAcademicos, RecordAcademico, Beneficiario, Consulta } = require(`../models`);
 
@@ -13,15 +14,14 @@ const { DatosAcademicos, RecordAcademico, Beneficiario, Consulta } = require(`..
 
  async function verDatosAcademicos(request, response) {
     let data = {}
-    
     //recuperando los parametros
     const idBeneficiario = request.params.idBeneficiario;
     const idConsulta = request.params.idConsulta;
     const parametros = request.body;
     try {
         //actualizando datos académicos
-        const datosAcademicos = await DatosAcademicos.findAll(
-            parametros,
+         const datosAcademicos = await DatosAcademicos.findAll(
+          parametros,
             {
                 where: {
                     beneficiarioId: {
@@ -38,8 +38,7 @@ const { DatosAcademicos, RecordAcademico, Beneficiario, Consulta } = require(`..
         //actualizando records académicos
          {
             const recordAcademico = await RecordAcademico.findAll(
-               
-                recordAcademico,
+               recordAcademico,
                 {
                     where: {
                         id: {
@@ -49,11 +48,9 @@ const { DatosAcademicos, RecordAcademico, Beneficiario, Consulta } = require(`..
                     }
     
                 });
-        };
+                  };
         data = datosAcademicos;
-       
-       
-    }
+         }
     catch (e) {
         data = {
             "message": "Datos no válidos.",
@@ -64,6 +61,72 @@ const { DatosAcademicos, RecordAcademico, Beneficiario, Consulta } = require(`..
 
 
 }
+       
+
+
+
+//CONTROLADORES 
+/**
+ * nombre:Damaris Julissa Hernández Guardado
+ * carnet:HG20040
+ * estado:  En proceso 
+ * fecha de creación: viernes 18 de noviembre del 2022
+ * fecha de última edición:
+ * fecha de última revisión: 
+ * fecha de aprobación: 
+ */
+async function editarDatosAcademicos(request, response) {
+    let data = {}
+    //recuperando los parametros
+    const idBeneficiario = request.params.idBeneficiario;
+    const idConsulta = request.params.idConsulta;
+    const parametros = request.body;
+    try {
+        //actualizando datos académicos
+        await DatosAcademicos.update(
+         parametros,
+            {
+                where: {
+                    beneficiarioId: {
+                        [Op.eq]: idBeneficiario
+                    }
+                },
+                andWhere:{
+                    consultaId: {
+                        [Op.eq]: idConsulta
+                    }
+                }
+            }
+        );
+        //actualizando records académicos
+         parametros.recordAcademicos.forEach(recordAcademico => {
+            RecordAcademico.update(
+               recordAcademico,
+                {
+                    where: {
+                        id: {
+                            [Op.eq]: recordAcademico.id
+                        },
+                        
+                    }
+    
+                });
+                 });
+        data = { "message": `Datos Academicos  Modificados. Beneficiario ${idBeneficiario}, Consulta ${idConsulta}` }
+         }
+    catch (e) {
+        data = {
+            "message": "Datos no válidos.",
+            "error": e.message
+        }
+    }
+    return response.json(data);
+
+
+}
+
+
+
 
 
 async function crearDatosAcademicos(request,response){
@@ -109,5 +172,8 @@ async function crearDatosAcademicos(request,response){
 //Exportacion de controladores
 module.exports={
     crearDatosAcademicos,
-    verDatosAcademicos
+    verDatosAcademicos,
+    editarDatosAcademicos
 };
+
+

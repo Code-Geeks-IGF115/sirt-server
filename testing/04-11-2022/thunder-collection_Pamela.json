@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Pamela",
+    "dateExported": "2022-11-04T17:40:38.786Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f68845a9-d6d3-4427-b112-142cbf6569a7",
+            "colId": "6b51d523-6386-4bcf-ad8c-d3236edfecb0",
+            "containerId": "",
+            "name": "registrar beneficiario",
+            "url": "localhost:3000/responsable/21584254/beneficiario/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2022-11-04T17:07:59.163Z",
+            "modified": "2022-11-04T17:31:17.506Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"Pamela Nicole 2\",\n  \"apellidos\":\"Barrientos\",\n  \"fechaNacimiento\":\"2000-10-10\",\n  \"sexo\":\"F\",\n  \"antecedentesFamiliares\":\"\",\n  \"antecedentesMedicos\":\"Alergia a los gatos\",\n  \"medicamentosPrescritos\":\"Loratadina\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

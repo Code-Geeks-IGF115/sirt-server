@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Datos Academicos Editar",
+    "dateExported": "2022-11-18T19:49:55.895Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "10fdf97b-d61c-4288-afec-2951226b64c1",
+            "colId": "917f3c54-b0d8-4970-9fb8-ae88e72b5c7d",
+            "containerId": "",
+            "name": "localhost:3000/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta",
+            "url": "localhost:3000/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-11-18T17:22:59.191Z",
+            "modified": "2022-11-18T17:22:59.191Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"centroDeEstudio\":\"Centro Escolar Reparto San Jose II \",\n  \"nivelAcademicoEnCurso\":\"Primaria\",\n  \"gradoEnCurso\":\"Segundo grado\",\n  \"rendimientoAcademico\":\"Grados repetidos\",\n  \"materia\":\"Lenguaje\",\n  \"nota\":7.5\n  \n  \n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
