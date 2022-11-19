@@ -237,6 +237,14 @@ const {crearConsultaYPlanTerapeutico} = require(__dirname + '/controladores/guar
 const { EditPlanTerapeutico } = require(__dirname + '/controladores/planTerapeutico/PlanTerapeutico.js');
 
 
+//listaConsultasFichaPsicológica
+const { consultasPsicologicas } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaPsicologica.js');
+
+
+//plan terapeutico
+const { EditPlanTerapeutico } = require(__dirname + '/controladores/fichaNutricion/PlanTerapeutico.js');
+
+
 
 //RUTAS
 
@@ -262,14 +270,29 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .post(editarDatosMedicos);
 
 //Beneficiarios
+
+/**
 app.route('/ficha/nutricion/consulta//beneficiario/:id')
   .post(verBeneficario);
-
-
+app.route('/beneficiario/:id')
+  .get(verBeneficario);
+*/
 
 //listaConsultasFichaNutricion
 /*app.route('/beneficiario/:id/ficha/psicologica/')
  .get(verconsultasNutricion);*/
+
+
+
+
+//   //listaConsultasFichaPsicológica
+app.route('/beneficiario/:id/ficha/psicologica/')
+  .get(consultasPsicologicas);
+
+//Plan Terapeutico
+app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
+.post(EditPlanTerapeutico)
+
 
   //Plan Terapeutico
 app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
