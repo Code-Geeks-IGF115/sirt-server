@@ -194,8 +194,28 @@ const {
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
+
+/**
+ * nombre:Remberto Leonardo Escobar Ardón
+ * carnet:EA12006
+ * estado: en revision 
+ * fecha de creación: Jueves 13 de octubre del 2022
+ * fecha de última edición: Viernes 18 de noviembre del 2022
+ * fecha de última revisión:
+ * fecha de aprobación: 
+ */
+
+//Datos academicos
+const { 
+  crearDatosAcademicos,
+  verDatosAcademicos
+  
+ } = require(__dirname + '/controladores/DatosAcademicosControl.js');
+
+ 
 //listaConsultasFichaNutricion
 //const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
+
 
 /**
  * Nombre: Pamela Nicole Barrientos Cruz
@@ -210,7 +230,27 @@ const {
   verPlanTerapeutico
 } = require(__dirname + '/controladores/fichaNutricion/VistaPlanTerapeutico.js');
 
+//Plan Terapéutico
+const {crearConsultaYPlanTerapeutico} = require(__dirname + '/controladores/guardarPlanTerapeutico.js')
+
+//plan terapeutico
+const { EditPlanTerapeutico } = require(__dirname + '/controladores/planTerapeutico/PlanTerapeutico.js');
+
+
+
 //RUTAS
+
+//Datos academicos
+app.route('/beneficiario/:id/ficha/terapeutica/:idConsulta')
+  .post(crearDatosAcademicos);
+
+app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
+  .get(verDatosAcademicos);
+
+
+
+
+
 app.route('/').get(index);
 // FICHA NUTRICIÓN
 
@@ -226,13 +266,14 @@ app.route('/ficha/nutricion/consulta//beneficiario/:id')
   .post(verBeneficario);
 
 
+
 //listaConsultasFichaNutricion
 /*app.route('/beneficiario/:id/ficha/psicologica/')
  .get(verconsultasNutricion);*/
 
-
-
-
+  //Plan Terapeutico
+app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
+.post(EditPlanTerapeutico)
 
 //Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
@@ -310,6 +351,10 @@ app.route('/beneficiario/:id/ficha/nutricion/')
   .get(listaConsultasFichaNutricion);
 app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
   .get(verPlanTerapeutico);
+
+//crear Plan terapéutico
+app.route('/beneficiario/:id/ficha/psicologica/')
+.post(crearConsultaYPlanTerapeutico);
 
 app.listen(PORT, async function () {
   try {
