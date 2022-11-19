@@ -178,19 +178,19 @@ const {
   verResponsable
 } = require(__dirname + '/controladores/ResponsableControl.js');
 
- 
- /**
- * nombre:Damaris Julissa Hernández Guardado
- * carnet:HG20040
- * estado:  En proceso 
- * fecha de creación: Viernes 18 de noviembre del 2022
- * fecha de última edición:
- * fecha de última revisión: 
- * fecha de aprobación: 
- */
-  const { 
-   editarDatosAcademicos
-   } = require(__dirname + '/controladores/DatosAcademicosControl.js');
+
+/**
+* nombre:Damaris Julissa Hernández Guardado
+* carnet:HG20040
+* estado:  En proceso 
+* fecha de creación: Viernes 18 de noviembre del 2022
+* fecha de última edición:
+* fecha de última revisión: 
+* fecha de aprobación: 
+*/
+const {
+  editarDatosAcademicos
+} = require(__dirname + '/controladores/DatosAcademicosControl.js');
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
 
@@ -216,11 +216,26 @@ const {
 //listaConsultasFichaNutricion
 //const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
 
+
+/**
+ * Nombre: Pamela Nicole Barrientos Cruz
+ * Carnet: BC21009
+ * Estado: 
+ * Fecha de creación: 18/11/2022
+ * Fecha de revisión:
+ * Fecha de última edición: 18/11/2022
+ * Fecha de aprobación:
+ */
+const {
+  verPlanTerapeutico
+} = require(__dirname + '/controladores/fichaNutricion/VistaPlanTerapeutico.js');
+
 //Plan Terapéutico
 const {crearConsultaYPlanTerapeutico} = require(__dirname + '/controladores/guardarPlanTerapeutico.js')
 
 //plan terapeutico
 const { EditPlanTerapeutico } = require(__dirname + '/controladores/planTerapeutico/PlanTerapeutico.js');
+
 
 
 //RUTAS
@@ -246,26 +261,19 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .get(verDatosMedicos)
   .post(editarDatosMedicos);
 
-  //Beneficiarios
-  app.route('/ficha/nutricion/consulta//beneficiario/:id')
+//Beneficiarios
+app.route('/ficha/nutricion/consulta//beneficiario/:id')
   .post(verBeneficario);
 
+
+
+//listaConsultasFichaNutricion
+/*app.route('/beneficiario/:id/ficha/psicologica/')
+ .get(verconsultasNutricion);*/
 
   //Plan Terapeutico
 app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
 .post(EditPlanTerapeutico)
-
-
-
-
-
-  //listaConsultasFichaNutricion
-/*app.route('/beneficiario/:id/ficha/psicologica/')
- .get(verconsultasNutricion);*/
-
-
-
-
 
 //Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
@@ -328,20 +336,21 @@ app.route('/responsable/:dui')
 
 //Beneficiario
 app.route('/beneficiario/:id/edit')
- .post(editarBeneficiario);
- app.route('/responsable/:dui/beneficiario')
-.get(listaBeneficiarios)
-.post(registrarBeneficiario);
+  .post(editarBeneficiario);
+app.route('/responsable/:dui/beneficiario')
+  .get(listaBeneficiarios)
+  .post(registrarBeneficiario);
 
 //DatosAcademicos
 app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
-.post(editarDatosAcademicos);
+  .post(editarDatosAcademicos);
 
 
 //Consultas
 app.route('/beneficiario/:id/ficha/nutricion/')
-.get(listaConsultasFichaNutricion);
-
+  .get(listaConsultasFichaNutricion);
+app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
+  .get(verPlanTerapeutico);
 
 //crear Plan terapéutico
 app.route('/beneficiario/:id/ficha/psicologica/')
@@ -353,7 +362,7 @@ app.listen(PORT, async function () {
     console.log('Connection has been established successfully.');
     //await sequelize.drop();
     // console.log("All tables dropped!");
-     //await sequelize.sync();
+    //await sequelize.sync();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
