@@ -27,7 +27,7 @@ const { index } = require(__dirname + '/controladores/indexControl.js');
 const {
   crearDatosMedicos,
   verDatosMedicos,
-  editarDatosMedicos 
+  editarDatosMedicos
 } = require(__dirname + '/controladores/DatosMedicosControl.js');
 
 
@@ -36,13 +36,18 @@ const {
  * Carnet: BC21009
  * Estado:
  * Fecha de creación: 2/11/2022
- * Fecha de última edición: 3/11/2022
+ * Fecha de última edición: 4/11/2022
  * Fecha de última revisión:
  * Fecha de aprobación:
  */
+
 const {
   registrarBeneficiario
-} = require(__dirname + '/controladores/fichaNutricion/BeneficiarioControl.js');
+} = require(__dirname + '/controladores/BeneficiarioControl.js');
+const {
+  listaConsultasFichaNutricion
+} = require(__dirname + '/controladores/ConsultaControl.js');
+
 
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
@@ -64,8 +69,8 @@ const { crearDatosAntropometricos,
 *Fecha de ultima revision:
 *Fecha de aprobacion:
 */
-const{ editarBeneficiario,
-       listaBeneficiarios
+const { editarBeneficiario,
+  listaBeneficiarios
 
 } = require(__dirname + '/controladores/BeneficiarioControl.js');
 
@@ -156,7 +161,7 @@ const {
   crearPlanAlimenticio,
   editarPlanAlimenticio,
   verPlanAlimenticio
- } = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
+} = require(__dirname + '/controladores/fichaNutricion/PlanAlimenticioControl.js');
 
 
 /**
@@ -168,14 +173,69 @@ const {
  * fecha de última revisión: 
  * fecha de aprobación: 
  */
- const { 
+const {
   registrarResponsable,
   verResponsable
- } = require(__dirname + '/controladores/ResponsableControl.js');
+} = require(__dirname + '/controladores/ResponsableControl.js');
 
- 
+
+/**
+* nombre:Damaris Julissa Hernández Guardado
+* carnet:HG20040
+* estado:  En proceso 
+* fecha de creación: Viernes 18 de noviembre del 2022
+* fecha de última edición:
+* fecha de última revisión: 
+* fecha de aprobación: 
+*/
+const {
+  editarDatosAcademicos
+} = require(__dirname + '/controladores/DatosAcademicosControl.js');
 //Beneficiarios
 const { verBeneficario } = require(__dirname + '/controladores/fichaNutricion/Beneficiario.js');
+
+
+/**
+ * nombre:Remberto Leonardo Escobar Ardón
+ * carnet:EA12006
+ * estado: en revision 
+ * fecha de creación: Jueves 13 de octubre del 2022
+ * fecha de última edición: Viernes 18 de noviembre del 2022
+ * fecha de última revisión:
+ * fecha de aprobación: 
+ */
+
+//Datos academicos
+const { 
+  crearDatosAcademicos,
+  verDatosAcademicos
+  
+ } = require(__dirname + '/controladores/DatosAcademicosControl.js');
+
+ 
+//listaConsultasFichaNutricion
+//const { verconsultasNutricion } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaNutricion.js');
+
+
+/**
+ * Nombre: Pamela Nicole Barrientos Cruz
+ * Carnet: BC21009
+ * Estado: 
+ * Fecha de creación: 18/11/2022
+ * Fecha de revisión:
+ * Fecha de última edición: 18/11/2022
+ * Fecha de aprobación:
+ */
+const {
+  verPlanTerapeutico
+} = require(__dirname + '/controladores/fichaNutricion/VistaPlanTerapeutico.js');
+
+//Plan Terapéutico
+const {crearConsultaYPlanTerapeutico} = require(__dirname + '/controladores/guardarPlanTerapeutico.js')
+
+//plan terapeutico
+const { EditPlanTerapeutico } = require(__dirname + '/controladores/planTerapeutico/PlanTerapeutico.js');
+
 
 //listaConsultasFichaPsicológica
 const { consultasPsicologicas } = require(__dirname + '/controladores/fichaNutricion/listaConsultasFichaPsicologica.js');
@@ -185,7 +245,20 @@ const { consultasPsicologicas } = require(__dirname + '/controladores/fichaNutri
 const { EditPlanTerapeutico } = require(__dirname + '/controladores/fichaNutricion/PlanTerapeutico.js');
 
 
+
 //RUTAS
+
+//Datos academicos
+app.route('/beneficiario/:id/ficha/terapeutica/:idConsulta')
+  .post(crearDatosAcademicos);
+
+app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
+  .get(verDatosAcademicos);
+
+
+
+
+
 app.route('/').get(index);
 // FICHA NUTRICIÓN
 
@@ -197,8 +270,19 @@ app.route('/ficha/nutricion/consulta/datos/medicos/:id')
   .post(editarDatosMedicos);
 
 //Beneficiarios
+
+/**
+app.route('/ficha/nutricion/consulta//beneficiario/:id')
+  .post(verBeneficario);
 app.route('/beneficiario/:id')
   .get(verBeneficario);
+*/
+
+//listaConsultasFichaNutricion
+/*app.route('/beneficiario/:id/ficha/psicologica/')
+ .get(verconsultasNutricion);*/
+
+
 
 
 //   //listaConsultasFichaPsicológica
@@ -209,6 +293,10 @@ app.route('/beneficiario/:id/ficha/psicologica/')
 app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
 .post(EditPlanTerapeutico)
 
+
+  //Plan Terapeutico
+app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
+.post(EditPlanTerapeutico)
 
 //Datos antropométricos
 app.route('/ficha/nutricion/consulta/datos-antropometricos/')
@@ -265,26 +353,39 @@ app.route('/ficha/nutricion/consulta/recordatorio-24h/:id')
 
 //RESPONSABLE 
 app.route('/responsable/')
- .post(registrarResponsable);
- app.route('/responsable/:dui')
+  .post(registrarResponsable);
+app.route('/responsable/:dui')
   .get(verResponsable);
 
 //Beneficiario
 app.route('/beneficiario/:id/edit')
- .post(editarBeneficiario);
- app.route('/responsable/:dui/beneficiario')
-.get(listaBeneficiarios)
-.post(registrarBeneficiario);
-  
+  .post(editarBeneficiario);
+app.route('/responsable/:dui/beneficiario')
+  .get(listaBeneficiarios)
+  .post(registrarBeneficiario);
 
+//DatosAcademicos
+app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
+  .post(editarDatosAcademicos);
+
+
+//Consultas
+app.route('/beneficiario/:id/ficha/nutricion/')
+  .get(listaConsultasFichaNutricion);
+app.route('/beneficiario/:id/ficha/psicologica/:idConsulta')
+  .get(verPlanTerapeutico);
+
+//crear Plan terapéutico
+app.route('/beneficiario/:id/ficha/psicologica/')
+.post(crearConsultaYPlanTerapeutico);
 
 app.listen(PORT, async function () {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
-    // await sequelize.drop();
+    //await sequelize.drop();
     // console.log("All tables dropped!");
-    // await sequelize.sync();
+    //await sequelize.sync();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
