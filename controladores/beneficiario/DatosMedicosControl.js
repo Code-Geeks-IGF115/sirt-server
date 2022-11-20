@@ -12,6 +12,7 @@ async function crearDatosMedicos(request, response) {
         const datosMedicos = DatosMedicos.build(parametros);
         if (datosMedicos instanceof DatosMedicos) {
             await datosMedicos.save();
+            data.id=datosMedicos.id;
         }
         data.id=datosMedicos.id;
         data.beneficiarioId=consulta.beneficiarioId;

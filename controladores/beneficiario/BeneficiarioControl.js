@@ -21,14 +21,15 @@ async function registrarBeneficiario(request, response) {
     //Programando la consulta y la excepción
     try {
         parametros.responsableDui=dui;
-        parametros.ResponsableDui=dui;
         const benef = Beneficiario.build(parametros);
         if (benef instanceof Beneficiario) {
             await benef.save();
+            mensaje.beneficiarioId=benef.id;
         }
         
         parametros.beneficiarioId=benef.id;
         const datosMedicos= await DatosMedicos.create(parametros);
+        mensaje.datosMedicosId=datosMedicos.id;
 
     } catch (error) {
         mensaje = {

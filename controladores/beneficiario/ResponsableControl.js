@@ -14,14 +14,17 @@ const {Responsable}=require(`../../models`);
 //CONTROLADORES
 async function registrarResponsable(request,response){
 
-    let data = {'message':"Responsable Registrado"}
+    let data = {
+        'message':"Responsable Registrado"
+    }
     //recuperando los parametros
     let parametros=request.body;
     try{
         const responsable = Responsable.build(parametros);
-        console.log(responsable);
+
         if(responsable instanceof Responsable){
-            await responsable.save();//guardando en la base de datos
+            result=await responsable.save();//guardando en la base de datos
+            data.dui = result.dui;
         }
     }catch(e){
         data = {
