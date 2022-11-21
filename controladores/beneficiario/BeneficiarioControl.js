@@ -27,8 +27,10 @@ async function registrarBeneficiario(request, response) {
             mensaje.beneficiarioId=benef.id;
         }
         
-        parametros.beneficiarioId=benef.id;
         const datosMedicos= await DatosMedicos.create(parametros);
+        datosMedicos.datosMedicoId=benef.id;
+        // datosMedicos.datosMedicoId=datosMedicos.id;
+        datosMedicos.save();
         mensaje.datosMedicosId=datosMedicos.id;
 
     } catch (error) {
@@ -59,7 +61,12 @@ async function verBeneficario(request,response){
                             [Op.eq]: id
                         }
                 } ,
-                include: ['datosMedicos']
+                include: 
+                   {
+                     model: DatosMedicos,
+                    as: 'datosMedicos'
+                }
+                
             });
         // data.id=beneficiario.id;
         // [data]=[beneficiario,datosMedicos]
