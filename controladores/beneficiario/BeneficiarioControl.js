@@ -28,6 +28,7 @@ async function registrarBeneficiario(request, response) {
         }
         
         const datosMedicos= await DatosMedicos.create(parametros);
+        datosMedicos.beneficiarioId=benef.id;
         datosMedicos.datosMedicoId=benef.id;
         // datosMedicos.datosMedicoId=datosMedicos.id;
         datosMedicos.save();
