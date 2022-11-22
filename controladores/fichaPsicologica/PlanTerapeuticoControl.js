@@ -97,18 +97,21 @@ async function crearPlanTerapeutico(request, response) {
     try {
         //creando consulta psicológica
         const consulta = Consulta.build({'fichaId': 4, 'FichaId': 4, 'BeneficiarioId': id, 'beneficiarioId':id, 'UsuarioId':1, 'doctorId':1 })
-        consulta.save();
-        params.consultaId = consulta.id; // falta consultaId no guarda
+        if (consulta instanceof Consulta){
+            await consulta.save();
+            params.consultaId = consulta.id; // falta consultaId no guarda
+            // console.log(consulta);
+        }
         const planTerapeutico = PlanTerapeutico.build(params);
         if (planTerapeutico instanceof PlanTerapeutico) {
             await planTerapeutico.save();
         }
         data = { 
             "message": "Consulta creada",
-            'consultaId': consulta.id,
+            'consultaId': params.consultaId,
             'planTerapeuticoId':planTerapeutico.id
         };
-        //console.log(planTerapeutico);
+        // console.log(planTerapeutico);
 
     } catch (error) {
         data = {
