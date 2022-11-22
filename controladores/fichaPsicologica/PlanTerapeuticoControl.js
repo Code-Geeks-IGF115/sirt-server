@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { PlanTerapeutico } = require('../../models');
+const { PlanTerapeutico, Consulta } = require('../../models');
 
 /*
 Nombre: Vinicio Alonso Sibrian Vargas
@@ -91,24 +91,29 @@ async function EditPlanTerapeutico(request, response){
 async function crearPlanTerapeutico(request, response) {
     let data = {};
     params = request.body;//recuperando los parametros
-    let id = request.params.id;//recuperando id de la ruta
+    let id = request.params.id;//recuperando id beneficiario de la ruta
 
     //Instancia
     try {
-        //params.consultaId = id; <-- falta consultaId no guarda
+        //creando consulta psicológica
+        const consulta = Consulta.build({'fichaId': 4, 'FichaId': 4, 'BeneficiarioId': id, 'beneficiarioId':id, 'UsuarioId':1, 'doctorId':1 })
+        consulta.save();
+        params.consultaId = consulta.id; // falta consultaId no guarda
         const planTerapeutico = PlanTerapeutico.build(params);
         if (planTerapeutico instanceof PlanTerapeutico) {
             await planTerapeutico.save();
         }
-        data = { "message": "Consulta id: " + id + " creada!" };
+        data = { 
+            "message": "Consulta creada",
+            'consultaId': consulta.id,
+            'planTerapeuticoId':planTerapeutico.id
+        };
         //console.log(planTerapeutico);
 
     } catch (error) {
         data = {
-            "message":
-                "Error al crear Consulta",
-            "message":
-                error.message
+            "message":"Error al crear Consulta",
+            "error": error.message
         }
     }
     return response.json(data);

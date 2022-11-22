@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Consulta,Beneficiario,Ficha} = require(`../../models`);
+const { Consulta,Beneficiario,PlanTerapeutico} = require(`../../models`);
 
 //Funcion para ver las consultas
 async function listaConsultasFichaPsicologica(request, response) {
@@ -8,18 +8,24 @@ async function listaConsultasFichaPsicologica(request, response) {
     //comprobando consulta
     try {
         //Se recuperarán todos las lista de consultas de la ficha psicológica del beneficiario
-        const fichaPsicologica = await Beneficiario.findOne({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
-            where: {
-                id: {
-                    [Op.eq]: id
-                },
-                include: {
-                    model:Consulta,
-                    as: 'consultas'
-                }
+        const fichaPsicologica = await PlanTerapeutico.findAll({
+            attributes: { 
+                exclude: [
+                    'createdAt', 
+                    'updatedAt',
+                ],
+            },
+            include:[
+                {     
+                   model: Consulta,
+                   as: 'consulta',
+                   where:{
+                       'fichaId': 4,
+                       'beneficiarioId':id
+                   }
+               }
 
-            }
+           ]
         })
         dato = fichaPsicologica;
     } catch (error) {
