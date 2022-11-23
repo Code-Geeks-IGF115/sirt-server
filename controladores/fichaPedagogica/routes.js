@@ -26,11 +26,11 @@ const {
 
 module.exports=(app)=>{
     //DatosAcademicos
-    app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
+    app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta/edit')
     .post(editarDatosAcademicos);
 
     //Datos academicos
-    app.route('/beneficiario/:id/ficha/terapeutica/:idConsulta')
+    app.route('/beneficiario/:id/ficha/terapeutica/:idConsulta/new')
     .post(crearDatosAcademicos);
 
     app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta')
