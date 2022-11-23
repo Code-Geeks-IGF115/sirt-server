@@ -4,15 +4,15 @@ const app = express();
 require('dotenv').config();
 const cors = require('cors');
 const bodyParser = require("body-parser");
+const { sequelize } = require(__dirname + "/models/index.js");
+const { index } = require(__dirname + '/controladores/indexControl.js');
+const PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
 app.use(cors({
   origin: [process.env.LOCAL_ORIGIN, process.env.REMOTE_ORIGIN]
 }));
-app.use(bodyParser.json());
-const { sequelize } = require(__dirname + "/models/index.js");
-const PORT = process.env.PORT || 3000;
-
 //IMPORTACIONES DE CONTROLADORES
-const { index } = require(__dirname + '/controladores/indexControl.js');
 app.route('/').get(index);
 
 //Importaciones de controladores
