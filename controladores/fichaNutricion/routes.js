@@ -110,7 +110,7 @@ module.exports= (app)=>{
     origin: [process.env.LOCAL_ORIGIN, process.env.REMOTE_ORIGIN]
   }));
   //Datos antropométricos
-  app.route('/ficha/nutricion/consulta/datos-antropometricos/')
+  app.route('/beneficiario/:beneficiarioId/ficha/nutricion/consulta/datos-antropometricos/')
   .post(crearDatosAntropometricos);
   app.route('/ficha/nutricion/consulta/datos-antropometricos/:id/edit')
   .post(editarDatosAntropometricos);

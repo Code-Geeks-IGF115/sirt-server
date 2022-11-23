@@ -1,12 +1,13 @@
 //jshint esversion:6
 const { Op } = require("sequelize");
-const { DatosAntropometricos } = require('../../models');
+const { DatosAntropometricos, Consulta } = require('../../models');
 //CONTROLADORES
-
+const FICHA_NUTRICION=1;
 async function crearDatosAntropometricos(request, response) {
 
     let data = { 'message': "Datos antropométricos guardados." }
     let parametros = request.body;
+    const beneficiarioId=request.params.beneficiarioId;
     try {
 
         parametros.pesoActual = parseFloat(parametros.pesoActual).toFixed(2);
@@ -21,7 +22,15 @@ async function crearDatosAntropometricos(request, response) {
         parametros.cBrazoContraido = parseFloat(parametros.cBrazoContraido).toFixed(2);
         parametros.altura = parseFloat(parametros.altura).toFixed(2);
         parametros.indiceMasaCorporal = parseFloat(parametros.indiceMasaCorporal).toFixed(2);
-        parametros.consultaId = parseInt(parametros.consultaId);
+
+        //crear consulta
+        const consulta=await Consulta.create({
+            beneficiarioId:beneficiarioId, 
+            BeneficiarioId:beneficiarioId,
+            fichaId: FICHA_NUTRICION,
+            FichaId:FICHA_NUTRICION
+        });
+        parametros.consultaId = consulta.id;
         const datosAntropometricos=await DatosAntropometricos.create(parametros);
         data.id=datosAntropometricos.id;
     } catch (e) {
