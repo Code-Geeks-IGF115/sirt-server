@@ -91,8 +91,8 @@ module.exports = (app)=>{
     //Datos médicos
     app.route('/beneficiario/:idBeneficiario/ficha/nutricion/consulta/datos/medicos/')
     .post(crearDatosMedicos);
-    app.route('/ficha/nutricion/consulta/datos/medicos/:id')
-    .get(verDatosMedicos)
+    app.route('/beneficiario/:idBeneficiario/ficha/nutricion/consulta/datos/medicos/')
+    // .get(verDatosMedicos)
     .post(editarDatosMedicos);
   
 }

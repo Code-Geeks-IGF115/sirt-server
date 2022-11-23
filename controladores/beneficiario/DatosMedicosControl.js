@@ -56,15 +56,15 @@ async function verDatosMedicos(request, response) {
 //Funcion para editar datos médicos en la base de datos
 async function editarDatosMedicos(request, response){
     let data = {"message":'Datos Médicos Modificados.'};
-    const id = request.params.id;
+    const beneficiarioId=request.params.idBeneficiario;
     const parametros=request.body;
     try {
         await DatosMedicos.update(
             parametros,
             {
                 where: {
-                    id: {
-                        [Op.eq]: id
+                    beneficiarioId: {
+                        [Op.eq]: beneficiarioId
                     }
                 }
             });
