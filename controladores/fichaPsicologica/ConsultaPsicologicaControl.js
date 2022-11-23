@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Consulta,Beneficiario,PlanTerapeutico} = require(`../../models`);
+const { Consulta,Beneficiario,PlanTerapeutico, Usuario} = require(`../../models`);
 
 //Funcion para ver las consultas
 async function listaConsultasFichaPsicologica(request, response) {
