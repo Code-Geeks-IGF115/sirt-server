@@ -131,32 +131,32 @@ async function editarDatosAcademicos(request, response) {
 
 async function crearDatosAcademicos(request,response){
     
-    let data={'message':"Plan Alimenticio Guardado."}
+    let data={'message':"Datos académicos guardados."}
    
     //recuperando los parametros
-    let {consultaId,beneficiarioId}=request.body;
+    let {idConsulta,idBeneficiario, recordAcademicos}=request.body;
     try{
         
         //recuperando consulta
-        const consulta = await Consulta.findOne({ where: { id: parseInt(consultaId)} });
-        const beneficiario = await Beneficiario.findOne({ where: { id: parseInt(beneficiarioId)} });
+        // const consulta = await Consulta.findOne({ where: { id: parseInt(consultaId)} });
+        // const beneficiario = await Beneficiario.findOne({ where: { id: parseInt(beneficiarioId)} });
         
-        const datosAacademicos = await DatosAcademicos.create(
+        const datosAcademicos = await DatosAcademicos.create(
             {
-                "beneficiarioId": beneficiario.id,
-                "consultaId": consulta.id
+                "beneficiarioId": idBeneficiario,
+                "consultaId": idConsulta
             });
             
-        record.forEach(async (record) => {
-            
-            record.DatosAcademicosId =datosAacademicos.id;
-        
+        recordAcademicos.forEach(async (record) => {    
+            // console.info(datosAcademicos.id);      
+            record.datosAcademicosId =datosAcademicos.id;
+            record.DatosAcademicoId =datosAcademicos.id;
             await RecordAcademico.create(record);          
-        },this);
-        data.id=datosAacademicos.id;
+        });
+        data.id=datosAcademicos.id;
              
     }catch(e){
-        response.status(304);
+        // response.status(304);
         data = { 
             'message': "Datos no válidos.",
             "error": e.message
