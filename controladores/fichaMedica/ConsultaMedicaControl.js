@@ -2,7 +2,7 @@
 const{ Op } = require("sequelize");
 const FICHA_MEDICA=2;
 //Modelo
-const{ Beneficiario, Consulta } = require('../../models');
+const{ Beneficiario, Consulta, Usuario} = require('../../models');
 
 
 //Funcion
