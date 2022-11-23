@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Consulta, Beneficiario } = require(`../../models`);
+const { Consulta, Beneficiario, Usuario} = require(`../../models`);
 
 /**
  * Nombre: Pamela Nicole Barrientos Cruz
@@ -26,14 +26,19 @@ async function listaConsultasFichaNutricion(request, response) {
                 }
 
             },
-            include: {
+            include: [{
                 
                 where:{
                     'fichaId': 1
                 },
                 model: Consulta,
-                as: 'consultas'
+                as: 'consultas',
+                include:{
+                    model: Usuario,
+                    as: 'doctor'
+                }
             }
+        ]
         })//.then(function(success){if(success){response.json(dato);}else{response.send(dato);}})
         dato = beneficiarios;
     } catch (error) {

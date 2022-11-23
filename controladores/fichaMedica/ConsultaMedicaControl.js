@@ -1,6 +1,6 @@
 //jshint esversion: 6
 const{ Op } = require("sequelize");
-
+const FICHA_MEDICA=2;
 //Modelo
 const{ Beneficiario, Consulta } = require('../../models');
 
@@ -18,10 +18,15 @@ async function listaConsultasFichaMedica(request, response){
                 }
             },
             include: {
-                model: Consulta, as: 'consultas',
+                model: Consulta, 
+                as: 'consultas',
                 where: {
-                    fichaId: 2
+                    fichaId: FICHA_MEDICA
                 },
+                include:{
+                    model: Usuario,
+                    as: 'doctor'
+                }
             }
         });
 

@@ -22,6 +22,10 @@ async function listaConsultasFichaPsicologica(request, response) {
                    where:{
                        'fichaId': 4,
                        'beneficiarioId':id
+                   },
+                   include:{
+                       model: Usuario,
+                       as: 'doctor'
                    }
                }
 
