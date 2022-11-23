@@ -1,3 +1,4 @@
+const cors = require('cors');
 /*
 *Nombre: Remberto Leonardo Escobar Ardón
 *Carnet: EA12006
@@ -105,6 +106,9 @@ const {
   } = require(__dirname + '/ConsultaNutricionControl.js');
 
 module.exports= (app)=>{
+  app.use(cors({
+    origin: [process.env.LOCAL_ORIGIN, process.env.REMOTE_ORIGIN]
+  }));
   //Datos antropométricos
   app.route('/ficha/nutricion/consulta/datos-antropometricos/')
   .post(crearDatosAntropometricos);

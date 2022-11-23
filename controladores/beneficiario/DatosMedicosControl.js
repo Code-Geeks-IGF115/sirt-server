@@ -4,18 +4,21 @@ const { DatosMedicos,Consulta } = require('../../models');
 //Funcion para crear los datos medicos
 async function crearDatosMedicos(request, response) {
     let data = { 'message': 'Datos medicos guardados' }
+    const beneficiarioId=request.params.idBeneficiario;
     parametros = request.body;
     //recuperando consulta
-    const consulta = await Consulta.findOne({ where: { id: parseInt(parametros.consultaId)} });
-    parametros.beneficiarioId=consulta.beneficiarioId;
+    // const consulta = await Consulta.findOne({ where: { id: parseInt(parametros.consultaId)} });
+    parametros.beneficiarioId=beneficiarioId;
     try {
         const datosMedicos = DatosMedicos.build(parametros);
         if (datosMedicos instanceof DatosMedicos) {
             await datosMedicos.save();
+            datosMedicos.datosMedicoId=beneficiarioId;
+            await datosMedicos.save();
             data.id=datosMedicos.id;
         }
         data.id=datosMedicos.id;
-        data.beneficiarioId=consulta.beneficiarioId;
+        // data.beneficiarioId=consulta.beneficiarioId;
     } catch (error) {
         data = { 
             'message': "Datos no válidos.",

@@ -89,7 +89,7 @@ module.exports = (app)=>{
     .post(editarResponsable);
 
     //Datos médicos
-    app.route('/ficha/nutricion/consulta/datos/medicos/')
+    app.route('/beneficiario/:idBeneficiario/ficha/nutricion/consulta/datos/medicos/')
     .post(crearDatosMedicos);
     app.route('/ficha/nutricion/consulta/datos/medicos/:id')
     .get(verDatosMedicos)
