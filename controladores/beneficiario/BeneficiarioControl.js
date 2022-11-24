@@ -1,7 +1,6 @@
 const { Op } = require("sequelize");
 const { Beneficiario,Responsable,DatosMedicos } = require('../../models');
 
-
 //controladores
 /**
  * Nombre: Pamela Nicole Barrientos Cruz

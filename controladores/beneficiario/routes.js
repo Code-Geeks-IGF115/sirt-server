@@ -71,6 +71,9 @@ const{
 } = require(__dirname + '/ResponsableControl.js');
 
 module.exports = (app)=>{
+    app.use(cors({
+      origin: [process.env.LOCAL_ORIGIN, process.env.REMOTE_ORIGIN]
+    }));
     //Beneficiario
     app.route('/beneficiario/:id/edit')
     .post(editarBeneficiario);

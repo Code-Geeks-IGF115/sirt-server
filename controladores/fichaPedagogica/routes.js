@@ -25,6 +25,9 @@ const {
    } = require(__dirname + '/DatosAcademicosControl.js');
 
 module.exports=(app)=>{
+  app.use(cors({
+    origin: [process.env.LOCAL_ORIGIN, process.env.REMOTE_ORIGIN]
+  }));
     //DatosAcademicos
     app.route('/beneficiario/:idBeneficiario/ficha/terapeutica/:idConsulta/edit')
     .post(editarDatosAcademicos);

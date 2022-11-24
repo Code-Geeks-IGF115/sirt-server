@@ -13,6 +13,9 @@ const{
 
 module.exports=(app)=>{
   //Ver fichas medicas
+  app.use(cors({
+    origin: [process.env.LOCAL_ORIGIN, process.env.REMOTE_ORIGIN]
+  }));
   app.route('/beneficiario/:id/ficha/medica/')
   .get(listaConsultasFichaMedica);
 

@@ -17,6 +17,9 @@ const {
 const { listaConsultasFichaPsicologica} = require(__dirname + '/ConsultaPsicologicaControl.js');
 
 module.exports =(app)=>{
+    app.use(cors({
+        origin: [process.env.LOCAL_ORIGIN, process.env.REMOTE_ORIGIN]
+      }));
     //listaConsultasFichaPsicológica
     app.route('/beneficiario/:id/ficha/psicologica/')
     .get(listaConsultasFichaPsicologica);
